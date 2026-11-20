@@ -1,0 +1,1453 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bitácora AEW</title>
+<meta name="description" content="Calendario y registro personal de Dynamite, Collision, Rampage, Dark, Elevation, especiales y PPV de AEW desde 2019.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bitácora">
+<meta name="theme-color" content="#10131A" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#07090D" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preload" href="fonts/BigShouldersDisplay-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fonts are bundled with the app so it looks right offline (SIL Open Font License). */
+/* latin-ext */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Barlow-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Barlow-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Barlow-500-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Barlow-500-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/Barlow-600-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/Barlow-600-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/Barlow-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/Barlow-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/BarlowCondensed-500-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/BarlowCondensed-500-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/BarlowCondensed-600-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/BarlowCondensed-600-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/BarlowCondensed-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/BarlowCondensed-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/BigShouldersDisplay-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/BigShouldersDisplay-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/BigShouldersDisplay-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/BigShouldersDisplay-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(fonts/BigShouldersDisplay-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Big Shoulders Display';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(fonts/BigShouldersDisplay-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Layout: an ink "ring apron" band carrying the career tally, a rail of years / views / shows,
+   then one working view (month calendar, year log, or the PPV ticket wall) with a side sheet per show. */
+:root{
+  --bg:#ECEEF3; --panel:#FFFFFF; --panel-2:#F4F5F8; --ink:#10131A; --muted:#596070; --line:#D5D9E1;
+  --on-c:#FFFFFF; --focus:#1F5FD1; --scrim:rgba(6,8,12,.45);
+  --dyn:#C2185B; --col:#1F5FD1; --ram:#7A3ED0; --drk:#4A5466; --elv:#0A8577; --ppv:#A26E00; --esp:#C44E17;
+  --seen:#157A43; --warn:#A35A00;
+  /* the band is ink in both themes, so its colors are fixed */
+  --band:#10131A; --band-ink:#F3F4F7; --band-muted:#A2A9B7; --band-line:rgba(255,255,255,.12);
+  --dyn-b:#FF5D95; --col-b:#6E9EFF; --ram-b:#B08BFF; --drk-b:#97A2B6; --elv-b:#34C9B6; --ppv-b:#F2BC3F; --esp-b:#FF8F52;
+  --f-display:"Big Shoulders Display","Barlow Condensed","Arial Narrow",Impact,sans-serif;
+  --f-body:"Barlow","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-label:"Barlow Condensed","Arial Narrow","Segoe UI",system-ui,sans-serif;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C0F15; --panel:#151922; --panel-2:#1C212B; --ink:#E8EBF1; --muted:#98A1B0; --line:#282E3A;
+    --on-c:#0C0F15; --focus:#6E9EFF; --scrim:rgba(0,0,0,.6);
+    --dyn:#FF5D95; --col:#6E9EFF; --ram:#B08BFF; --drk:#97A2B6; --elv:#34C9B6; --ppv:#F2BC3F; --esp:#FF8F52;
+    --seen:#3DD28A; --warn:#F0A43A; --band:#07090D;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C0F15; --panel:#151922; --panel-2:#1C212B; --ink:#E8EBF1; --muted:#98A1B0; --line:#282E3A;
+  --on-c:#0C0F15; --focus:#6E9EFF; --scrim:rgba(0,0,0,.6);
+  --dyn:#FF5D95; --col:#6E9EFF; --ram:#B08BFF; --drk:#97A2B6; --elv:#34C9B6; --ppv:#F2BC3F; --esp:#FF8F52;
+  --seen:#3DD28A; --warn:#F0A43A; --band:#07090D;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+[hidden]{display:none!important}
+img{max-width:100%}
+button,a,summary{-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--band);z-index:30}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+h1,h2,h3{text-wrap:balance}
+
+.s-dyn{--c:var(--dyn);--cb:var(--dyn-b)} .s-col{--c:var(--col);--cb:var(--col-b)} .s-ram{--c:var(--ram);--cb:var(--ram-b)}
+.s-drk{--c:var(--drk);--cb:var(--drk-b)} .s-elv{--c:var(--elv);--cb:var(--elv-b)} .s-ppv{--c:var(--ppv);--cb:var(--ppv-b)} .s-esp{--c:var(--esp);--cb:var(--esp-b)}
+
+/* ---------- band ---------- */
+.band{background:var(--band);color:var(--band-ink);padding-top:calc(env(safe-area-inset-top,0px) + 30px)}
+.band-in{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:36px;align-items:end;padding-bottom:28px}
+@media (max-width:860px){.band-in{grid-template-columns:minmax(0,1fr);gap:22px}}
+.eyebrow{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.16em;font-weight:600;font-size:13px;color:var(--band-muted);margin:0 0 20px}
+.wordmark{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(50px,9vw,104px);line-height:.84;letter-spacing:.005em;margin:0}
+.wordmark span{color:var(--ppv-b)}
+.lede{max-width:58ch;color:var(--band-muted);margin:16px 0 0;font-size:15.5px}
+.tally{border:1px solid var(--band-line);border-radius:12px;padding:18px 18px 16px;min-width:0}
+.tally-top{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.tally-num{font-family:var(--f-display);font-weight:800;font-size:clamp(54px,7vw,82px);line-height:.85;font-variant-numeric:tabular-nums}
+.tally-num small{font-size:.42em;color:var(--band-muted);font-weight:700;margin-left:2px}
+.tally-lbl{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.1em;font-size:13px;font-weight:600;color:var(--band-muted);padding-bottom:6px;max-width:16ch;line-height:1.15}
+.stack{display:flex;height:9px;border-radius:99px;background:var(--band-line);overflow:hidden;margin:14px 0 6px}
+.stack i{display:block;height:100%;background:var(--cb)}
+.stack-key{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--band-muted);margin:0 0 14px;padding:0;list-style:none;font-variant-numeric:tabular-nums}
+.stack-key li{display:inline-flex;align-items:center;gap:5px}
+.stack-key li::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--cb)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0}
+.facts dt{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--band-muted)}
+.facts dd{margin:2px 0 0;font-family:var(--f-display);font-weight:800;font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
+.ropes{display:grid;gap:3px}
+.ropes i{display:block;height:3px}
+.ropes i:nth-child(1){background:var(--dyn-b)} .ropes i:nth-child(2){background:var(--band-ink);opacity:.85} .ropes i:nth-child(3){background:var(--col-b)}
+
+/* ---------- up next ---------- */
+.upnext{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0 12px}
+@media (max-width:860px){.upnext{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0;text-align:left}
+button.card:hover{border-color:color-mix(in srgb,var(--ink) 35%,var(--line))}
+.card .k{font-family:var(--f-label);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:6px}
+.card .k::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--c,var(--muted))}
+.card .v{font-family:var(--f-display);font-weight:800;font-size:28px;line-height:1;text-transform:uppercase;overflow-wrap:anywhere}
+.card .s{color:var(--muted);font-size:14px}
+.card .s b{color:var(--ink);font-weight:600}
+.card .go{margin-top:6px;align-self:flex-start}
+
+/* ---------- meters ---------- */
+.meters{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(152px,1fr);gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:22px;scrollbar-width:thin}
+.meter{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px 11px;display:grid;gap:6px;min-width:0}
+.meter .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.meter .nm{font-family:var(--f-label);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:14.5px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.meter .nm::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--c)}
+.meter .ct{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px;white-space:nowrap}
+.bar{height:6px;border-radius:99px;background:var(--panel-2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--c)}
+.meter .yrs{font-size:12px;color:var(--muted)}
+
+/* ---------- rail ---------- */
+.rail{display:grid;gap:12px;margin-bottom:18px}
+.years{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.yr{flex:0 0 auto;min-width:78px;padding:8px 12px 9px;border-radius:8px;border:1px solid var(--line);background:var(--panel);text-align:left;display:grid;gap:5px}
+.yr b{font-family:var(--f-display);font-size:23px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.yr small{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mini{height:3px;background:var(--panel-2);border-radius:9px;overflow:hidden}
+.mini i{display:block;height:100%;background:var(--seen)}
+.yr[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.yr[aria-selected="true"] small{color:inherit;opacity:.75}
+.yr[aria-selected="true"] .mini{background:color-mix(in srgb,var(--bg) 25%,transparent)}
+.rail-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:3px}
+.seg button{border:0;background:transparent;padding:7px 12px;border-radius:7px;font-family:var(--f-label);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:14px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:5px 11px 5px 8px;font-family:var(--f-label);font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+.chip::before{content:"";width:10px;height:10px;border-radius:3px;border:2px solid var(--c)}
+.chip[aria-pressed="true"]{color:var(--ink);border-color:color-mix(in srgb,var(--c) 50%,var(--line))}
+.chip[aria-pressed="true"]::before{background:var(--c)}
+.toggle{display:inline-flex;gap:7px;align-items:center;font-size:14px;color:var(--muted);cursor:pointer}
+.toggle input{width:16px;height:16px;accent-color:var(--ink)}
+.spacer{flex:1 1 auto}
+.save{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin:0}
+.save i{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:0 0 auto}
+.save[data-mode="db"] i{background:var(--seen)}
+.save[data-mode="local"] i,.save[data-mode="slow"] i,.save[data-mode="fallback"] i,.save[data-mode="memory"] i{background:var(--warn)}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:8px;padding:8px 14px;font-family:var(--f-label);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:14px;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn.sm{padding:5px 10px;font-size:13px}
+.btn.ok{background:var(--seen);border-color:var(--seen);color:var(--on-c)}
+.btn.danger{background:var(--dyn);border-color:var(--dyn);color:var(--on-c)}
+.iconbtn{width:36px;height:36px;border-radius:8px;border:1px solid var(--line);background:var(--panel);font-size:20px;line-height:1;display:inline-grid;place-items:center;flex:0 0 auto}
+
+/* ---------- view head + month strip ---------- */
+.vhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.mnav{display:flex;align-items:center;gap:6px;min-width:0}
+.mnav h2{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:clamp(28px,4.5vw,40px);margin:0 6px;line-height:1}
+.confirm{display:inline-flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.mstrip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;margin-bottom:14px}
+@media (max-width:700px){.mstrip{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.ms{border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:6px 7px 7px;display:grid;gap:4px;text-align:left;min-width:0}
+.ms b{font-family:var(--f-label);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.ms small{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms[aria-current="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.ms:disabled{opacity:.4;cursor:default}
+
+/* ---------- calendar ---------- */
+.dows,.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.dows{margin-bottom:4px}
+.dows span{font-family:var(--f-label);font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-left:6px}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:8px;min-height:106px;padding:6px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.day.out{background:transparent;border-color:transparent}
+.day.past-empty{background:var(--panel-2)}
+.dn{font-family:var(--f-display);font-weight:800;font-size:18px;line-height:1;color:var(--muted);font-variant-numeric:tabular-nums}
+.day.today{border-color:var(--ink)}
+.day.today .dn{color:var(--bg);background:var(--ink);border-radius:5px;padding:2px 5px;align-self:flex-start}
+.pill{display:flex;align-items:center;gap:5px;width:100%;min-width:0;border-radius:5px;border:1px solid color-mix(in srgb,var(--c) 60%,transparent);background:color-mix(in srgb,var(--c) 10%,var(--panel));padding:3px 6px;font-family:var(--f-label);font-weight:600;font-size:13.5px;line-height:1.15;text-align:left;color:var(--ink)}
+.pill .full{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.pill .code{display:none}
+.pill .mk{flex:0 0 auto;font-size:12px;font-weight:700}
+.pill.s-ppv,.pill.s-esp{font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.pill.st-seen{background:var(--c);border-color:var(--c);color:var(--on-c)}
+.pill.st-next{border-style:dashed;background:transparent}
+.pill.st-skip,.pill.st-none{opacity:.55;text-decoration:line-through;background:transparent}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:12px 0 0;padding:0;list-style:none;font-size:13px;color:var(--muted)}
+.legend li{display:inline-flex;align-items:center;gap:7px}
+.legend .sw{width:22px;height:12px;border-radius:3px;border:1px solid var(--ink)}
+.legend .sw.f{background:var(--ink)} .legend .sw.d{border-style:dashed} .legend .sw.x{opacity:.5;background:linear-gradient(transparent 45%,var(--ink) 45%,var(--ink) 55%,transparent 55%)}
+@media (max-width:640px){
+  .day{min-height:68px;padding:4px 3px;border-radius:6px;gap:3px}
+  .dn{font-size:14px}
+  .dows span{padding-left:3px;font-size:11px;letter-spacing:.06em}
+  .pill{padding:2px 2px;font-size:10.5px;justify-content:center;letter-spacing:0}
+  .pill .full,.pill .mk{display:none}
+  .pill .code{display:inline}
+}
+
+/* ---------- list ---------- */
+.lmonth{margin-bottom:22px;scroll-margin-top:12px}
+.lmonth>header{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:6px 0 8px;border-bottom:2px solid var(--ink)}
+.lmonth h3{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:26px;margin:0;line-height:1}
+.lmonth .cnt{color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px}
+.lmonth .bulkwrap{margin-left:auto}
+.rows{list-style:none;margin:0;padding:0}
+.row{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:4px 0}
+.check{flex:0 0 auto;width:32px;height:32px;border-radius:8px;border:2px solid color-mix(in srgb,var(--c) 75%,var(--line));background:transparent;color:transparent;font-weight:800;font-size:16px;line-height:1}
+.check:hover{color:color-mix(in srgb,var(--c) 60%,transparent)}
+.row.st-seen .check{background:var(--c);border-color:var(--c);color:var(--on-c)}
+.row.st-next .check{border-style:dashed}
+.row-main{flex:1 1 auto;min-width:0;display:grid;grid-template-columns:50px minmax(0,1fr) auto;gap:12px;align-items:center;border:0;background:transparent;text-align:left;padding:6px 0;border-radius:6px}
+.row-main:hover .rt b{text-decoration:underline;text-underline-offset:3px}
+.rd b{font-family:var(--f-display);font-size:24px;font-weight:800;line-height:1;display:block;font-variant-numeric:tabular-nums}
+.rd small{font-family:var(--f-label);text-transform:uppercase;font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.rt{min-width:0}
+.rt b{display:flex;align-items:center;gap:7px;font-weight:600;font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rt b::before{content:"";flex:0 0 auto;width:9px;height:9px;border-radius:2px;background:var(--c)}
+.rt small{display:block;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:16px}
+.rm{font-variant-numeric:tabular-nums;font-size:13.5px;color:var(--muted);text-align:right;white-space:nowrap;display:grid;gap:1px}
+.rm .sc{font-family:var(--f-display);font-weight:800;font-size:19px;color:var(--ink);line-height:1}
+.row.st-skip .rt b,.row.st-none .rt b{text-decoration:line-through;color:var(--muted)}
+.empty{background:var(--panel);border:1px dashed var(--line);border-radius:var(--r);padding:28px 20px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--ink);font-family:var(--f-display);font-size:24px;text-transform:uppercase;font-weight:800;margin-bottom:4px}
+
+/* ---------- PPV ticket wall ---------- */
+.pyear{margin-bottom:26px}
+.pyear>header{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.pyear h3{font-family:var(--f-display);font-size:40px;font-weight:900;margin:0;line-height:1;font-variant-numeric:tabular-nums}
+.pyear .cnt{color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+.tickets{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+@media (max-width:420px){.tickets{grid-template-columns:minmax(0,1fr)}}
+.ticket{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 98px;background:var(--panel);border:0;border-radius:12px;text-align:left;padding:0;color:var(--ink);min-height:132px}
+.ticket::before,.ticket::after{content:"";position:absolute;right:89px;width:18px;height:18px;border-radius:50%;background:var(--bg)}
+.ticket::before{top:-9px} .ticket::after{bottom:-9px}
+.ticket:hover .tn{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.tm{padding:14px 16px 14px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.te{font-family:var(--f-label);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:12px;color:var(--ppv)}
+.tn{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:29px;line-height:.92;margin:2px 0 4px}
+.td{font-weight:600;font-size:14px}
+.tv{color:var(--muted);font-size:13px;line-height:1.3}
+.ts{border-left:2px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px 6px;background:color-mix(in srgb,var(--ppv) 9%,var(--panel));border-radius:0 12px 12px 0;text-align:center}
+.stamp{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:19px;letter-spacing:.05em;color:var(--seen);border:2.5px solid var(--seen);border-radius:6px;padding:1px 7px;transform:rotate(-9deg)}
+.stamp.muted{color:var(--muted);border-color:var(--muted)}
+.big{font-family:var(--f-display);font-weight:900;font-size:36px;line-height:.9;font-variant-numeric:tabular-nums}
+.big small{font-size:.45em;color:var(--muted)}
+.wait{font-family:var(--f-label);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.1em;color:var(--muted);line-height:1.1}
+.ticket.st-skip .tn,.ticket.st-none .tn{text-decoration:line-through;color:var(--muted)}
+
+/* ---------- sheet ---------- */
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:40}
+.sheet{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--panel);z-index:41;overflow-y:auto;overscroll-behavior:contain;
+  padding:calc(env(safe-area-inset-top,0px) + 18px) max(22px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 28px) 22px;
+  box-shadow:-14px 0 44px rgba(0,0,0,.28);display:flex;flex-direction:column;gap:18px}
+@media (max-width:640px){
+  .sheet{top:auto;left:0;width:100%;max-height:92vh;border-radius:16px 16px 0 0;padding-top:16px;
+    padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+@media (prefers-reduced-motion:no-preference){
+  .sheet{animation:slidein .18s ease-out}
+  @media (max-width:640px){.sheet{animation-name:slideup}}
+}
+@keyframes slidein{from{transform:translateX(24px);opacity:.4}to{transform:none;opacity:1}}
+@keyframes slideup{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
+.sh-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.badge{font-family:var(--f-label);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--c);display:inline-flex;align-items:center;gap:6px}
+.badge::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--c)}
+.sh-head{display:grid;gap:4px}
+.sh-title{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:38px;line-height:.92;margin:0 0 6px;overflow-wrap:anywhere}
+.sh-when{font-weight:600;margin:0}
+.sh-sub{color:var(--muted);margin:0;font-size:14px}
+.sh-note{font-size:13.5px;color:var(--muted);background:var(--panel-2);border-radius:8px;padding:9px 11px;margin:0}
+.grp{display:grid;gap:8px;border:0;margin:0;padding:0;min-width:0}
+.grp legend,.lbl{font-family:var(--f-label);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:13px;color:var(--muted);padding:0;margin:0 0 8px}
+.lbl{margin:0}
+.stseg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.stseg button{border:1px solid var(--line);background:var(--panel-2);border-radius:8px;padding:9px 2px;font-family:var(--f-label);font-weight:700;font-size:14px;line-height:1.1}
+.stseg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.stseg button[data-st="seen"][aria-pressed="true"]{background:var(--seen);border-color:var(--seen);color:var(--on-c)}
+.scores{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px}
+.scores button{aspect-ratio:1;max-width:100%;border:1px solid var(--line);background:var(--panel-2);border-radius:7px;font-family:var(--f-display);font-weight:800;font-size:18px;padding:0;font-variant-numeric:tabular-nums}
+.scores button.fill{background:color-mix(in srgb,var(--ppv) 22%,var(--panel-2));border-color:color-mix(in srgb,var(--ppv) 40%,var(--line))}
+.scores button.on{background:var(--ppv);border-color:var(--ppv);color:var(--on-c)}
+input,select,textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;min-width:0}
+textarea{resize:vertical;min-height:96px}
+.bestrow{display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:6px}
+.more summary{cursor:pointer;font-family:var(--f-label);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:13px;color:var(--muted)}
+.more[open] summary{margin-bottom:10px}
+.morebody{display:grid;gap:10px}
+.daterow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.daterow input{flex:1 1 160px;width:auto}
+.form{display:grid;gap:14px}
+.hint{font-size:13px;color:var(--muted);margin:0}
+
+/* ---------- toast + footer ---------- */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 18px);background:var(--ink);color:var(--bg);border-radius:10px;padding:10px 14px;display:flex;gap:14px;align-items:center;z-index:60;width:max-content;max-width:calc(100% - 32px);box-shadow:0 10px 30px rgba(0,0,0,.3);font-size:14px}
+.toast button{background:transparent;border:0;color:inherit;font-weight:700;text-transform:uppercase;font-family:var(--f-label);letter-spacing:.08em;text-decoration:underline;text-underline-offset:3px;padding:0}
+.foot{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 36px);color:var(--muted);font-size:13.5px;display:grid;gap:6px;max-width:80ch}
+.foot p{margin:0}
+</style>
+</head>
+<body>
+<header class="band">
+  <div class="wrap band-in">
+    <div>
+      <p class="eyebrow">Registro personal · mayo 2019 → hoy</p>
+      <h1 class="wordmark">Bitácora <span>AEW</span></h1>
+      <p class="lede">Cada Dynamite, Collision, Rampage, Dark, Elevation y pay-per-view desde Double or Nothing 2019. Marca lo que ya viste, ponle nota al show y apunta la mejor lucha de la noche.</p>
+    </div>
+    <div class="tally" aria-live="polite">
+      <div class="tally-top">
+        <div class="tally-num"><span id="tSeen">0</span><small>/<span id="tAired">0</span></small></div>
+        <div class="tally-lbl">shows vistos de los ya emitidos</div>
+      </div>
+      <div class="stack" id="tStack" role="img" aria-label="Vistos por programa"></div>
+      <ul class="stack-key" id="tKey"></ul>
+      <dl class="facts">
+        <div><dt>Horas de lucha</dt><dd id="tHours">0</dd></div>
+        <div><dt>PPV vistos</dt><dd id="tPpv">0</dd></div>
+        <div><dt>Nota media</dt><dd id="tAvg">—</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div class="ropes" aria-hidden="true"><i></i><i></i><i></i></div>
+</header>
+
+<main class="wrap">
+  <section class="upnext" id="upnext" aria-label="Lo que sigue"></section>
+  <section class="meters" id="meters" aria-label="Avance por programa"></section>
+
+  <section class="rail" aria-label="Controles">
+    <div class="years" id="years" role="tablist" aria-label="Año"></div>
+    <div class="rail-row">
+      <div class="seg" id="viewSeg" role="group" aria-label="Vista">
+        <button type="button" data-act="view" data-v="cal">Calendario</button>
+        <button type="button" data-act="view" data-v="list">Lista</button>
+        <button type="button" data-act="view" data-v="ppv">PPVs</button>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Programas visibles"></div>
+      <label class="toggle"><input type="checkbox" id="pendingOnly"> Solo pendientes</label>
+      <span class="spacer"></span>
+      <p class="save" id="save" data-mode="loading"><i></i><span>Cargando tu registro…</span></p>
+      <button type="button" class="btn ghost" data-act="backup" id="backupBtn">Respaldo</button>
+      <button type="button" class="btn" data-act="add" id="addBtn">+ Agregar evento</button>
+    </div>
+  </section>
+
+  <section id="view" aria-live="polite"></section>
+
+  <footer class="foot">
+    <p>Las fechas de los PPV y de los especiales marcados como confirmados vienen de los anuncios de AEW y de la cobertura de prensa de lucha libre. Los episodios semanales se generan con el horario regular de cada programa (Dynamite en miércoles, Collision en sábado, Rampage en viernes, Dark en martes, Elevation en lunes), así que alguna fecha puede variar. Si un episodio salió otro día o no salió, corrígelo desde su ficha.</p>
+    <p>Los sábados con PPV no se genera Collision. Tus marcas se guardan solo en este dispositivo. Usa Respaldo para guardar una copia en Archivos o iCloud Drive.</p>
+  </footer>
+</main>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="shTitle"></aside>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+(() => {
+"use strict";
+
+/* ================= DATA ================= */
+const SHOWS = {
+  dyn:{name:"Dynamite",  code:"DYN", h:2, span:"Desde oct 2019"},
+  col:{name:"Collision", code:"COL", h:2, span:"Desde jun 2023"},
+  ram:{name:"Rampage",   code:"RAM", h:1, span:"Ago 2021 – dic 2024"},
+  drk:{name:"Dark",      code:"DRK", h:1, span:"Oct 2019 – abr 2023"},
+  elv:{name:"Elevation", code:"ELV", h:1, span:"Mar 2021 – abr 2023"},
+  ppv:{name:"PPV",       code:"PPV", h:4, span:"Desde may 2019", long:"Pay-per-view"},
+  esp:{name:"Especial",  code:"ESP", h:2, span:"Eventos fuera de serie", long:"Especiales"}
+};
+const ORDER = ["ppv","esp","dyn","col","ram","drk","elv"];
+
+/* Weekly runs: [show, weekday (0=dom), first episode, last episode or null] */
+const RUNS = [
+  ["dyn",3,"2019-10-02",null],
+  ["drk",2,"2019-10-08","2023-04-25"],
+  ["elv",1,"2021-03-15","2023-04-24"],
+  ["ram",5,"2021-08-13","2024-12-27"],
+  ["col",6,"2023-06-17",null]
+];
+
+/* Pay-per-views: [date, name, venue, city, note] */
+const PPV = [
+  ["2019-05-25","Double or Nothing","MGM Grand Garden Arena","Las Vegas, NV","Primer evento de AEW."],
+  ["2019-08-31","All Out","Sears Centre Arena","Hoffman Estates, IL"],
+  ["2019-11-09","Full Gear","Royal Farms Arena","Baltimore, MD"],
+  ["2020-02-29","Revolution","Wintrust Arena","Chicago, IL"],
+  ["2020-05-23","Double or Nothing","Daily's Place y TIAA Bank Field","Jacksonville, FL"],
+  ["2020-09-05","All Out","Daily's Place","Jacksonville, FL"],
+  ["2020-11-07","Full Gear","Daily's Place","Jacksonville, FL"],
+  ["2021-03-07","Revolution","Daily's Place","Jacksonville, FL"],
+  ["2021-05-30","Double or Nothing","Daily's Place","Jacksonville, FL"],
+  ["2021-09-05","All Out","NOW Arena","Hoffman Estates, IL"],
+  ["2021-11-13","Full Gear","Target Center","Minneapolis, MN"],
+  ["2022-03-06","Revolution","Addition Financial Arena","Orlando, FL"],
+  ["2022-05-29","Double or Nothing","T-Mobile Arena","Las Vegas, NV"],
+  ["2022-06-26","Forbidden Door","United Center","Chicago, IL","Primer AEW x NJPW Forbidden Door."],
+  ["2022-09-04","All Out","NOW Arena","Hoffman Estates, IL"],
+  ["2022-11-19","Full Gear","Prudential Center","Newark, NJ"],
+  ["2023-03-05","Revolution","Chase Center","San Francisco, CA"],
+  ["2023-05-28","Double or Nothing","T-Mobile Arena","Las Vegas, NV"],
+  ["2023-06-25","Forbidden Door","Scotiabank Arena","Toronto, ON"],
+  ["2023-08-27","All In","Wembley Stadium","Londres, Inglaterra","Primer All In en Wembley."],
+  ["2023-09-03","All Out","United Center","Chicago, IL"],
+  ["2023-10-01","WrestleDream","Climate Pledge Arena","Seattle, WA"],
+  ["2023-11-18","Full Gear","Kia Forum","Inglewood, CA"],
+  ["2023-12-30","Worlds End","Nassau Coliseum","Uniondale, NY"],
+  ["2024-03-03","Revolution","Greensboro Coliseum","Greensboro, NC"],
+  ["2024-04-21","Dynasty","Chaifetz Arena","St. Louis, MO"],
+  ["2024-05-26","Double or Nothing","MGM Grand Garden Arena","Las Vegas, NV"],
+  ["2024-06-30","Forbidden Door","UBS Arena","Elmont, NY"],
+  ["2024-08-25","All In","Wembley Stadium","Londres, Inglaterra"],
+  ["2024-09-07","All Out","NOW Arena","Hoffman Estates, IL"],
+  ["2024-10-12","WrestleDream","Tacoma Dome","Tacoma, WA"],
+  ["2024-11-23","Full Gear","Prudential Center","Newark, NJ"],
+  ["2024-12-28","Worlds End","Addition Financial Arena","Orlando, FL"],
+  ["2025-03-09","Revolution","Crypto.com Arena","Los Ángeles, CA"],
+  ["2025-04-06","Dynasty","Liacouras Center","Filadelfia, PA"],
+  ["2025-05-25","Double or Nothing","Desert Diamond Arena","Glendale, AZ"],
+  ["2025-07-12","All In: Texas","Globe Life Field","Arlington, TX"],
+  ["2025-08-24","Forbidden Door","The O2 Arena","Londres, Inglaterra"],
+  ["2025-09-20","All Out","Scotiabank Arena","Toronto, ON"],
+  ["2025-10-18","WrestleDream","Chaifetz Arena","St. Louis, MO"],
+  ["2025-11-22","Full Gear","Prudential Center","Newark, NJ"],
+  ["2025-12-27","Worlds End","NOW Arena","Hoffman Estates, IL"],
+  ["2026-03-15","Revolution","Crypto.com Arena","Los Ángeles, CA"],
+  ["2026-04-12","Dynasty","Rogers Arena","Vancouver, BC"],
+  ["2026-05-24","Double or Nothing","Louis Armstrong Stadium","Queens, NY"],
+  ["2026-06-28","Forbidden Door","SAP Center","San José, CA"],
+  ["2026-07-26","Redemption","Bell Centre","Montreal, QC","Primer PPV de AEW en Montreal."],
+  ["2026-08-30","All In: London","Wembley Stadium","Londres, Inglaterra"],
+  ["2026-09-26","All Out","NOW Arena","Hoffman Estates, IL"],
+  ["2026-10-17","WrestleDream","Addition Financial Arena","Orlando, FL"],
+  ["2026-11-14","Full Gear","Mortgage Matchup Center","Phoenix, AZ"],
+  ["2026-12-19","Worlds End","Target Center","Minneapolis, MN","Final del Continental Classic."],
+  ["2027-02-07","Dynasty","M&S Bank Arena","Liverpool, Inglaterra","Anunciado. Primer PPV de AEW en febrero."]
+];
+
+/* Standalone specials: [date, name, venue, city, note, replaces Collision?] */
+const ESP = [
+  ["2019-06-29","Fyter Fest","Ocean Center","Daytona Beach, FL","Evento especial gratuito por B/R Live."],
+  ["2019-07-13","Fight for the Fallen","Daily's Place","Jacksonville, FL","Evento especial gratuito por B/R Live."],
+  ["2025-02-15","Grand Slam: Australia","Brisbane Entertainment Centre","Brisbane, Australia","Especial de TV en lugar de Collision.",true],
+  ["2026-02-14","Grand Slam: Australia","Qudos Bank Arena","Sídney, Australia","Especial de TV grabado, en lugar de Collision.",true]
+];
+
+/* Weekly episodes that moved to another day: "show:regular date" -> real date */
+const MOVES = {
+  "col:2025-12-27":"2025-12-25",
+  "col:2026-04-04":"2026-04-02",
+  "col:2026-05-09":"2026-05-06",
+  "col:2026-05-16":"2026-05-13",
+  "col:2026-05-23":"2026-05-20",
+  "col:2026-05-30":"2026-05-27",
+  "col:2026-11-14":"2026-11-11"
+};
+
+/* Named / confirmed weekly episodes: "show:date" -> [title, venue, city, note] */
+const MAY26 = ["","","","Calendario especial de mayo: Collision en miércoles a las 10 PM ET, después de Dynamite."];
+const TITLES = {
+  "dyn:2019-10-02":["Estreno de Dynamite","Capital One Arena","Washington, D.C."],
+  "drk:2019-10-08":["Estreno de Dark"],
+  "dyn:2020-07-01":["Fyter Fest · Noche 1","Daily's Place","Jacksonville, FL"],
+  "dyn:2020-07-08":["Fyter Fest · Noche 2","Daily's Place","Jacksonville, FL"],
+  "dyn:2020-07-15":["Fight for the Fallen","Daily's Place","Jacksonville, FL"],
+  "elv:2021-03-15":["Estreno de Elevation"],
+  "dyn:2021-05-05":["Blood & Guts","Daily's Place","Jacksonville, FL"],
+  "ram:2021-08-13":["Estreno de Rampage","Petersen Events Center","Pittsburgh, PA"],
+  "ram:2021-08-20":["The First Dance","United Center","Chicago, IL"],
+  "dyn:2021-09-22":["Grand Slam","Arthur Ashe Stadium","Queens, NY"],
+  "ram:2021-09-24":["Grand Slam","Arthur Ashe Stadium","Queens, NY","Grabado el miércoles 22 de septiembre."],
+  "dyn:2022-01-05":["Primer Dynamite en TBS"],
+  "dyn:2022-06-29":["Blood & Guts","Little Caesars Arena","Detroit, MI"],
+  "dyn:2022-09-21":["Grand Slam","Arthur Ashe Stadium","Queens, NY"],
+  "elv:2023-04-24":["Último Elevation","","","Episodio recopilatorio."],
+  "drk:2023-04-25":["Último Dark","","","Último episodio regular antes de la llegada de Collision."],
+  "col:2023-06-17":["Estreno de Collision","United Center","Chicago, IL"],
+  "dyn:2023-07-19":["Blood & Guts","TD Garden","Boston, MA"],
+  "dyn:2023-09-20":["Grand Slam","Arthur Ashe Stadium","Queens, NY"],
+  "dyn:2024-09-25":["Grand Slam","Arthur Ashe Stadium","Queens, NY"],
+  "ram:2024-12-27":["Último Rampage · New Year's Smash","Hammerstein Ballroom","Nueva York, NY"],
+  "dyn:2025-06-04":["Fyter Fest","Mission Ballroom","Denver, CO","Especial de cuatro horas con Collision."],
+  "dyn:2025-06-18":["Grand Slam: México","Arena México","Ciudad de México"],
+  "dyn:2025-12-24":["Dynamite on 34th Street","Hammerstein Ballroom","Nueva York, NY","Grabado el 20 de diciembre."],
+  "col:2025-12-25":["Collision Christmas","Hammerstein Ballroom","Nueva York, NY","Jueves de Navidad, grabado el 21 de diciembre. El sábado fue Worlds End."],
+  "dyn:2025-12-31":["New Year's Smash","","Omaha, NE"],
+  "dyn:2026-01-14":["Maximum Carnage","Arizona Financial Theatre","Phoenix, AZ"],
+  "col:2026-01-17":["Maximum Carnage","Arizona Financial Theatre","Phoenix, AZ"],
+  "col:2026-04-02":["Collision en jueves","","","Movido por la Final Four de la NCAA."],
+  "col:2026-05-06":MAY26, "col:2026-05-13":MAY26, "col:2026-05-20":MAY26, "col:2026-05-27":MAY26,
+  "dyn:2026-06-10":["Summer Blockbuster","Andrew J. Brady Music Center","Cincinnati, OH"],
+  "col:2026-06-13":["Summer Blockbuster","Andrew J. Brady Music Center","Cincinnati, OH","Grabado el jueves 11 de junio."],
+  "dyn:2026-08-05":["Grand Slam: México","Arena México","Ciudad de México"],
+  "dyn:2026-10-07":["Grand Slam: Francia","Adidas Arena","París, Francia","Grabado el martes 6 de octubre; primer show de AEW en Francia."],
+  "col:2026-10-10":["Grand Slam: Francia","Adidas Arena","París, Francia","Grabado el martes 6 de octubre."],
+  "dyn:2026-10-28":["Fright Night","","St. Louis, MO"],
+  "dyn:2026-11-04":["Blood & Guts","VyStar Veterans Memorial Arena","Jacksonville, FL"],
+  "col:2026-11-07":["Collision en el crucero de Jericho","","","Especial desde el crucero de Chris Jericho."],
+  "dyn:2026-11-11":["","","West Valley City, UT"],
+  "col:2026-11-11":["Collision en miércoles","","West Valley City, UT","Movido por Full Gear (sábado 14)."],
+  "dyn:2026-11-18":["Arranca el Continental Classic","","Denver, CO"],
+  "col:2026-11-21":["","Resch Center","Green Bay, WI"],
+  "dyn:2026-12-09":["Winter Is Coming","Arena Monterrey","Monterrey, N.L."],
+  "col:2026-12-12":["Winter Is Coming","Arena Monterrey","Monterrey, N.L.","Fecha de emisión por confirmar."],
+  "dyn:2026-12-23":["Holiday Bash","Wintrust Arena","Chicago, IL","Anunciado, por confirmar."],
+  "col:2026-12-26":["Holiday Bash","Wintrust Arena","Chicago, IL","Anunciado, por confirmar."],
+  "dyn:2027-02-10":["Dynamite en Londres","The O2","Londres, Inglaterra","Primer Dynamite en Londres."]
+};
+
+/* One-off episodes outside a run: [show, date, title, venue, city, note] */
+const EXTRA = [
+  ["drk","2025-12-16","Stocking Stuffer","","","Regreso especial de una noche de Dark."]
+];
+
+/* ================= DATES ================= */
+const pad = n => String(n).padStart(2,"0");
+const iso = (y,m,d) => `${y}-${pad(m)}-${pad(d)}`;
+const parse = s => { const [y,m,d] = s.split("-").map(Number); return Date.UTC(y,m-1,d); };
+const fromMs = ms => { const d = new Date(ms); return iso(d.getUTCFullYear(), d.getUTCMonth()+1, d.getUTCDate()); };
+const addDays = (s,n) => fromMs(parse(s) + n*864e5);
+const dow = s => new Date(parse(s)).getUTCDay();
+const diff = (a,b) => Math.round((parse(b)-parse(a))/864e5);
+const NOW = new Date();
+const TODAY = iso(NOW.getFullYear(), NOW.getMonth()+1, NOW.getDate());
+const DOW_L = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const DOW_S = ["dom","lun","mar","mié","jue","vie","sáb"];
+const MON_L = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const MON_S = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const ymd = s => { const d = new Date(parse(s)); return {y:d.getUTCFullYear(), m:d.getUTCMonth(), d:d.getUTCDate(), w:d.getUTCDay()}; };
+const shortDate = s => { const t = ymd(s); return `${DOW_S[t.w]} ${t.d} ${MON_S[t.m]}`; };
+const fullDate = s => { const t = ymd(s); return `${cap(DOW_L[t.w])} ${t.d} de ${MON_L[t.m]} de ${t.y}`; };
+function rel(s){
+  const n = diff(TODAY,s);
+  if (n === 0) return "hoy";
+  if (n === 1) return "mañana";
+  if (n === -1) return "ayer";
+  if (n > 1) return `en ${n} días`;
+  if (n > -60) return `hace ${-n} días`;
+  return "";
+}
+const fmtNum = n => n.toLocaleString("es-MX");
+const STAR_FRAC = {0:"",25:"¼",50:"½",75:"¾"};
+const fmtStars = v => "*".repeat(Math.floor(v)) + STAR_FRAC[Math.round((v % 1)*100)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function slotText(show, date){
+  const w = cap(DOW_L[dow(date)]);
+  if (show === "dyn") { const net = date < "2022-01-05" ? "TNT" : date < "2025-01-01" ? "TBS" : "TBS + HBO Max"; return dow(date) === 3 ? `${w} · 8 PM ET · ${net}` : `${w} · ${net}`; }
+  if (show === "col") { const net = date < "2025-01-01" ? "TNT" : "TNT + HBO Max"; return dow(date) === 6 ? `${w} · 8 PM ET · ${net}` : `${w} · ${net}`; }
+  if (show === "ram") return `${w} · TNT`;
+  if (show === "drk" || show === "elv") return `${w} · YouTube`;
+  if (show === "ppv") return `${w} · Pay-per-view`;
+  return `${w} · Especial`;
+}
+
+/* ================= BUILD THE SCHEDULE ================= */
+const lastFixed = [...PPV.map(p=>p[0]), ...ESP.map(p=>p[0]), ...Object.keys(TITLES).map(k=>k.slice(4))].sort().pop();
+let END = `${NOW.getFullYear()}-12-31`;
+if (addDays(TODAY,60) > END) END = addDays(TODAY,60);
+if (lastFixed > END) END = lastFixed;
+const FIRST_YEAR = 2019, LAST_YEAR = +END.slice(0,4);
+
+function buildBase(){
+  const out = [];
+  const blockCol = new Set();
+  for (const [date,title,venue,city,note] of PPV){
+    out.push({id:"ppv-"+date, show:"ppv", date, title, venue, city, note:note||"", verified:true});
+    if (dow(date) === 6) blockCol.add(date);
+  }
+  for (const [date,title,venue,city,note,repl] of ESP){
+    out.push({id:"esp-"+date, show:"esp", date, title, venue, city, note:note||"", verified:true});
+    if (repl) blockCol.add(date);
+  }
+  for (const [show,wd,start,stop] of RUNS){
+    const last = stop || END;
+    for (let d = start; d <= last; d = addDays(d,7)){
+      let date = d; const moved = MOVES[show+":"+d];
+      if (moved) date = moved;
+      else if (show === "col" && blockCol.has(d)) continue;
+      const t = TITLES[show+":"+date];
+      out.push({id:show+"-"+date, show, date, title:(t&&t[0])||"", venue:(t&&t[1])||"", city:(t&&t[2])||"", note:(t&&t[3])||"", verified:!!(t||moved)});
+    }
+  }
+  for (const [show,date,title,venue,city,note] of EXTRA){
+    out.push({id:show+"-"+date, show, date, title, venue, city, note:note||"", verified:true});
+  }
+  return out;
+}
+const BASE = buildBase();
+const BASE_BY_ID = Object.fromEntries(BASE.map(e => [e.id, e]));
+
+/* ================= STATE ================= */
+const UI_KEY = "bitacora-aew:ui", REC_KEY = "bitacora-aew:recs";
+const state = {
+  year: NOW.getFullYear(), month: NOW.getMonth(), view: "cal",
+  f: new Set(Object.keys(SHOWS)), pending: false,
+  sel: null, newMode: false, confirm: null, confirmDel: null, opener: null
+};
+if (state.year > LAST_YEAR) state.year = LAST_YEAR;
+try {
+  const u = JSON.parse(localStorage.getItem(UI_KEY) || "null");
+  if (u) {
+    if (["cal","list","ppv"].includes(u.view)) state.view = u.view;
+    if (Array.isArray(u.f)) { const f = u.f.filter(k => SHOWS[k]); if (f.length) state.f = new Set(f); }
+    state.pending = !!u.pending;
+  }
+} catch (e) {}
+function saveUI(){ try { localStorage.setItem(UI_KEY, JSON.stringify({view:state.view, f:[...state.f], pending:state.pending})); } catch (e) {} }
+
+let recs = {};
+let cache = {list:[], byId:{}};
+
+function effective(){
+  const list = BASE.map(e => { const r = recs[e.id]; return r && r.date ? {...e, date:r.date, dateEdited:true} : e; });
+  for (const id in recs){
+    const r = recs[id];
+    if (r && r.custom && r.date && SHOWS[r.show]) list.push({id, show:r.show, date:r.date, title:r.title||"", venue:r.venue||"", city:"", note:"", custom:true, verified:true});
+  }
+  list.sort((a,b) => a.date < b.date ? -1 : a.date > b.date ? 1 : ORDER.indexOf(a.show) - ORDER.indexOf(b.show));
+  cache = {list, byId:Object.fromEntries(list.map(e => [e.id, e]))};
+  return list;
+}
+function st(e){ const r = recs[e.id]; if (r && r.s) return r.s; return e.date > TODAY ? "next" : "todo"; }
+const ST_LABEL = {seen:"Visto", todo:"Por ver", next:"Próximo", skip:"Lo salté", none:"No se emitió"};
+const label = e => e.title || (e.show === "ppv" || e.show === "esp" ? SHOWS[e.show].name : SHOWS[e.show].name);
+function tally(list, pred){
+  let seen = 0, aired = 0;
+  for (const e of list){
+    if (pred && !pred(e)) continue;
+    const s = st(e);
+    if (s === "none") continue;
+    if (s === "seen") seen++;
+    if (e.date <= TODAY || s === "seen") aired++;
+  }
+  return {seen, aired};
+}
+const pct = (a,b) => b ? Math.round(a/b*1000)/10 : 0;
+
+/* ================= STORAGE ================= */
+const store = {mode:"loading", col:null};
+const DEL = {__del:true};
+const pending = {}, inflight = {}, timers = {};
+let active = 0; const waiters = [];
+const acquire = () => active < 4 ? (active++, Promise.resolve()) : new Promise(r => waiters.push(r));
+const release = () => { const w = waiters.shift(); if (w) w(); else active--; };
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+let localOK = true;
+try { localStorage.setItem("bitacora-aew:probe","1"); localStorage.removeItem("bitacora-aew:probe"); } catch (e) { localOK = false; }
+function loadLocal(){ try { return JSON.parse(localStorage.getItem(REC_KEY) || "{}") || {}; } catch (e) { return {}; } }
+function saveLocal(){ try { localStorage.setItem(REC_KEY, JSON.stringify(recs)); } catch (e) {} }
+
+const SAVE_TEXT = {
+  loading:"Cargando tu registro…",
+  slow:"Tu registro tarda en responder; sigo intentando…",
+  db:"Guardado en tu cuenta · privado",
+  local:"Guardado en este dispositivo",
+  fallback:"Guardando en este navegador: tu cuenta no puede guardar aquí",
+  memory:"Este navegador no permite guardar; tus marcas se pierden al cerrar"
+};
+function setSave(mode){
+  const el = document.getElementById("save");
+  el.dataset.mode = mode;
+  el.querySelector("span").textContent = SAVE_TEXT[mode] || "";
+}
+function useLocal(reason){
+  store.mode = "local";
+  if (reason === "fallback") saveLocal(); else recs = loadLocal();
+  setSave(!localOK ? "memory" : reason === "fallback" ? "fallback" : "local");
+  renderAll(); refreshSheet();
+}
+
+function persist(id){ saveLocal(); }
+function flushTimers(){ for (const id in timers){ clearTimeout(timers[id]); delete timers[id]; persist(id); } }
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flushTimers(); });
+
+/* patch: fields to set; null/"" removes a field */
+function setRec(id, patch, opts){
+  const o = Object.assign({render:true, write:true}, opts);
+  const prev = recs[id] ? {...recs[id]} : null;
+  const next = {...(recs[id] || {}), ...patch};
+  for (const k of Object.keys(next)) if (next[k] === null || next[k] === "" || next[k] === undefined) delete next[k];
+  delete next.t;
+  const keys = Object.keys(next);
+  if (!next.custom && keys.length === 0) delete recs[id];
+  else { next.t = Date.now(); recs[id] = next; }
+  if (o.write) persist(id);
+  else if (store.mode === "db") pending[id] = recs[id] ? {...recs[id]} : DEL;
+  if (o.render) renderAll();
+  return prev;
+}
+function restoreRec(id, prev){
+  if (prev) recs[id] = prev; else delete recs[id];
+  persist(id);
+}
+
+function init(){
+  store.mode = "local";
+  recs = loadLocal();
+  setSave(localOK ? "local" : "memory");
+  renderAll();
+  try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (e) {}
+}
+
+/* ================= RENDER ================= */
+const $ = id => document.getElementById(id);
+const visible = e => state.f.has(e.show);
+
+function renderAll(){
+  const list = effective();
+  renderTally(list); renderUpnext(list); renderMeters(list); renderRail(list); renderView(list);
+}
+
+function renderTally(list){
+  const t = tally(list);
+  $("tSeen").textContent = fmtNum(t.seen);
+  $("tAired").textContent = fmtNum(t.aired);
+  let hours = 0, scores = [], bySh = {};
+  for (const e of list){
+    if (st(e) === "seen"){ hours += SHOWS[e.show].h; bySh[e.show] = (bySh[e.show]||0) + 1; }
+    const r = recs[e.id]; if (r && r.score) scores.push(r.score);
+  }
+  $("tStack").innerHTML = ORDER.filter(k => bySh[k]).map(k => `<i class="s-${k}" style="width:${t.aired ? bySh[k]/t.aired*100 : 0}%"></i>`).join("");
+  $("tStack").setAttribute("aria-label", `Vistos: ${t.seen} de ${t.aired}`);
+  $("tKey").innerHTML = ORDER.filter(k => bySh[k]).map(k => `<li class="s-${k}">${SHOWS[k].name} ${fmtNum(bySh[k])}</li>`).join("") || `<li class="s-drk">Aún no marcas ningún show</li>`;
+  $("tHours").textContent = fmtNum(hours);
+  const pp = tally(list, e => e.show === "ppv");
+  $("tPpv").textContent = `${pp.seen}/${pp.aired}`;
+  $("tAvg").textContent = scores.length ? (scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1) : "—";
+}
+
+function renderUpnext(list){
+  const next = list.find(e => e.date >= TODAY && st(e) !== "none" && st(e) !== "seen");
+  const nppv = list.find(e => e.show === "ppv" && e.date >= TODAY);
+  const todo = list.filter(e => st(e) === "todo").length;
+  let h = "";
+  if (next){
+    const place = [next.venue, next.city].filter(Boolean).join(", ");
+    h += `<button type="button" class="card s-${next.show}" data-act="open" data-id="${next.id}">
+      <span class="k">Próximo show</span><span class="v">${esc(label(next))}</span>
+      <span class="s"><b>${esc(SHOWS[next.show].name)}</b> · ${shortDate(next.date)} · ${rel(next.date)}</span>
+      ${place ? `<span class="s">${esc(place)}</span>` : ""}</button>`;
+  } else h += `<div class="card"><span class="k">Próximo show</span><span class="s">No hay shows futuros en el calendario.</span></div>`;
+  if (nppv){
+    const n = diff(TODAY, nppv.date);
+    h += `<button type="button" class="card s-ppv" data-act="open" data-id="${nppv.id}">
+      <span class="k">Próximo PPV</span><span class="v">${esc(nppv.title)}</span>
+      <span class="s"><b>${n === 0 ? "Es hoy" : n === 1 ? "Es mañana" : `Faltan ${n} días`}</b> · ${shortDate(nppv.date)} ${ymd(nppv.date).y}</span>
+      <span class="s">${esc([nppv.venue, nppv.city].filter(Boolean).join(", "))}</span></button>`;
+  } else h += `<div class="card s-ppv"><span class="k">Próximo PPV</span><span class="s">Sin PPV anunciados por ahora.</span></div>`;
+  h += `<div class="card"><span class="k">Por ver</span><span class="v">${fmtNum(todo)}</span>
+    <span class="s">shows ya emitidos que todavía no marcas</span>
+    ${todo ? `<button type="button" class="btn ghost sm go" data-act="pending">Ver pendientes</button>` : ""}</div>`;
+  $("upnext").innerHTML = h;
+}
+
+function renderMeters(list){
+  $("meters").innerHTML = ["dyn","col","ram","drk","elv","ppv","esp"].map(k => {
+    const t = tally(list, e => e.show === k);
+    return `<div class="meter s-${k}"><div class="top"><span class="nm">${SHOWS[k].long || SHOWS[k].name}</span><span class="ct">${fmtNum(t.seen)}/${fmtNum(t.aired)}</span></div>
+      <div class="bar"><i style="width:${pct(t.seen,t.aired)}%"></i></div><span class="yrs">${SHOWS[k].span}</span></div>`;
+  }).join("");
+}
+
+function renderRail(list){
+  const ppvView = state.view === "ppv";
+  $("years").hidden = ppvView;
+  $("chips").hidden = ppvView;
+  let yh = "";
+  for (let y = FIRST_YEAR; y <= LAST_YEAR; y++){
+    const t = tally(list, e => e.date.startsWith(y+"-"));
+    yh += `<button type="button" class="yr" role="tab" data-act="year" data-y="${y}" aria-selected="${y === state.year}">
+      <b>${y}</b><small>${t.aired ? `${t.seen}/${t.aired}` : "por venir"}</small><span class="mini"><i style="width:${pct(t.seen,t.aired)}%"></i></span></button>`;
+  }
+  $("years").innerHTML = yh;
+  for (const b of $("viewSeg").querySelectorAll("button")) b.setAttribute("aria-pressed", String(b.dataset.v === state.view));
+  $("chips").innerHTML = ["dyn","col","ram","drk","elv","ppv","esp"].map(k =>
+    `<button type="button" class="chip s-${k}" data-act="chip" data-k="${k}" aria-pressed="${state.f.has(k)}">${SHOWS[k].name}</button>`).join("");
+  $("pendingOnly").checked = state.pending;
+}
+
+function monthEvents(list, y, m){
+  const p = `${y}-${pad(m+1)}-`;
+  return list.filter(e => e.date.startsWith(p) && visible(e));
+}
+function bulkIds(y, m){ return monthEvents(cache.list, y, m).filter(e => st(e) === "todo").map(e => e.id); }
+function bulkBlock(y, m){
+  const key = `${y}-${m}`, n = bulkIds(y, m).length;
+  if (!n) return "";
+  if (state.confirm === key) return `<span class="confirm">¿Marcar ${n} por ver como vistos? <button type="button" class="btn ok sm" data-act="bulk-yes" data-key="${key}">Sí, marcar</button><button type="button" class="btn ghost sm" data-act="bulk-no">Cancelar</button></span>`;
+  return `<button type="button" class="btn ghost sm" data-act="bulk" data-key="${key}">Marcar ${n} como vistos</button>`;
+}
+function monthStrip(list, interactive){
+  let h = `<div class="mstrip" role="group" aria-label="Meses de ${state.year}">`;
+  for (let m = 0; m < 12; m++){
+    const ev = monthEvents(list, state.year, m);
+    const t = tally(ev);
+    const cur = state.view === "cal" && m === state.month;
+    h += `<button type="button" class="ms" data-act="month" data-m="${m}" ${cur ? 'aria-current="true"' : ""} ${ev.length ? "" : (interactive === "list" ? "disabled" : "")}>
+      <b>${MON_S[m]}</b><small>${ev.length ? (t.aired ? `${t.seen}/${t.aired}` : `${ev.length} próx.`) : "—"}</small><span class="mini"><i style="width:${pct(t.seen,t.aired)}%"></i></span></button>`;
+  }
+  return h + "</div>";
+}
+
+function pillHtml(e){
+  const s = st(e);
+  const mk = s === "seen" ? "✓" : "";
+  const aria = `${label(e)}, ${SHOWS[e.show].name}, ${shortDate(e.date)}: ${ST_LABEL[s]}`;
+  return `<button type="button" class="pill s-${e.show} st-${s}" data-act="open" data-id="${e.id}" aria-label="${esc(aria)}" title="${esc(aria)}">
+    ${mk ? `<span class="mk">${mk}</span>` : ""}<span class="full">${esc(label(e))}</span><span class="code">${SHOWS[e.show].code}</span></button>`;
+}
+
+function renderCal(list){
+  const y = state.year, m = state.month;
+  const evs = monthEvents(list, y, m).filter(e => !state.pending || st(e) === "todo");
+  const byDate = {};
+  for (const e of evs) (byDate[e.date] = byDate[e.date] || []).push(e);
+  const first = iso(y, m+1, 1);
+  const lead = (dow(first) + 6) % 7;
+  const dim = new Date(Date.UTC(y, m+1, 0)).getUTCDate();
+  let cells = "";
+  for (let i = 0; i < lead; i++) cells += `<div class="day out" aria-hidden="true"></div>`;
+  for (let d = 1; d <= dim; d++){
+    const date = iso(y, m+1, d);
+    const items = byDate[date] || [];
+    const cls = ["day"];
+    if (date === TODAY) cls.push("today");
+    cells += `<div class="${cls.join(" ")}"><span class="dn">${d}</span>${items.map(pillHtml).join("")}</div>`;
+  }
+  const trail = (7 - (lead + dim) % 7) % 7;
+  for (let i = 0; i < trail; i++) cells += `<div class="day out" aria-hidden="true"></div>`;
+  const canPrev = !(y === FIRST_YEAR && m === 0), canNext = !(y === LAST_YEAR && m === 11);
+  const empty = !evs.length ? `<div class="empty" style="margin-top:12px"><b>${state.pending ? "Nada pendiente este mes" : "Sin shows este mes"}</b>${state.pending ? "Todo lo emitido en este mes ya está marcado." : "Revisa los filtros de programas o cambia de mes."}</div>` : "";
+  return `<div class="vhead"><div class="mnav">
+      <button type="button" class="iconbtn" data-act="prev" aria-label="Mes anterior" ${canPrev ? "" : "disabled"}>‹</button>
+      <h2>${MON_L[m]} ${y}</h2>
+      <button type="button" class="iconbtn" data-act="next" aria-label="Mes siguiente" ${canNext ? "" : "disabled"}>›</button>
+      <button type="button" class="btn ghost sm" data-act="today">Hoy</button></div>
+      ${bulkBlock(y, m)}</div>
+    ${monthStrip(list, "cal")}
+    <div class="dows" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div>
+    <div class="cal">${cells}</div>${empty}
+    <ul class="legend"><li><span class="sw f"></span>Visto</li><li><span class="sw"></span>Por ver</li><li><span class="sw d"></span>Próximo</li><li><span class="sw x"></span>Saltado o no se emitió</li></ul>`;
+}
+
+function rowHtml(e){
+  const s = st(e), r = recs[e.id] || {};
+  const place = [e.venue, e.city].filter(Boolean).join(", ");
+  const sub = [e.title ? SHOWS[e.show].name : "", place || (e.show === "ppv" || e.show === "esp" ? "" : slotText(e.show, e.date))].filter(Boolean).join(" · ");
+  const t = ymd(e.date);
+  const meta = [];
+  if (r.score) meta.push(`<span class="sc">${r.score}<small>/10</small></span>`);
+  if (r.stars) meta.push(`<span>${fmtStars(r.stars)}</span>`);
+  if (s === "skip" || s === "none" || s === "next") meta.push(`<span>${ST_LABEL[s]}</span>`);
+  const can = s !== "none";
+  return `<li class="row s-${e.show} st-${s}">
+    <button type="button" class="check" data-act="toggle" data-id="${e.id}" aria-pressed="${s === "seen"}" aria-label="${s === "seen" ? "Quitar visto" : "Marcar como visto"}: ${esc(label(e))}, ${shortDate(e.date)}" ${can ? "" : "disabled"}>✓</button>
+    <button type="button" class="row-main" data-act="open" data-id="${e.id}">
+      <span class="rd"><b>${t.d}</b><small>${DOW_S[t.w]}</small></span>
+      <span class="rt"><b>${esc(label(e))}</b>${sub ? `<small>${esc(sub)}</small>` : ""}</span>
+      <span class="rm">${meta.join("")}</span>
+    </button></li>`;
+}
+
+function renderList(list){
+  const y = state.year;
+  let h = `<div class="vhead"><div class="mnav"><h2>${y}</h2></div></div>${monthStrip(list, "list")}`;
+  let any = false;
+  for (let m = 0; m < 12; m++){
+    const all = monthEvents(list, y, m);
+    const evs = all.filter(e => !state.pending || st(e) === "todo");
+    if (!evs.length) continue;
+    any = true;
+    const t = tally(all);
+    h += `<section class="lmonth" id="lm-${m}"><header><h3>${MON_L[m]}</h3><span class="cnt">${t.aired ? `${t.seen}/${t.aired} vistos` : `${all.length} por venir`}</span>
+      <span class="bulkwrap">${bulkBlock(y, m)}</span></header><ul class="rows">${evs.map(rowHtml).join("")}</ul></section>`;
+  }
+  if (!any) h += `<div class="empty"><b>${state.pending ? `Nada pendiente en ${y}` : `Sin shows en ${y}`}</b>${state.pending ? "Ya marcaste todo lo emitido de este año con los programas elegidos." : "Revisa los filtros de programas."}</div>`;
+  return h;
+}
+
+function ticketHtml(e){
+  const s = st(e), r = recs[e.id] || {};
+  const t = ymd(e.date);
+  let stub;
+  if (s === "seen") stub = r.score ? `<span class="big">${r.score}<small>/10</small></span><span class="stamp">Visto</span>` : `<span class="stamp">Visto</span>`;
+  else if (s === "next"){ const n = diff(TODAY, e.date); stub = n <= 0 ? `<span class="wait">Es hoy</span>` : `<span class="wait">Faltan</span><span class="big">${n}</span><span class="wait">${n === 1 ? "día" : "días"}</span>`; }
+  else if (s === "skip") stub = `<span class="stamp muted">Saltado</span>`;
+  else if (s === "none") stub = `<span class="wait">No se emitió</span>`;
+  else stub = `<span class="wait">Por ver</span>`;
+  const extra = r.stars && r.best ? `<span class="tv">Mejor lucha: ${esc(r.best)} ${fmtStars(r.stars)}</span>` : r.best ? `<span class="tv">Mejor lucha: ${esc(r.best)}</span>` : "";
+  return `<button type="button" class="ticket st-${s}" data-act="open" data-id="${e.id}">
+    <span class="tm"><span class="te">PPV · ${MON_S[t.m]} ${t.y}</span><span class="tn">${esc(e.title)}</span>
+      <span class="td">${cap(DOW_L[t.w])} ${t.d} de ${MON_L[t.m]}</span>
+      <span class="tv">${esc([e.venue, e.city].filter(Boolean).join(" · "))}</span>${extra}</span>
+    <span class="ts">${stub}</span></button>`;
+}
+
+function renderPpv(list){
+  const ppvs = list.filter(e => e.show === "ppv" && (!state.pending || st(e) === "todo"));
+  const years = [...new Set(ppvs.map(e => +e.date.slice(0,4)))].sort((a,b) => b-a);
+  if (!years.length) return `<div class="empty"><b>Sin PPV pendientes</b>Ya marcaste todos los pay-per-view emitidos.</div>`;
+  return years.map(y => {
+    const all = list.filter(e => e.show === "ppv" && e.date.startsWith(y+"-"));
+    const t = tally(all);
+    const evs = ppvs.filter(e => e.date.startsWith(y+"-"));
+    return `<section class="pyear"><header><h3>${y}</h3><span class="cnt">${t.aired ? `${t.seen} de ${t.aired} vistos${all.length > t.aired ? ` · ${all.length - t.aired} por venir` : ""}` : `${all.length} por venir`}</span></header>
+      <div class="tickets">${evs.map(ticketHtml).join("")}</div></section>`;
+  }).join("");
+}
+
+function renderView(list){
+  list = list || cache.list;
+  const v = $("view");
+  v.innerHTML = state.view === "list" ? renderList(list) : state.view === "ppv" ? renderPpv(list) : renderCal(list);
+}
+
+/* ================= SHEET ================= */
+const STAR_VALUES = []; for (let v = 1; v <= 7; v += 0.25) STAR_VALUES.push(v);
+const sheet = $("sheet"), scrim = $("scrim");
+
+function openSheet(id, opener){
+  state.sel = id; state.newMode = false; state.confirmDel = null;
+  state.opener = opener || document.activeElement;
+  renderSheet();
+  sheet.hidden = false; scrim.hidden = false;
+  document.body.style.overflow = "hidden";
+  const x = sheet.querySelector('[data-act="close"]'); if (x) x.focus();
+}
+function openNew(opener){
+  state.sel = null; state.newMode = true;
+  state.opener = opener || document.activeElement;
+  renderNewSheet();
+  sheet.hidden = false; scrim.hidden = false;
+  document.body.style.overflow = "hidden";
+  const f = $("nDate"); if (f) f.focus();
+}
+function closeSheet(){
+  if (state.sel && timers[state.sel]){ clearTimeout(timers[state.sel]); delete timers[state.sel]; persist(state.sel); }
+  sheet.hidden = true; scrim.hidden = true;
+  document.body.style.overflow = "";
+  state.sel = null; state.newMode = false;
+  const o = state.opener; state.opener = null;
+  if (o && document.contains(o)) o.focus();
+}
+function refreshSheet(){
+  if (sheet.hidden || state.newMode || !state.sel) return;
+  const a = document.activeElement;
+  if (a && sheet.contains(a) && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return;
+  renderSheet();
+}
+
+function renderSheet(){
+  const keep = document.activeElement && sheet.contains(document.activeElement) ? document.activeElement.dataset.k : null;
+  const e = cache.byId[state.sel] || BASE_BY_ID[state.sel];
+  if (!e){ closeSheet(); return; }
+  const r = recs[e.id] || {};
+  const s = st(e);
+  const place = [e.venue, e.city].filter(Boolean).join(" · ");
+  const notes = [];
+  if (e.note) notes.push(e.note);
+  if (e.show === "ppv" && dow(e.date) === 6 && e.date >= "2023-06-17") notes.push("Ese sábado no hubo Collision regular.");
+  if (e.custom) notes.push("Evento que agregaste tú.");
+  else if (e.dateEdited) notes.push(`Fecha corregida por ti (originalmente ${shortDate(BASE_BY_ID[e.id].date)}).`);
+  else if (!e.verified) notes.push("Fecha según el horario regular del programa. Si este episodio salió otro día o no salió, corrígelo abajo.");
+  const relTxt = rel(e.date);
+  const stBtns = [["seen","Visto"],["todo", e.date > TODAY ? "Próximo" : "Por ver"],["skip","Lo salté"],["none","No se emitió"]].map(([k,l]) => {
+    const on = k === "todo" ? (s === "todo" || s === "next") : s === k;
+    return `<button type="button" data-act="st" data-st="${k}" data-k="st-${k}" aria-pressed="${on}">${l}</button>`;
+  }).join("");
+  const scoreBtns = Array.from({length:10}, (_, i) => {
+    const n = i+1; const cls = r.score === n ? "on" : (r.score && n < r.score ? "fill" : "");
+    return `<button type="button" class="${cls}" data-act="score" data-n="${n}" data-k="sc-${n}" aria-pressed="${r.score === n}" aria-label="Nota ${n} de 10">${n}</button>`;
+  }).join("");
+  const starOpts = `<option value="">Estrellas</option>` + STAR_VALUES.map(v => `<option value="${v}">${fmtStars(v)}</option>`).join("");
+  const customFields = e.custom ? `
+      <div class="grp"><label class="lbl" for="fTitle">Nombre</label><input id="fTitle" maxlength="120"></div>
+      <div class="grp"><label class="lbl" for="fVenue">Lugar</label><input id="fVenue" maxlength="140"></div>
+      <div class="grp"><label class="lbl" for="fShow">Programa</label><select id="fShow">${ORDER.map(k => `<option value="${k}">${SHOWS[k].long || SHOWS[k].name}</option>`).join("")}</select></div>` : "";
+  const delBlock = e.custom ? (state.confirmDel === e.id
+      ? `<div class="confirm">¿Borrar este evento y sus notas? <button type="button" class="btn danger sm" data-act="del-yes" data-k="del-yes">Sí, borrar</button><button type="button" class="btn ghost sm" data-act="del-no">Cancelar</button></div>`
+      : `<button type="button" class="btn ghost sm" data-act="del" data-k="del" style="justify-self:start">Borrar evento</button>`) : "";
+  sheet.innerHTML = `
+    <div class="sh-top s-${e.show}"><span class="badge">${esc(SHOWS[e.show].long || SHOWS[e.show].name)}</span>
+      <button type="button" class="iconbtn" data-act="close" data-k="close" aria-label="Cerrar">×</button></div>
+    <div class="sh-head">
+      <h2 class="sh-title" id="shTitle">${esc(label(e))}</h2>
+      <p class="sh-when">${fullDate(e.date)}${relTxt ? ` · ${relTxt}` : ""}</p>
+      ${place ? `<p class="sh-sub">${esc(place)}</p>` : ""}
+      <p class="sh-sub">${esc(slotText(e.show, e.date))}</p>
+    </div>
+    ${notes.length ? `<p class="sh-note">${esc(notes.join(" "))}</p>` : ""}
+    <fieldset class="grp"><legend>Estado</legend><div class="stseg">${stBtns}</div></fieldset>
+    <fieldset class="grp"><legend>Tu nota del show</legend><div class="scores">${scoreBtns}</div></fieldset>
+    <div class="grp"><label class="lbl" for="fBest">Mejor lucha</label>
+      <div class="bestrow"><input id="fBest" maxlength="140" placeholder="Ej. Ospreay vs. Okada"><select id="fStars" aria-label="Estrellas de la mejor lucha">${starOpts}</select></div></div>
+    <div class="grp"><label class="lbl" for="fNotes">Notas</label><textarea id="fNotes" rows="4" maxlength="4000" placeholder="Qué pasó, qué te gustó, momentos clave…"></textarea></div>
+    <details class="grp more" ${e.custom ? "open" : ""}><summary>${e.custom ? "Datos del evento" : "Corregir fecha de emisión"}</summary>
+      <div class="morebody">
+        <div class="daterow"><input type="date" id="fDate" aria-label="Fecha de emisión" min="2019-01-01" max="${LAST_YEAR+1}-12-31">
+        ${!e.custom && e.dateEdited ? `<button type="button" class="btn ghost sm" data-act="resetDate" data-k="reset">Usar fecha original</button>` : ""}</div>
+        ${customFields}
+        ${delBlock}
+      </div></details>`;
+  $("fBest").value = r.best || "";
+  $("fStars").value = r.stars ? String(r.stars) : "";
+  $("fNotes").value = r.notes || "";
+  $("fDate").value = e.date;
+  if (e.custom){ $("fTitle").value = e.title; $("fVenue").value = e.venue; $("fShow").value = e.show; }
+  if (keep){ const k = sheet.querySelector(`[data-k="${keep}"]`); if (k) k.focus(); }
+}
+
+function renderNewSheet(){
+  const showSel = ORDER.map(k => `<option value="${k}" ${k === "esp" ? "selected" : ""}>${SHOWS[k].long || SHOWS[k].name}</option>`).join("");
+  sheet.innerHTML = `
+    <div class="sh-top"><span class="badge" style="--c:var(--ink)">Nuevo evento</span>
+      <button type="button" class="iconbtn" data-act="close" aria-label="Cerrar">×</button></div>
+    <div class="sh-head"><h2 class="sh-title" id="shTitle">Agregar al registro</h2>
+      <p class="sh-sub">Para lo que no está en el calendario: un Battle of the Belts, un show de gira, un episodio que salió otro día.</p></div>
+    <form class="form" id="newForm">
+      <div class="grp"><label class="lbl" for="nDate">Fecha</label><input type="date" id="nDate" required min="2019-01-01" max="${LAST_YEAR+1}-12-31"></div>
+      <div class="grp"><label class="lbl" for="nShow">Programa</label><select id="nShow">${showSel}</select></div>
+      <div class="grp"><label class="lbl" for="nTitle">Nombre</label><input id="nTitle" maxlength="120" required placeholder="Ej. Battle of the Belts"></div>
+      <div class="grp"><label class="lbl" for="nVenue">Lugar (opcional)</label><input id="nVenue" maxlength="140" placeholder="Ej. Arena México, Ciudad de México"></div>
+      <button type="submit" class="btn" style="justify-self:start">Agregar</button>
+    </form>`;
+  $("nDate").value = TODAY;
+}
+
+/* ================= ACTIONS ================= */
+let undoFn = null, toastTimer = null;
+function toast(msg, undo){
+  const t = $("toast");
+  undoFn = undo || null;
+  t.innerHTML = `<span>${esc(msg)}</span>${undo ? `<button type="button" data-act="undo">Deshacer</button>` : ""}`;
+  t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.hidden = true; undoFn = null; }, undo ? 7000 : 5000);
+}
+
+function quickToggle(id){
+  const e = cache.byId[id]; if (!e) return;
+  setRec(id, {s: st(e) === "seen" ? null : "seen"});
+}
+function doBulk(key){
+  const [y, m] = key.split("-").map(Number);
+  const ids = bulkIds(y, m);
+  state.confirm = null;
+  const prev = ids.map(id => [id, recs[id] ? {...recs[id]} : null]);
+  for (const id of ids) setRec(id, {s:"seen"}, {render:false});
+  renderAll();
+  toast(`${ids.length} shows de ${MON_L[m]} ${y} marcados como vistos.`, () => { for (const [id, p] of prev) restoreRec(id, p); renderAll(); refreshSheet(); });
+}
+function setYear(y){
+  state.year = y; state.confirm = null;
+  if (y === NOW.getFullYear()) state.month = NOW.getMonth();
+  else {
+    const months = [...new Set(cache.list.filter(e => e.date.startsWith(y+"-")).map(e => +e.date.slice(5,7)-1))];
+    if (months.length && !months.includes(state.month)) state.month = state.month < months[0] ? months[0] : months[months.length-1];
+  }
+  renderAll();
+}
+function stepMonth(d){
+  let m = state.month + d, y = state.year;
+  if (m < 0){ m = 11; y--; } if (m > 11){ m = 0; y++; }
+  if (y < FIRST_YEAR || y > LAST_YEAR) return;
+  state.month = m; state.year = y; state.confirm = null;
+  renderAll();
+}
+
+document.addEventListener("click", ev => {
+  const t = ev.target.closest("[data-act]");
+  if (!t) return;
+  const act = t.dataset.act, id = t.dataset.id;
+  switch (act){
+    case "open": openSheet(id, t); break;
+    case "toggle": quickToggle(id); break;
+    case "year": setYear(+t.dataset.y); break;
+    case "view": state.view = t.dataset.v; state.confirm = null; saveUI(); renderAll(); break;
+    case "chip": {
+      const k = t.dataset.k;
+      if (state.f.has(k)){ if (state.f.size > 1) state.f.delete(k); } else state.f.add(k);
+      saveUI(); renderAll(); break;
+    }
+    case "prev": stepMonth(-1); break;
+    case "next": stepMonth(1); break;
+    case "today": state.year = Math.min(NOW.getFullYear(), LAST_YEAR); state.month = NOW.getMonth(); renderAll(); break;
+    case "month": {
+      const m = +t.dataset.m;
+      if (state.view === "list"){
+        const sec = $("lm-" + m);
+        if (sec) sec.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+      } else { state.month = m; state.confirm = null; renderAll(); }
+      break;
+    }
+    case "bulk": state.confirm = t.dataset.key; renderView(); { const b = $("view").querySelector('[data-act="bulk-yes"]'); if (b) b.focus(); } break;
+    case "bulk-yes": doBulk(t.dataset.key); break;
+    case "bulk-no": state.confirm = null; renderView(); break;
+    case "pending": {
+      state.pending = true; state.view = "list";
+      const years = [...new Set(cache.list.filter(e => st(e) === "todo" && visible(e)).map(e => +e.date.slice(0,4)))];
+      if (years.length && !years.includes(state.year)) state.year = years[years.length-1];
+      saveUI(); renderAll();
+      $("view").scrollIntoView({block:"start"});
+      break;
+    }
+    case "add": openNew(t); break;
+    case "backup": openBackup(t); break;
+    case "export": exportBackup(); break;
+    case "close": closeSheet(); break;
+    case "st": {
+      const k = t.dataset.st;
+      setRec(state.sel, {s: k === "todo" ? null : k}); renderSheet(); break;
+    }
+    case "score": {
+      const n = +t.dataset.n, r = recs[state.sel] || {};
+      setRec(state.sel, {score: r.score === n ? null : n}); renderSheet(); break;
+    }
+    case "resetDate": setRec(state.sel, {date:null}); renderSheet(); break;
+    case "del": state.confirmDel = state.sel; renderSheet(); break;
+    case "del-no": state.confirmDel = null; renderSheet(); break;
+    case "del-yes": {
+      const delId = state.sel, prev = recs[delId] ? {...recs[delId]} : null;
+      delete recs[delId]; persist(delId);
+      closeSheet(); renderAll();
+      toast("Evento borrado.", () => { if (prev){ recs[delId] = prev; persist(delId); renderAll(); } });
+      break;
+    }
+    case "undo": { const f = undoFn; undoFn = null; $("toast").hidden = true; if (f) f(); break; }
+  }
+});
+scrim.addEventListener("click", closeSheet);
+document.addEventListener("keydown", ev => {
+  if (ev.key === "Escape" && !sheet.hidden){ ev.preventDefault(); closeSheet(); }
+  if (ev.key === "Tab" && !sheet.hidden){
+    const f = [...sheet.querySelectorAll("button,input,select,textarea,summary")].filter(x => !x.disabled && x.offsetParent !== null);
+    if (!f.length) return;
+    if (ev.shiftKey && document.activeElement === f[0]){ ev.preventDefault(); f[f.length-1].focus(); }
+    else if (!ev.shiftKey && document.activeElement === f[f.length-1]){ ev.preventDefault(); f[0].focus(); }
+  }
+});
+$("pendingOnly").addEventListener("change", ev => { state.pending = ev.target.checked; state.confirm = null; saveUI(); renderAll(); });
+
+/* text fields in the sheet: update locally now, write after a pause */
+function draft(field, value){
+  const id = state.sel; if (!id) return;
+  setRec(id, {[field]: value}, {render:false, write:false});
+  clearTimeout(timers[id]);
+  timers[id] = setTimeout(() => { delete timers[id]; persist(id); renderAll(); }, 650);
+}
+sheet.addEventListener("input", ev => {
+  const t = ev.target;
+  if (t.id === "fBest") draft("best", t.value.trim() ? t.value : null);
+  else if (t.id === "fNotes") draft("notes", t.value.trim() ? t.value : null);
+  else if (t.id === "fTitle") draft("title", t.value.trim() ? t.value : null);
+  else if (t.id === "fVenue") draft("venue", t.value.trim() ? t.value : null);
+});
+sheet.addEventListener("change", ev => {
+  const t = ev.target, id = state.sel;
+  if (t.id === "importFile"){ if (t.files && t.files[0]) importBackup(t.files[0]); return; }
+  if (t.id === "fStars" && id){ setRec(id, {stars: t.value ? +t.value : null}); }
+  else if (t.id === "fShow" && id){ setRec(id, {show: t.value}); renderSheet(); }
+  else if (t.id === "fDate" && id){
+    const v = t.value;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return;
+    const e = cache.byId[id];
+    if (e && e.custom) setRec(id, {date: v});
+    else { const base = BASE_BY_ID[id]; setRec(id, {date: base && base.date === v ? null : v}); }
+    renderSheet();
+    toast(`Movido al ${fullDate(v).toLowerCase()}.`);
+  }
+});
+sheet.addEventListener("submit", ev => {
+  if (ev.target.id !== "newForm") return;
+  ev.preventDefault();
+  const date = $("nDate").value, show = $("nShow").value, title = $("nTitle").value.trim(), venue = $("nVenue").value.trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !title || !SHOWS[show]) return;
+  const id = "cus-" + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+  setRec(id, {custom:true, show, date, title, venue: venue || null});
+  state.year = +date.slice(0,4); state.month = +date.slice(5,7)-1;
+  if (!state.f.has(show)){ state.f.add(show); saveUI(); }
+  renderAll();
+  openSheet(id, $("addBtn"));
+  toast("Evento agregado.");
+});
+
+/* ================= BACKUP ================= */
+function openBackup(opener){
+  state.sel = null; state.newMode = true;
+  state.opener = opener || document.activeElement;
+  const all = Object.values(recs);
+  const n = all.length, seen = all.filter(r => r && r.s === "seen").length;
+  sheet.innerHTML = `
+    <div class="sh-top"><span class="badge" style="--c:var(--ink)">Respaldo</span>
+      <button type="button" class="iconbtn" data-act="close" aria-label="Cerrar">×</button></div>
+    <div class="sh-head"><h2 class="sh-title" id="shTitle">Copia de seguridad</h2>
+      <p class="sh-sub">Tus marcas viven solo en este dispositivo. Guarda una copia de vez en cuando en Archivos o iCloud Drive para no perderlas si borras la app o cambias de teléfono.</p></div>
+    <p class="sh-note">${n ? `Tienes ${fmtNum(n)} ${n === 1 ? "registro guardado" : "registros guardados"}; ${seen === 1 ? "1 es un show visto" : `${fmtNum(seen)} son shows vistos`}.` : "Todavía no tienes nada guardado."}</p>
+    <div class="grp"><span class="lbl">Exportar</span>
+      <button type="button" class="btn" data-act="export" style="justify-self:start" ${n ? "" : "disabled"}>Guardar copia</button></div>
+    <div class="grp"><label class="lbl" for="importFile">Importar una copia</label>
+      <input type="file" id="importFile" accept="application/json,.json">
+      <p class="hint">Se combina con lo que ya tienes. Si un show aparece en los dos, se queda el cambio más reciente.</p></div>`;
+  sheet.hidden = false; scrim.hidden = false;
+  document.body.style.overflow = "hidden";
+  sheet.querySelector('[data-act="close"]').focus();
+}
+async function exportBackup(){
+  const data = JSON.stringify({app:"bitacora-aew", v:1, exported:new Date().toISOString(), recs});
+  const name = `bitacora-aew-${TODAY}.json`;
+  try {
+    const file = new File([data], name, {type:"application/json"});
+    if (navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file], title:"Bitácora AEW"});
+      toast("Copia lista.");
+      return;
+    }
+  } catch (e) { if (e && e.name === "AbortError") return; }
+  const url = URL.createObjectURL(new Blob([data], {type:"application/json"}));
+  const a = document.createElement("a");
+  a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+  toast("Copia descargada.");
+}
+function cleanRec(r){
+  if (!r || typeof r !== "object") return null;
+  const o = {};
+  if (["seen","skip","none"].includes(r.s)) o.s = r.s;
+  if (Number.isInteger(r.score) && r.score >= 1 && r.score <= 10) o.score = r.score;
+  if (typeof r.stars === "number" && STAR_VALUES.includes(r.stars)) o.stars = r.stars;
+  for (const k of ["best","notes","title","venue"]) if (typeof r[k] === "string" && r[k].trim()) o[k] = r[k].slice(0, 4000);
+  if (typeof r.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(r.date)) o.date = r.date;
+  if (r.custom === true && SHOWS[r.show] && o.date && o.title){ o.custom = true; o.show = r.show; }
+  const keys = Object.keys(o);
+  if (!keys.length) return null;
+  o.t = typeof r.t === "number" ? r.t : 0;
+  return o;
+}
+function importBackup(file){
+  const reader = new FileReader();
+  reader.onload = () => {
+    let obj = null;
+    try { obj = JSON.parse(reader.result); } catch (e) {}
+    const inc = obj && obj.app === "bitacora-aew" && obj.recs && typeof obj.recs === "object" ? obj.recs : null;
+    if (!inc){ toast("Ese archivo no es una copia de la Bitácora AEW."); return; }
+    let n = 0;
+    for (const [id, raw] of Object.entries(inc)){
+      if (!/^[A-Za-z0-9_\-.~:@+]{1,200}$/.test(id)) continue;
+      const r = cleanRec(raw); if (!r) continue;
+      const cur = recs[id];
+      if (!cur || r.t >= (cur.t || 0)){ recs[id] = r; n++; }
+    }
+    saveLocal(); closeSheet(); renderAll();
+    toast(n ? `Importados ${fmtNum(n)} registros.` : "La copia no tenía nada nuevo.");
+  };
+  reader.onerror = () => toast("No se pudo leer el archivo.");
+  reader.readAsText(file);
+}
+
+/* ================= APP SHELL ================= */
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")){
+  addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState !== "visible") return;
+  const n = new Date();
+  if (iso(n.getFullYear(), n.getMonth()+1, n.getDate()) !== TODAY) location.reload();
+});
+
+/* ================= GO ================= */
+renderAll();
+init();
+})();
+</script>
+</body>
+</html>
