@@ -1,20 +1,6 @@
 /* Bitácora AEW: works offline. Page = network first (so updates arrive), everything else = cache first. */
-const VERSION = "bitacora-aew-v1";
+const VERSION = "bitacora-aew-v2";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png",
-  "./fonts/Barlow-400-latin-ext.woff2",
-  "./fonts/Barlow-400-latin.woff2",
-  "./fonts/Barlow-500-latin-ext.woff2",
-  "./fonts/Barlow-500-latin.woff2",
-  "./fonts/Barlow-600-latin-ext.woff2",
-  "./fonts/Barlow-600-latin.woff2",
-  "./fonts/Barlow-700-latin-ext.woff2",
-  "./fonts/Barlow-700-latin.woff2",
-  "./fonts/BarlowCondensed-500-latin-ext.woff2",
-  "./fonts/BarlowCondensed-500-latin.woff2",
-  "./fonts/BarlowCondensed-600-latin-ext.woff2",
-  "./fonts/BarlowCondensed-600-latin.woff2",
-  "./fonts/BarlowCondensed-700-latin-ext.woff2",
-  "./fonts/BarlowCondensed-700-latin.woff2",
   "./fonts/BigShouldersDisplay-700-latin-ext.woff2",
   "./fonts/BigShouldersDisplay-700-latin.woff2"];
 
