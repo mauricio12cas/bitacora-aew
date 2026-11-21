@@ -336,6 +336,7 @@ button.card:hover{border-color:color-mix(in srgb,var(--ink) 35%,var(--line))}
 .watch{display:grid;gap:6px}
 .watch .btns{display:flex;flex-wrap:wrap;gap:8px}
 .watch a.btn{text-decoration:none;display:inline-flex;align-items:center;gap:6px;background:var(--tint);border-color:var(--tint);color:var(--bg)}
+.watch .done{align-self:center;font-weight:600;color:var(--seen)}
 .watch small{font-size:12.5px;color:var(--muted)}
 .rm .vod{color:var(--tint);font-size:12px;letter-spacing:.02em}
 .sh-note{font-size:13.5px;color:var(--muted);background:var(--panel);border-radius:8px;padding:9px 11px;margin:0}
@@ -1304,8 +1305,10 @@ function refreshSheet(){
 function watchHtml(e){
   const ids = vodIds(e);
   if (!ids.length) return "";
-  const links = ids.map((id, i) => `<a class="btn" href="${vodUrl(id)}" target="_blank" rel="noopener" data-k="vod-${i}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver en MyAEW"}</a>`).join("");
-  return `<div class="grp watch"><div class="btns">${links}</div>${MYAEW_PPV.has(e.id) ? `<small>MyAEW vende este PPV aparte del plan base.</small>` : ""}</div>`;
+  const links = ids.map((id, i) => `<a class="btn" href="${vodUrl(id)}" target="_blank" rel="noopener" data-act="watch" data-id="${e.id}" data-k="vod-${i}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver en MyAEW"}</a>`).join("");
+  const seenBtn = st(e) === "seen" ? `<span class="done">✓ Visto</span>`
+    : `<button type="button" class="btn ghost" data-act="st" data-st="seen" data-k="vod-seen">✓ Marcar visto</button>`;
+  return `<div class="grp watch"><div class="btns">${links}${seenBtn}</div><small>Se abre la ficha del episodio en MyAEW: toca <b>Watch Now</b> para reproducir.</small>${MYAEW_PPV.has(e.id) ? `<small>MyAEW vende este PPV aparte del plan base.</small>` : ""}</div>`;
 }
 
 function renderSheet(){
@@ -1388,10 +1391,10 @@ function renderNewSheet(){
 
 /* ================= ACTIONS ================= */
 let undoFn = null, toastTimer = null;
-function toast(msg, undo){
+function toast(msg, undo, actLabel){
   const t = $("toast");
   undoFn = undo || null;
-  t.innerHTML = `<span>${esc(msg)}</span>${undo ? `<button type="button" data-act="undo">Deshacer</button>` : ""}`;
+  t.innerHTML = `<span>${esc(msg)}</span>${undo ? `<button type="button" data-act="undo">${esc(actLabel || "Deshacer")}</button>` : ""}`;
   t.hidden = false;
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => { t.hidden = true; undoFn = null; }, undo ? 7000 : 5000);
@@ -1433,6 +1436,7 @@ document.addEventListener("click", ev => {
   const act = t.dataset.act, id = t.dataset.id;
   switch (act){
     case "open": openSheet(id, t); break;
+    case "watch": try { sessionStorage.setItem(WATCH_KEY, JSON.stringify({id, at: Date.now()})); } catch (e) {} break;
     case "toggle": quickToggle(id); break;
     case "year": setYear(+t.dataset.y); break;
     case "view": state.view = t.dataset.v; state.confirm = null; saveUI(); renderAll(); if (t.closest(".tabbar")){ const top = $("view").getBoundingClientRect().top; if (top < 0) scrollTo({top: scrollY + top - 64}); } break;
@@ -1695,8 +1699,18 @@ sheet.addEventListener("touchend", () => {
 if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")){
   addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
 }
+const WATCH_KEY = "bitacora-aew:watching";
+function askWatched(){
+  let w = null;
+  try { w = JSON.parse(sessionStorage.getItem(WATCH_KEY) || "null"); sessionStorage.removeItem(WATCH_KEY); } catch (e) {}
+  if (!w || Date.now() - w.at < 60000) return;
+  const e = cache.byId[w.id] || BASE_BY_ID[w.id];
+  if (!e || st(e) === "seen") return;
+  toast(`¿Terminaste ${label(e)} · ${shortDate(e.date)}?`, () => { setRec(e.id, {s:"seen"}); renderAll(); refreshSheet(); toast("Marcado como visto"); }, "Marcar visto");
+}
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState !== "visible") return;
+  askWatched();
   const n = new Date();
   if (iso(n.getFullYear(), n.getMonth()+1, n.getDate()) !== TODAY) location.reload();
 });
