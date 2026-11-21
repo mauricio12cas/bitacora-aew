@@ -336,6 +336,7 @@ button.card:hover{border-color:color-mix(in srgb,var(--ink) 35%,var(--line))}
 .watch{display:grid;gap:6px}
 .watch .btns{display:flex;flex-wrap:wrap;gap:8px}
 .watch a.btn{text-decoration:none;display:inline-flex;align-items:center;gap:6px;background:var(--tint);border-color:var(--tint);color:var(--bg)}
+.watch .done{align-self:center;font-weight:600;color:var(--seen)}
 .watch small{font-size:12.5px;color:var(--muted)}
 .rm .vod{color:var(--tint);font-size:12px;letter-spacing:.02em}
 .sh-note{font-size:13.5px;color:var(--muted);background:var(--panel);border-radius:8px;padding:9px 11px;margin:0}
@@ -446,6 +447,33 @@ button{transition:opacity .15s}
   .tabbar svg{width:27px;height:27px}
   .tabbar button[aria-current="page"]{color:var(--tint)}
 }
+/* ---- Foco: interfaz limpia ---- */
+.lede,.tally,.eyebrow,#upnext,#meters,.foot,.chips,.toggle,#save,#addBtn,#moreBtn,.rail-row .spacer{display:none!important}
+.band{padding-top:calc(env(safe-area-inset-top,0px) + 14px)}
+.band-in{display:block;padding-bottom:12px}
+.wordmark{font-size:34px;line-height:1}
+body[data-view="foco"] .years{display:none}
+#moreBtn2{margin-left:auto}
+.rail{margin-bottom:10px}
+.foco{max-width:560px;margin:18px auto 24px;display:grid;gap:12px}
+.fk{font-size:13px;color:var(--muted);margin:0;display:flex;justify-content:space-between;gap:12px}
+.fbar{height:4px;border-radius:2px;background:var(--track);overflow:hidden;margin:-4px 0 6px}
+.fbar i{display:block;height:100%;background:var(--tint)}
+.fcard{border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:4px;background:var(--panel)}
+.fname{all:unset;cursor:pointer;font-family:var(--f-display);font-weight:800;font-size:30px;line-height:1;text-transform:uppercase}
+.fsub{font-size:14px;color:var(--muted)}
+.fbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.fbtns>*{flex:1 1 0;justify-content:center;text-align:center}
+.fbtns a.btn{text-decoration:none;display:inline-flex;align-items:center;gap:6px;background:var(--tint);border-color:var(--tint);color:var(--bg)}
+.fdone{text-align:center;padding:28px 8px}
+.fdone b{display:block;font-family:var(--f-display);font-size:28px;text-transform:uppercase}
+.mstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 6px}
+.mstats div{background:var(--panel);border-radius:10px;padding:10px}
+.mstats dt{font-size:12px;color:var(--muted)}
+.mstats dd{margin:2px 0 0;font-family:var(--f-display);font-weight:800;font-size:24px;line-height:1}
+.foco .rm .vod{display:none}
+.mchips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+@media (max-width:700px){ .tabbar{grid-template-columns:repeat(3,minmax(0,1fr))} .foco{margin-top:12px} body[data-view="foco"] .rail,#moreBtn2{display:none} }
 </style>
 </head>
 <body>
@@ -470,7 +498,6 @@ button{transition:opacity .15s}
       </dl>
     </div>
   </div>
-  <div class="ropes" aria-hidden="true"><i></i><i></i><i></i></div>
 </header>
 
 <main class="wrap">
@@ -482,8 +509,9 @@ button{transition:opacity .15s}
     <div class="years" id="years" role="tablist" aria-label="Año"></div>
     <div class="rail-row">
       <div class="seg" id="viewSeg" role="group" aria-label="Vista">
-        <button type="button" data-act="view" data-v="cal">Calendario</button>
+        <button type="button" data-act="view" data-v="foco">Inicio</button>
         <button type="button" data-act="view" data-v="list">Lista</button>
+        <button type="button" data-act="view" data-v="cal">Calendario</button>
         <button type="button" data-act="view" data-v="ppv">PPVs</button>
       </div>
       <div class="chips" id="chips" role="group" aria-label="Programas visibles"></div>
@@ -491,6 +519,7 @@ button{transition:opacity .15s}
       <span class="spacer"></span>
       <p class="save" id="save" data-mode="loading"><i></i><span>Cargando tu registro…</span></p>
       <button type="button" class="btn ghost" data-act="more" id="moreBtn">Más</button>
+      <button type="button" class="btn ghost" data-act="more" id="moreBtn2">Más</button>
       <button type="button" class="btn" data-act="add" id="addBtn">+ Agregar evento</button>
     </div>
   </section>
@@ -504,9 +533,8 @@ button{transition:opacity .15s}
 </main>
 
 <nav class="tabbar" id="tabbar" aria-label="Secciones">
-  <button type="button" data-act="view" data-v="cal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 9.8h17M8 3v4M16 3v4"/><circle cx="8.5" cy="14" r=".9" fill="currentColor"/><circle cx="12" cy="14" r=".9" fill="currentColor"/><circle cx="15.5" cy="14" r=".9" fill="currentColor"/></svg><span>Calendario</span></button>
+  <button type="button" data-act="view" data-v="foco"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-6h-6v6H5.5A1.5 1.5 0 0 1 4 19z"/></svg><span>Inicio</span></button>
   <button type="button" data-act="view" data-v="list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="5" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="5" cy="17.5" r="1.2" fill="currentColor" stroke="none"/><path d="M9.5 6.5H20M9.5 12H20M9.5 17.5H20"/></svg><span>Lista</span></button>
-  <button type="button" data-act="view" data-v="ppv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7.5a1.5 1.5 0 0 1 1.5-1.5h14a1.5 1.5 0 0 1 1.5 1.5v2a2.5 2.5 0 0 0 0 5v2a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.5-1.5v-2a2.5 2.5 0 0 0 0-5z"/><path d="M15 6.5v11" stroke-dasharray="1.6 1.8"/></svg><span>PPVs</span></button>
   <button type="button" data-act="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="8" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.1" fill="currentColor" stroke="none"/></svg><span>Más</span></button>
 </nav>
 
@@ -606,6 +634,9 @@ const ESP = [
 
 /* Weekly episodes that moved to another day: "show:regular date" -> real date */
 const MOVES = {
+  "dyn:2023-10-11":"2023-10-10",
+  "ram:2024-09-06":"2024-09-07",
+  "dyn:2024-10-09":"2024-10-08",
   "dyn:2020-08-19":"2020-08-22",
   "dyn:2020-08-26":"2020-08-27",
   "dyn:2021-05-26":"2021-05-28",
@@ -681,7 +712,7 @@ const EXTRA = [
   ["drk","2025-12-16","Stocking Stuffer","","","Regreso especial de una noche de Dark."]
 ];
 
-/* MyAEW (myaew.com/event/<id>): enlaces de video por episodio. Un arreglo = varias partes. */
+/* MyAEW (myaew.com/event/<id>): enlaces de video por episodio, 2019–2026. Un arreglo = varias partes. */
 const MYAEW = {
   "ppv-2019-05-25":"7337ac73-c2da-4616-a4e9-cf9b3b7c8f08",
   "esp-2019-06-29":"83a7687b-4c23-4941-8cf7-2348653d5c25",
@@ -832,10 +863,565 @@ const MYAEW = {
   "ram-2021-12-10":"cfa5ad28-873e-4f49-9fd9-fedd63b260f6",
   "ram-2021-12-17":"185b97b0-3487-4ef5-941a-e1cb63790bc7",
   "ram-2021-12-24":"ee28cc4e-9d3a-4746-a714-a0ba0c6b0dfb",
-  "ram-2021-12-31":"9ae1da76-a2c9-4095-a024-ae63d59a6626"
+  "ram-2021-12-31":"9ae1da76-a2c9-4095-a024-ae63d59a6626",
+  "dyn-2022-01-05":"7e0bde86-1d23-4704-bb76-3d6020694171",
+  "ram-2022-01-07":"f214fce8-8c89-4caa-8247-c63abbb67a1d",
+  "dyn-2022-01-12":"31f5bdaa-46fe-43de-a6aa-d3b6f1ae7208",
+  "ram-2022-01-14":"bc523fac-2174-49ce-8613-3dedce7490bf",
+  "dyn-2022-01-19":"1c1ed086-1ac8-4943-bf8b-05f7fe7a3e36",
+  "ram-2022-01-21":"d9a17d5f-a60a-4d0c-8200-da09ad6e7d36",
+  "dyn-2022-01-26":"6f628f1e-057c-41b5-bf2e-46d0f487cca3",
+  "ram-2022-01-28":"7b956e8c-d55d-4a5d-bbe7-35067083e9c0",
+  "dyn-2022-02-02":"a9a0afe4-43a4-49a4-9407-ca93c3c6fb3c",
+  "dyn-2022-02-09":"0e1fc290-a2d0-40f9-a2e3-5fa50e19f1c2",
+  "ram-2022-02-11":"56e8642f-dc7a-42ef-ade7-782bacc883c0",
+  "dyn-2022-02-16":"3f1f7569-02e9-470a-a331-50bb3b337ad6",
+  "ram-2022-02-18":"6a2cf9a7-7962-4516-849c-e676444fce10",
+  "dyn-2022-02-23":"4d8a37a2-3108-4f52-aa3e-47945e641730",
+  "ram-2022-02-25":"cd14a92e-9067-4393-9583-74fce0044bc0",
+  "dyn-2022-03-02":"95beafde-fd9d-4570-828b-494d21bce965",
+  "ram-2022-03-04":"c9737a3a-e7f1-4ff7-b89b-d0d75f2981a5",
+  "dyn-2022-03-09":"8dc340d8-859e-4eb6-9cb9-d64e571ec737",
+  "ram-2022-03-11":"269c429f-c0d3-4568-a9d1-4e9bd01705bf",
+  "dyn-2022-03-16":"1205245b-69a9-401e-816a-829747401820",
+  "ram-2022-03-18":"42862f67-306f-4327-9a35-d9ef03ae0d80",
+  "dyn-2022-03-23":"e06ba2cc-8077-4c94-a0e1-e83bfa0a6b64",
+  "ram-2022-03-25":"d67a0d05-8927-434a-9d76-a9bbf526c2a8",
+  "dyn-2022-03-30":"dcdffec3-097f-46bb-b396-7933effda669",
+  "ram-2022-04-01":"2578c12d-19c4-4a8e-a472-e435d2873372",
+  "dyn-2022-04-06":"b220a6fc-a11e-444c-b659-1770e565d10f",
+  "ram-2022-04-08":"4adeecab-75ff-416d-b6ef-11b0130204c7",
+  "dyn-2022-04-13":"a5fe5235-97b4-4a40-a0f6-41d9957491c4",
+  "ram-2022-04-15":"8fb627a0-0562-4416-9f28-c5d8dd702fc7",
+  "dyn-2022-04-20":"41d34d2e-193b-477a-a4c3-72970cec0419",
+  "ram-2022-04-22":"f3edc13a-390e-43c2-8054-27ac7deaac20",
+  "dyn-2022-04-27":"c06b3bd0-1092-4739-98fd-8400f747e945",
+  "ram-2022-04-29":"ebbfe8e3-25b9-4fac-bfc0-2377b3eb7303",
+  "dyn-2022-05-04":"3481f7a7-7a50-40f2-9580-42b9ef19dd6d",
+  "ram-2022-05-06":"6e0b4950-b87e-4ddf-b235-66240f986358",
+  "dyn-2022-05-11":"a8b0f0ab-60f5-4d7a-9047-05cef5e96275",
+  "ram-2022-05-13":"b897557e-07fc-42ac-bd7a-b5846625b667",
+  "dyn-2022-05-18":"72f8c620-803e-4ffa-b054-2c8ca53d67e2",
+  "ram-2022-05-20":"a29ef0cf-1ba8-4040-a232-95c66bde74dc",
+  "dyn-2022-05-25":"f734c766-acfc-4e57-a729-d893ad3d2026",
+  "ram-2022-05-27":"a03d4563-a515-4669-8f4b-a27142cc77ac",
+  "ppv-2022-05-29":"0e5d13b0-6a83-425c-86e9-105b049b5611",
+  "dyn-2022-06-01":"73196881-0dcc-4912-a979-1785342bf193",
+  "ram-2022-06-03":"3805d7b1-f352-45eb-a78a-5ef6dd252094",
+  "dyn-2022-06-08":"39f8481e-a86f-40af-a73e-55338c3e9693",
+  "ram-2022-06-10":"d5a028c3-c1f6-43d2-99f0-a8a5ff1c4a07",
+  "dyn-2022-06-15":"6ffca77c-7372-4aa7-9b51-714f2e595809",
+  "ram-2022-06-17":"6bc51d1e-b814-4623-b450-8cf26a9355cf",
+  "dyn-2022-06-22":"0915fcd3-64d4-40b1-b345-7a215740592d",
+  "ram-2022-06-24":"10ff8327-a29f-495b-9b19-ce8751357996",
+  "dyn-2022-06-29":"397c8294-573f-4499-9b56-dbb86081bf42",
+  "ram-2022-07-01":"abddb67f-83e9-4479-a341-f7ddba37e66d",
+  "dyn-2022-07-06":"4b45a6cc-bf7b-4acf-bb7b-2103b6935d6f",
+  "ram-2022-07-08":"045e44db-3d05-47b5-9732-317dbef74643",
+  "dyn-2022-07-13":"e230287b-a4f8-4cdc-a064-e915ae2b07cc",
+  "ram-2022-07-15":"46a7b38e-fbb8-4037-9da8-c8fd1d661fa3",
+  "dyn-2022-07-20":"7473e7f6-c0fb-4696-9d87-7f2f5f1cab48",
+  "ram-2022-07-22":"eddf869e-bedb-4ec8-af85-3d19563bf805",
+  "dyn-2022-07-27":"d26adc2a-c18a-4817-8693-a49c770b9f06",
+  "ram-2022-07-29":"864426a1-c241-42c0-94be-7d80eb5dc07e",
+  "dyn-2022-08-03":"bfbd692f-35e4-441e-8c40-d16c998d66fd",
+  "ram-2022-08-05":"8bdb8387-970c-47cd-b51b-197422ed77dd",
+  "dyn-2022-08-10":"77d140b8-01c9-4ffa-b77d-9c98acb192c5",
+  "ram-2022-08-12":"d18f777d-a8d9-4451-873e-1e157a987561",
+  "dyn-2022-08-17":"01eae547-c674-4726-9b83-e0136aa2e583",
+  "ram-2022-08-19":"23fb54d6-84f6-4de0-9351-148ed015b0fc",
+  "dyn-2022-08-24":"f69686a3-f6c7-4a19-8c4c-f65e746b537f",
+  "ram-2022-08-26":"ead0f813-9c05-4ef3-b9ae-329b5533e751",
+  "dyn-2022-08-31":"94d59234-0e80-4b13-a953-67090cc5137c",
+  "ram-2022-09-02":"76ecc832-8592-4958-816b-6077aaa9f467",
+  "dyn-2022-09-07":"9f08b580-2add-4e76-8ccf-6715043507b6",
+  "ram-2022-09-09":"892a35c4-f615-41f7-bae7-8c99dd47b24d",
+  "dyn-2022-09-14":"b50155c0-3fdb-42f2-862a-008e19b25f52",
+  "ram-2022-09-16":"34e7f495-a2aa-418b-8fea-79460738c6d5",
+  "dyn-2022-09-21":"392c5bbe-ee9f-4e06-a619-225ac336746a",
+  "ram-2022-09-23":["11b01589-ba91-4ffc-b9b5-3fc6af8297f2", "92803a53-5079-4b13-a9c2-860a07c6c11f"],
+  "dyn-2022-09-28":"31ecda9f-083d-4a1b-b9d3-d2013cbbe267",
+  "ram-2022-09-30":"f982b63a-120d-4471-92c2-015bf497d30a",
+  "dyn-2022-10-05":"44177341-e9fa-4d74-9a3a-32cf1fd1da89",
+  "ram-2022-10-07":"f3f22d96-5bb7-4ac0-87d5-9bc54d7c7917",
+  "dyn-2022-10-12":"8ddb4fa0-c890-422f-86d7-d0b3caed6e4a",
+  "ram-2022-10-14":"ef2fa8ae-9db1-4486-a8d6-fe13cfefc50d",
+  "dyn-2022-10-19":"652bfac9-042d-4565-9966-03d742173d4b",
+  "ram-2022-10-21":"1f97e8f9-ca79-4125-af8c-7687f990d990",
+  "dyn-2022-10-26":"c4269a66-827e-4dd3-b64d-c53380b11a02",
+  "ram-2022-10-28":"cc2ffb89-8253-4a28-9afb-4532fe47d5f6",
+  "dyn-2022-11-02":"489b5929-b47c-4bca-9e8a-abf858a499e7",
+  "ram-2022-11-04":"fbf0ef44-e786-4bf3-9ee6-d5402779b7ba",
+  "dyn-2022-11-09":"e20003d4-1aaf-4688-b885-94a042b36d9e",
+  "ram-2022-11-11":"b0c384f7-e686-4599-8baf-35dc955009ae",
+  "dyn-2022-11-16":"a853d915-dcdc-45eb-a16d-cc24f0e368eb",
+  "ram-2022-11-18":"073d22e4-ff79-4a16-a30e-caf11965a393",
+  "dyn-2022-11-23":"19b50dac-1e13-426e-9874-bfb7b5e31b7d",
+  "ram-2022-11-25":"8442c2ec-3bbf-45bb-81c8-2378252c36c8",
+  "dyn-2022-11-30":"68add08f-37dc-42b9-9856-9c7cd57dbb75",
+  "ram-2022-12-02":"8ec450be-daa7-427f-8859-627a8a6daf86",
+  "dyn-2022-12-07":"47d61cc3-772a-49c0-913f-84e8cb987da5",
+  "ram-2022-12-09":"c2797af9-298c-4082-b5f6-884ab210fe79",
+  "dyn-2022-12-14":"11ff0eb0-8084-4f21-902d-c101faf4b515",
+  "ram-2022-12-16":"c01436df-37f3-4829-abbb-b74c8bd8eafe",
+  "dyn-2022-12-21":"b10cc37a-2584-43d3-b2ec-7265e5df6908",
+  "ram-2022-12-23":"279eb3aa-22dc-4938-b0d0-a1002221871a",
+  "dyn-2022-12-28":"bc5a563d-59bd-46aa-837d-4526ceaf802d",
+  "ram-2022-12-30":"b551a272-1b45-49c8-bb02-cd7982e18cce",
+  "dyn-2023-01-04":"fc4e7d4a-b077-469f-9383-7ef40a676c67",
+  "dyn-2023-01-11":"4912c8f5-7040-4f4a-829a-9c2b15bd3864",
+  "ram-2023-01-13":"f78d29a5-89d8-4091-82f6-1f8f1d624b00",
+  "dyn-2023-01-18":"fe4dbb2e-e0f3-43fb-a512-c86aed37c578",
+  "ram-2023-01-20":"f7eaa54f-4fbd-405a-a8d7-73aa41c228f7",
+  "dyn-2023-01-25":"4521d2f2-a9db-4d0c-8e3a-9b67f452529b",
+  "ram-2023-01-27":"b98e641d-59ce-4ce2-8222-dcad0b3b9b53",
+  "dyn-2023-02-01":"fdeb4c70-0a75-4db3-b8cb-d8837148efc5",
+  "ram-2023-02-03":"974e495a-4573-45a9-9563-5ce70eff8f58",
+  "dyn-2023-02-08":"35ca7d92-4db3-4c57-aa77-ac4ca16480a2",
+  "ram-2023-02-10":"e4d63338-2794-4e63-8831-f5c904d78574",
+  "dyn-2023-02-15":"3931f75f-d328-44ae-9509-2c8b9bb3351f",
+  "ram-2023-02-17":"bcdda748-6fb7-4e44-af1f-9458607c4e8d",
+  "dyn-2023-02-22":"ed4f993f-2c7b-4ebf-9678-46c3daab1a87",
+  "ram-2023-02-24":"4bf9817d-6017-4547-9a33-120ba014a365",
+  "dyn-2023-03-01":"9d76d6c8-771c-431e-a44a-25655d12e94e",
+  "dyn-2023-03-08":"fb2d7c95-06ab-4def-a0ce-17f7c6f5a57c",
+  "ram-2023-03-10":"14a6b4f7-c188-4968-bb43-d34747bfb338",
+  "dyn-2023-03-15":"8485c231-47e0-4df7-aed6-7a583cf273d5",
+  "ram-2023-03-17":"5dc03fa2-d2c1-447f-bcd5-274743d80d64",
+  "dyn-2023-03-22":"6216ee74-d2c7-462a-beb5-8211f4768450",
+  "ram-2023-03-24":"52bd4ddb-f8b8-4e88-b2b4-d695091ae3a5",
+  "dyn-2023-03-29":"cee50b7d-e547-46ee-b75c-e691bb707928",
+  "ram-2023-03-31":"882d3caa-91a2-4e18-a279-d164c650b09b",
+  "dyn-2023-04-05":"86995603-3199-45b5-8396-61b543a44df6",
+  "dyn-2023-04-12":"3989ed01-ad8c-4f2f-8fae-125b6e4f5936",
+  "ram-2023-04-14":"e95b9ac9-fb62-4333-a8ee-f1679a9ceaa7",
+  "dyn-2023-04-19":"3719f5b3-6bf4-49e3-a05b-ebe4d10f310e",
+  "ram-2023-04-21":"1d82f91e-0d8a-4d2c-8da5-e57fc90db832",
+  "dyn-2023-04-26":"75adea6f-1117-4766-afed-e9b263e90e20",
+  "ram-2023-04-28":"9b12edaf-d1ff-453d-978a-dfdb28ddadc4",
+  "dyn-2023-05-03":"a1146c46-21ec-44ba-8b17-cfbbcf6b9733",
+  "ram-2023-05-05":"3f94eaf2-62ad-4385-b246-5e1b5f4f0488",
+  "dyn-2023-05-10":"957a596c-afc3-4512-b5a2-ef0cb907f310",
+  "ram-2023-05-12":"9f7a4184-0f56-4792-90d7-a857287a6a90",
+  "dyn-2023-05-17":"42572ba4-5123-40a0-adfb-7d07395a09b5",
+  "ram-2023-05-19":"8128d234-e0c6-4113-99b8-5a8772ca747d",
+  "dyn-2023-05-24":"729aee0e-8207-4120-86cb-098e9ffdd39e",
+  "ram-2023-05-26":"60f9d002-ff44-47b0-b4b5-5c1248cdb7ae",
+  "ppv-2023-05-28":"4cb4e3de-d947-4991-9f5f-ab3036e37c45",
+  "dyn-2023-05-31":"cc55e8c7-66b0-4663-9869-1197745c4afc",
+  "ram-2023-06-02":"139c1881-6f1d-4513-9727-d4d2cb707e07",
+  "dyn-2023-06-07":"a6817ffc-475e-4a6f-a803-b1daef73c513",
+  "ram-2023-06-09":"fb754fc9-42b5-47e1-8b09-5ec9c0463c72",
+  "dyn-2023-06-14":"df001479-d8c7-4f9d-8768-cda91e21af2e",
+  "ram-2023-06-16":"f0b54701-3244-408c-8c27-e62392610700",
+  "dyn-2023-06-21":"ddce69df-34a5-47d8-a441-1180ec2f0d2e",
+  "ram-2023-06-23":"2067c12b-ee45-4cc6-b212-8d14e8490242",
+  "ppv-2023-06-25":"283ab1a2-1666-4ee2-9750-754e52af0ba6",
+  "dyn-2023-06-28":"c8ca5642-2898-453b-8ca8-1c9daa0d9e05",
+  "ram-2023-06-30":"1e5ada10-3a28-47cc-a2a8-f0a33448e41d",
+  "dyn-2023-07-05":"552fe1b3-e79c-4d83-9a8a-f7c2716bdedc",
+  "ram-2023-07-07":"49e0ecf0-24c0-4eda-b1ff-b9b8ce997eae",
+  "dyn-2023-07-12":"46487e29-a029-467d-b7af-915e61e582ee",
+  "ram-2023-07-14":"b4ff1e22-52f9-4d97-9c68-7f06f96fff4a",
+  "dyn-2023-07-19":"084115c5-85e0-4173-bd75-0a0f5c2493d1",
+  "ram-2023-07-21":"649b0bda-7f52-4919-ba59-b23281a96b30",
+  "dyn-2023-07-26":"4e67c6e5-3206-412b-b300-48498d90f58f",
+  "ram-2023-07-28":"969ca70b-ac2a-4ccc-b545-62685b0e6bdd",
+  "dyn-2023-08-02":"ee09e29b-5643-44df-9a17-a2d9396fdc4c",
+  "ram-2023-08-04":"dc88256e-fb9d-4efb-99ae-0946aa566e7e",
+  "dyn-2023-08-09":"0db7bd8c-7e99-49fa-8fa4-bf169186ea17",
+  "ram-2023-08-11":"3a2a4bc1-c8fb-43f8-9252-840f6a817b2a",
+  "dyn-2023-08-16":"d9c5abe5-4df3-45ef-9ccb-52926a01692b",
+  "ram-2023-08-18":"3f4fe93d-ca35-46e6-8a52-95f71ad25d58",
+  "dyn-2023-08-23":"19c0d687-bb6d-4d2a-a38f-cd7aba60fba0",
+  "ram-2023-08-25":"983f3007-b451-4ae1-ae39-e734404c593a",
+  "ppv-2023-08-27":"5e8d37db-1096-423f-b585-5b6db3b9aafe",
+  "dyn-2023-08-30":"123dbb9b-05ff-4344-aa3d-8f97e12d9256",
+  "ram-2023-09-01":"51e38328-7b4c-4686-b37f-45de6254078e",
+  "ppv-2023-09-03":"85960b25-7ee0-41da-9e76-4ae9d48beadd",
+  "dyn-2023-09-06":"ea094145-93c5-49ad-a7b9-f1ee4adf46d4",
+  "ram-2023-09-08":"a1f490b8-b1dd-4238-9e1a-80119299bf57",
+  "dyn-2023-09-13":"3d584fa0-851c-4ae2-ac0e-34c136f85080",
+  "ram-2023-09-15":"6156933a-c731-4aaa-a250-5cd0f3c49e57",
+  "dyn-2023-09-20":"0d8b856c-394c-4cd0-a676-3ad2c4bb9076",
+  "ram-2023-09-22":["5fab04a3-fbc2-46c2-bab9-e9a4474306b2", "fb887325-d476-4c1c-a840-723055dbb33b"],
+  "dyn-2023-09-27":"bf66f969-45b1-4f36-bb16-74d57046069e",
+  "ram-2023-09-29":"53fc2134-6b83-4502-84c3-72156df852f8",
+  "ppv-2023-10-01":"7bbaabc8-1b20-4a0f-8d0b-9f50e553b8cb",
+  "dyn-2023-10-04":"7a1ea0ef-cca7-46f1-9f44-579c5300ef44",
+  "ram-2023-10-06":"73b6bd1b-178a-4f72-92ae-021481d825d5",
+  "dyn-2023-10-10":"bc1ee1e6-0c28-4518-b5f9-e238aa53e2d2",
+  "ram-2023-10-13":"a468c620-991d-4401-ba61-3120859a00a8",
+  "dyn-2023-10-18":"9d7e2495-e46d-42a8-91d8-c6f8187c988c",
+  "ram-2023-10-20":"00370b35-5244-47e1-87d9-ec7b77f88535",
+  "dyn-2023-10-25":"139336fb-acee-4cf7-8fe2-0069553f0aa7",
+  "ram-2023-10-27":"c26faf76-3fd6-44fd-915e-b016b9bb7710",
+  "dyn-2023-11-01":"d19ea3e5-6a1d-4ff8-a3bd-b31eb13403cf",
+  "ram-2023-11-03":"a4ef2e7e-1d05-4e70-95b4-b18b1d71dd36",
+  "dyn-2023-11-08":"a566540e-2cf5-4d29-992c-d81db04c1587",
+  "ram-2023-11-10":"a45a6bdd-798d-4303-995d-53351adcd953",
+  "dyn-2023-11-15":"982fe52c-2bb5-487f-95ce-daa0b7936cfe",
+  "ram-2023-11-17":"2d9121f5-292e-437f-b5fc-f4394673f42e",
+  "ppv-2023-11-18":"2f7394e8-9e76-412c-b222-4b4b5aec8d65",
+  "dyn-2023-11-22":"dada5228-629f-46d7-83f0-72b791ef44b0",
+  "dyn-2023-11-29":"abb033b3-a129-4fbc-8e31-7975a9e68d31",
+  "ram-2023-12-01":"5a466c7e-570b-4e03-be27-667949da78f6",
+  "dyn-2023-12-06":"9a679d58-8d32-4193-9396-39d30eea151c",
+  "ram-2023-12-08":"42b41fc4-ee0c-4b79-8c79-104b6a6e666e",
+  "dyn-2023-12-13":"ab515a88-d658-4ee7-b7dd-ebb829d862c2",
+  "ram-2023-12-15":"a4a0ff6d-3391-47c6-801f-5d58d58a7647",
+  "dyn-2023-12-20":"1f7b66d9-d85a-4eb4-8332-113a903b2d93",
+  "ram-2023-12-22":"8e0a2f15-59ad-4699-b59c-ca032be773a3",
+  "dyn-2023-12-27":"f64b0e0d-4fe6-41e3-998d-9aad28af4d3d",
+  "ram-2023-12-29":"611d4dd1-c99a-4e95-9d93-0b758322bd17",
+  "ppv-2023-12-30":"52c955e5-5421-4c4b-a459-5221a14bdaa4",
+  "dyn-2024-01-03":"efec7702-d82a-4690-9c93-4e3f5ae65e35",
+  "ram-2024-01-05":"cabe2848-5ea9-4e52-9823-ae4f10daaff0",
+  "col-2024-01-06":"7f24e777-0149-4ebd-87fc-13ebba5a39ce",
+  "dyn-2024-01-10":"a61fda11-e4e8-4e6e-8648-7d6409b56000",
+  "ram-2024-01-12":"0cd14aa7-1ae5-4e97-bcff-cfa05fb26f35",
+  "col-2024-01-13":"e315ff86-b8f7-4179-8b35-3c0561b57c21",
+  "dyn-2024-01-17":"67a57270-0b5f-4560-9964-ce3c360c07fa",
+  "ram-2024-01-19":"a29140d2-8c92-4d9c-a9f7-20d7e7261bf2",
+  "col-2024-01-20":"20cedcd9-2d13-4136-baab-17656dd5f1fd",
+  "dyn-2024-01-24":"9203d7fe-f9cc-4180-829a-202141d9b584",
+  "ram-2024-01-26":"103412e4-26f5-4d3d-81e5-22d17e051c52",
+  "col-2024-01-27":"139b8082-71c6-4bde-bbf2-33459bd0554f",
+  "dyn-2024-01-31":"960631eb-a441-4324-b9b3-6de95f37611d",
+  "ram-2024-02-02":"c2f3a254-ce93-44bc-b259-eea4814a68f0",
+  "col-2024-02-03":"443b3728-3c7c-4fc3-b59d-45ce2d6dd16c",
+  "dyn-2024-02-07":"637a217d-6351-4363-948b-bb220c500c31",
+  "ram-2024-02-09":"78a4d770-83c4-4a16-af1e-0ca17fa99bea",
+  "col-2024-02-10":"f25cf89e-c006-41fb-994c-bbe7ffef9f8b",
+  "dyn-2024-02-14":"1d8efec5-be27-43f7-bf7c-18bad4d88e33",
+  "ram-2024-02-16":"cc0684c0-9a18-4ec5-9d17-4056e77a52a6",
+  "dyn-2024-02-21":"8204416d-ad34-49d8-8191-ad33e345c92b",
+  "ram-2024-02-23":"85fc1672-983d-4150-9658-0807ee554c35",
+  "col-2024-02-24":"138a92b7-8c8f-474e-91f3-f4365ba1df57",
+  "dyn-2024-02-28":"418d2481-8413-4d5c-9dce-23f42ef2c679",
+  "ram-2024-03-01":"8b5f4e13-840c-4d27-abb2-f7cffdbbda59",
+  "col-2024-03-02":"9b28d3c4-4f40-44be-82c6-c2cea281b088",
+  "ppv-2024-03-03":"6898e7d9-987f-4315-9247-302466454478",
+  "dyn-2024-03-06":"3a75c977-dc96-4274-9154-ca45577c7c87",
+  "ram-2024-03-08":"b1b7c541-b82d-45c4-aa2c-788dc0391ae0",
+  "col-2024-03-09":"4914c729-59b3-4f43-b3dc-2bb54da3b58b",
+  "dyn-2024-03-13":"96bd171d-24ff-4c0e-b3ae-884e1cc181a8",
+  "ram-2024-03-15":"57d792e3-5ab2-4b5d-ac4b-961efa2f7584",
+  "col-2024-03-16":"06784cca-92b2-4a5b-812c-238451beb713",
+  "dyn-2024-03-20":"457df946-3e59-435e-b2f7-07ca1c5eba47",
+  "ram-2024-03-22":"4f561158-f9bc-4953-82be-fcdd3fa460a8",
+  "dyn-2024-03-27":"661b7d5b-4939-4bfb-9462-98b5e1c49372",
+  "ram-2024-03-29":"000e0dd5-8621-491b-91e3-bd0738edcd5d",
+  "col-2024-03-30":"81731f88-53c5-4762-850e-8cb50042c51a",
+  "dyn-2024-04-03":"48698940-1d02-47de-8b67-e2a8435a3651",
+  "ram-2024-04-05":"4b32c7ee-ecf1-47eb-ab76-09d92d190ff1",
+  "col-2024-04-06":"21dc7f8b-f738-4b5e-985c-00675aee683a",
+  "dyn-2024-04-10":"d095d831-9237-4787-87e3-c9daf03c92b1",
+  "ram-2024-04-12":"240dcf15-9da4-4ccf-8070-0a69d5b27b31",
+  "col-2024-04-13":"c651116a-b8f3-4859-9db1-8897e6f100ac",
+  "dyn-2024-04-17":"0ee8e89c-1656-40dd-92cd-8e4b5cb68829",
+  "col-2024-04-20":"c3ae9cdd-00a3-4200-84d2-84b2d8f3d190",
+  "ppv-2024-04-21":"9ebce48e-ed24-41d1-845a-54a197ce99ed",
+  "dyn-2024-04-24":"bcbb9dd2-9e07-48af-90af-3a73f8904d90",
+  "ram-2024-04-26":"06a301a4-c1d7-4bd0-974e-b7f635224514",
+  "col-2024-04-27":"7152df9e-eff1-41be-9e6d-28a285958d37",
+  "dyn-2024-05-01":"239bfd96-ccb4-46b6-a9e9-446bb3faea57",
+  "dyn-2024-05-08":"d8ac4711-3f4d-4981-9c05-85daf0473b2b",
+  "ram-2024-05-10":"52256ba9-a3a2-4b40-ba50-de5cede67556",
+  "col-2024-05-11":"62443ab8-b810-42ec-87d6-1b677994711f",
+  "dyn-2024-05-15":"875468c9-4e26-4c41-a726-4f6069c6f3bc",
+  "ram-2024-05-17":"cad276f8-f612-495e-aff3-ec65f8f42068",
+  "col-2024-05-18":"e311e237-d35e-4c6c-bee2-383363b85b1b",
+  "dyn-2024-05-22":"8b258aa8-7f79-4570-adb3-c2da447a334d",
+  "ram-2024-05-24":"1001f241-44f3-476a-b6e4-e62d2d91be94",
+  "col-2024-05-25":"54ac2a6d-2b6e-416b-b060-e999670fbfdf",
+  "ppv-2024-05-26":"19d8cffb-3c66-4814-bd12-f984c920c594",
+  "dyn-2024-05-29":"d6a913a9-cc7d-4e75-b520-eb3d61e6dcaa",
+  "ram-2024-05-31":"fd2d6cd9-2df4-4eca-ba98-e15b65df0579",
+  "col-2024-06-01":"b26d5b6a-a823-49ab-a679-fbe3ff27113e",
+  "dyn-2024-06-05":"267fa983-09c9-4731-8907-ea6f02700cce",
+  "ram-2024-06-07":"9ae3e33c-5b4f-4070-911a-93f4555b4860",
+  "col-2024-06-08":"17525c91-8f54-4905-a2ba-c080a2299c64",
+  "dyn-2024-06-12":"238cd4e1-a334-4410-a42c-384b48620b8e",
+  "ram-2024-06-14":"5f235e07-d8af-45e8-a463-e7b1d77c6cea",
+  "col-2024-06-15":"f2573dc3-c824-4bf2-beda-1cbce19d2674",
+  "dyn-2024-06-19":"6971a67a-77a7-442b-8993-c6f1307d6fca",
+  "ram-2024-06-21":"a8c15ef7-7ed7-4fb1-bd36-6211760d1f72",
+  "col-2024-06-22":"8657e9fb-e373-4b84-a39f-c75e9c3b1e27",
+  "dyn-2024-06-26":"c920ddf8-d8a8-4162-9af6-2944ca24cba6",
+  "ram-2024-06-28":"c955cf19-3bbc-406c-a7ac-eefa5a204e9f",
+  "ppv-2024-06-30":"f2bde40f-b1b6-412e-bbfb-fd2af862f990",
+  "dyn-2024-07-03":"eb311fbf-ec8f-47d6-9d3a-8886f72fd067",
+  "ram-2024-07-05":"6b4bd9fa-3bf5-44d1-ad8e-ae9954bbe16a",
+  "col-2024-07-06":"a9c46f6a-2263-4062-85cb-cb996fd9e39d",
+  "dyn-2024-07-10":"a58712ed-c48e-4142-9773-93ce1a1d0c48",
+  "ram-2024-07-12":"a3504171-f30e-454a-9e8c-99f3b240159e",
+  "col-2024-07-13":"f960fd20-9a68-41be-ab8e-eb6cdd6a7750",
+  "dyn-2024-07-17":"1859bfec-02ad-4985-8450-854444e13165",
+  "ram-2024-07-19":"1546e58d-620b-476a-9ca9-d60b62aa5026",
+  "col-2024-07-20":"3120d6a9-bdc9-4b3e-bd2f-e23adee715e8",
+  "dyn-2024-07-24":"b96caab0-a0eb-4673-a609-c1aae4334220",
+  "ram-2024-07-26":"16268d05-8745-4627-a7b5-777a62101181",
+  "col-2024-07-27":"4ef0509b-3864-402c-b576-b454fda14a09",
+  "dyn-2024-07-31":"f568de46-44b2-4074-bc01-48a40d41cb5e",
+  "ram-2024-08-02":"d29aee2f-b8fc-49ca-bf79-0f77917077b4",
+  "col-2024-08-03":"eef00b15-5d61-44c4-b299-9cd0651fa57f",
+  "dyn-2024-08-07":"397bf24f-94dd-484e-b0b9-591261790f0a",
+  "ram-2024-08-09":"aa74a9b0-8ac3-4423-867b-de21e940b45d",
+  "col-2024-08-10":"bcc2595a-740d-4624-b7bf-e0df6d98c56e",
+  "dyn-2024-08-14":"5f88c14d-dafa-492f-aaea-132d6c5a66d4",
+  "ram-2024-08-16":"35518271-acc8-4c02-a117-8533978bbe0b",
+  "col-2024-08-17":"52cd7a9d-e530-4619-862c-b47707544456",
+  "dyn-2024-08-21":"572ad347-114f-4ab3-b9cf-2e713cfd0c8b",
+  "ram-2024-08-23":"d61896bd-7f91-4cb9-b965-f9d77369f9e8",
+  "col-2024-08-24":"eb460c46-577a-45cf-bda6-b7e746997925",
+  "ppv-2024-08-25":"15b6a56a-76d8-464b-9340-e30321d0d943",
+  "dyn-2024-08-28":"3127f270-6c98-4b8f-bf27-306909c615e0",
+  "ram-2024-08-30":"9a174d03-e60c-4211-97de-b138d8e6a7c3",
+  "dyn-2024-09-04":"fd0e75a9-6022-48c3-bbb0-9f1506aefef3",
+  "ppv-2024-09-07":"85c01d30-2b7c-4d03-be19-697b61446658",
+  "ram-2024-09-07":"9124a73c-b8e5-49c9-9e4d-bfbe0d717128",
+  "dyn-2024-09-11":"ab6dc6b2-471c-4aad-90fd-6d69e4fd9200",
+  "ram-2024-09-13":"b1b1ac6b-af6a-4e06-a159-c076e35c5935",
+  "dyn-2024-09-18":"f6156f56-ebc4-426a-92e1-c378a9714970",
+  "ram-2024-09-20":"2a0fbb76-2b8d-4e1b-9984-819c07ead903",
+  "dyn-2024-09-25":"52822a36-da9b-49bc-99d2-e8af40476367",
+  "ram-2024-09-27":"ad13f5bf-b1cd-465f-a452-7c87db04c0e6",
+  "col-2024-09-28":"3e62be9d-6360-4d5c-83d6-fb6afc0737e1",
+  "dyn-2024-10-02":"e40d8786-5b80-4dfb-a653-ea72522df8bd",
+  "ram-2024-10-04":"d1f96e3f-4b36-4eac-abf9-64ceab96561d",
+  "col-2024-10-05":"efc899b9-5c94-401e-9a82-4342e293fb58",
+  "dyn-2024-10-08":"941adacf-441f-42ca-be61-4ff09b64bb42",
+  "ram-2024-10-11":"49503b06-ae3c-4eb0-b83a-2f8365c96bfc",
+  "ppv-2024-10-12":"1021a1c4-be0c-41b3-a831-682682067dfe",
+  "dyn-2024-10-16":"37d8d64a-1df7-4412-93da-b901304d7d51",
+  "ram-2024-10-18":"e4543c22-4ebf-439e-9921-0ca1cda9d05d",
+  "col-2024-10-19":"a02e1de5-85e1-4ec3-8646-c8b746368d0c",
+  "dyn-2024-10-23":"95e096c2-d553-4b4c-9ffe-7187b94cc9bf",
+  "ram-2024-10-25":"1d75ccf1-4d42-4910-b2ed-bbabee28e1d2",
+  "col-2024-10-26":"b05c04d4-065a-423f-932b-04f7297c544a",
+  "dyn-2024-10-30":"9a7bd39f-0aaa-452f-a7e9-f3a61f569285",
+  "ram-2024-11-01":"a5d6ae0b-062b-46d4-83ef-779703c95f6e",
+  "col-2024-11-02":"6bef8b4d-e42f-493b-98ce-5efcd437b2f9",
+  "dyn-2024-11-06":"1aa81f13-5ce3-4f57-9fe3-491627b86467",
+  "ram-2024-11-08":"35144060-2d8b-418d-a9cd-f222c1d6ba0e",
+  "col-2024-11-09":"6adce6ab-e4b5-451b-b0b6-b44a741458c6",
+  "dyn-2024-11-13":"40af9bca-0aac-4097-bbb9-646dd441a9e4",
+  "ram-2024-11-15":"6e8b5e90-076a-409a-af12-a693b48ad177",
+  "col-2024-11-16":"f31da3e5-f7dc-4124-8991-951df3271a39",
+  "dyn-2024-11-20":"e5da2d47-87ab-4abf-a52f-83bd7e58eabf",
+  "ram-2024-11-22":"0c4ea1a6-caab-477e-95af-24454c60f963",
+  "ppv-2024-11-23":"6c15125c-2789-496f-a17c-3fe73b2b1c4b",
+  "dyn-2024-11-27":"e153f84b-393e-4070-a722-bdac69bc62e0",
+  "ram-2024-11-29":"f7684692-dcab-44db-950f-715455f56739",
+  "col-2024-11-30":"bc255466-0e96-40d7-a98a-44b6e72773b3",
+  "dyn-2024-12-04":"a68f1eae-968e-4fd4-83ad-acdf0f4d8b1e",
+  "ram-2024-12-06":"76267bd2-1dfc-45e3-b83c-84b386f115ee",
+  "col-2024-12-07":"6a04c752-bbac-4c85-8b7f-302e0a7c33a3",
+  "dyn-2024-12-11":"a0cfba77-375e-4a37-a52f-d7a23690e2d0",
+  "ram-2024-12-13":"00c7f7df-824a-4210-bbb7-1e5e8d0240bc",
+  "col-2024-12-14":"5abf085f-197a-4a5c-a467-4c26e01009ba",
+  "dyn-2024-12-18":"5c2ce71b-f588-4bc5-87fb-336c869da685",
+  "ram-2024-12-20":"3352393e-ddaf-4312-bf5e-4bf86aef039f",
+  "col-2024-12-21":"f0ab6ad8-b4dd-4ea6-a9c3-b96947a66e1f",
+  "dyn-2024-12-25":"f198e2f2-9575-4c8f-8fbf-6a6c51854360",
+  "ram-2024-12-27":"fa23979a-02df-4fe3-be59-85567034343a",
+  "ppv-2024-12-28":"9f0c0a48-566c-43a1-9d5d-fd1c352384e2",
+  "dyn-2025-01-01":"4e94fc94-1b72-4da5-b4c7-2fd062f464af",
+  "col-2025-01-04":"c1c91813-3759-4527-aa02-5bcfd2a26c55",
+  "dyn-2025-01-08":"53e8845f-c98b-4617-8925-cd8d8f2e16fb",
+  "col-2025-01-11":"7d4916e8-71af-46e0-88fb-406b1bfa3489",
+  "dyn-2025-01-15":"bebffce4-dc77-4ea9-9095-ee39c0a171d1",
+  "col-2025-01-18":"da39bf4f-cf1b-46f1-9d67-b99aec8b6a40",
+  "dyn-2025-01-22":"9c5aa07c-7e59-40df-b948-e4fb1bddfa6a",
+  "col-2025-01-25":"ea1232d4-ff70-49fb-bbc4-0ff637fc2036",
+  "dyn-2025-01-29":"d029fd3b-3fa3-4e05-b6dd-2ec0c5481efb",
+  "col-2025-02-01":"0fe6c9a6-7c53-4c91-8f36-3d1df9914311",
+  "dyn-2025-02-05":"dbc5093f-7fbe-49d3-a40c-ee44582ac68e",
+  "col-2025-02-08":"ca527172-4768-47be-8dc7-c2859a37ccdb",
+  "dyn-2025-02-12":"3b51c84c-7a5a-4049-bb82-82c3508f1b77",
+  "esp-2025-02-15":"288cd6f0-caad-4cc9-b816-d4d002e99bf5",
+  "dyn-2025-02-19":"a52def2a-17a4-45a1-ac61-a5aad465a1eb",
+  "col-2025-02-22":"24a150d1-ca3b-4d0a-8a65-810aa0877ca2",
+  "dyn-2025-02-26":"a614745a-aa1a-4de0-9311-ee141b922184",
+  "col-2025-03-01":"22907eb1-6439-4881-89f3-22330407b541",
+  "dyn-2025-03-05":"1e4744b1-055a-457c-a3ca-237a64e4a0ac",
+  "col-2025-03-08":"24e7223e-bd9d-4c7d-94d3-fe20b1924e10",
+  "ppv-2025-03-09":"61af7e5f-c6b7-4786-9d85-bf8c1c0dd53d",
+  "dyn-2025-03-12":"10c59632-312a-42b4-b568-933b5e0f6943",
+  "col-2025-03-15":"d6c2ab19-402b-4a8a-9ac7-76d70cea1f1b",
+  "dyn-2025-03-19":"459cfdad-ff0f-4e23-b91a-5b206177b184",
+  "col-2025-03-22":"5ce40e91-25bc-4f58-a43d-e6b5fb64d980",
+  "dyn-2025-03-26":"155b296f-dc1b-4e1d-8c07-502609144087",
+  "col-2025-03-29":"1c38bf05-fdfe-482f-8990-ce0d0008fb17",
+  "dyn-2025-04-02":"8b568f7a-ce9a-4c1d-9e09-71108ed581bc",
+  "col-2025-04-05":"538630a0-1027-45d8-b036-611c6ecb463c",
+  "ppv-2025-04-06":"4462b315-1b19-4cb8-8dfb-495f6f26b2ad",
+  "dyn-2025-04-09":"d42ed08c-630e-4e48-99bb-0a202031f265",
+  "col-2025-04-12":"a82dd00b-a434-4922-97a1-9908d107573a",
+  "dyn-2025-04-16":"267ccf0f-2543-499f-82bc-9963f573c2c3",
+  "dyn-2025-04-23":"3c56c58c-fa7c-4d47-a670-a21846dcf05d",
+  "col-2025-04-26":"1828eba4-556e-44b7-b410-9366ee497bdb",
+  "dyn-2025-04-30":"c7ba08d8-3319-41f2-a4dc-a4fc30976e29",
+  "col-2025-05-03":"19f6ae0e-caa0-40be-abe3-7bc42a797c09",
+  "dyn-2025-05-07":"1ad9ddc0-ead0-4163-b5c4-d6bfcc222531",
+  "dyn-2025-05-14":"5831d26e-0c2e-44ba-a7f5-49174bb41993",
+  "col-2025-05-17":"17d302c1-c4d6-49c7-8e9c-5fc3a7e39faa",
+  "dyn-2025-05-21":"4da244ad-19ee-4170-a990-ad93ce0159b6",
+  "ppv-2025-05-25":"8055f684-9ffa-4136-8d96-5ec3fa21399b",
+  "dyn-2025-05-28":"876953fb-cb9d-4673-8ca1-2f254e813436",
+  "col-2025-05-31":"bd6869e4-9e9c-4676-88e6-610a9c343961",
+  "dyn-2025-06-04":"d821e89a-22b5-40a8-8993-c874fe96bf60",
+  "dyn-2025-06-11":"73e676a4-1062-460d-b097-730548d74f81",
+  "dyn-2025-06-18":"2fe29370-b1f9-47fc-a1b5-2d60d4f38b8a",
+  "col-2025-06-21":"4400d26a-2fe7-4553-96f1-0d6a2df4a657",
+  "dyn-2025-06-25":"87546a24-6c28-48aa-a2e3-ec1a99ff68f3",
+  "dyn-2025-07-02":"eb671384-0911-4dae-b210-f9f11f4c1424",
+  "col-2025-07-05":"004b8a30-2dca-46a8-a93b-9b781d21b983",
+  "dyn-2025-07-09":"05e2e8c2-d2e0-41ce-9132-a72ab58e888b",
+  "ppv-2025-07-12":"eae2be40-b2e5-427f-a6bb-61cb359628ec",
+  "dyn-2025-07-16":"062c1eb8-7536-423e-ac7f-436123884f76",
+  "col-2025-07-19":"4dc78d7f-f395-42d6-b389-955a1e9d0dcc",
+  "dyn-2025-07-23":"f82397a5-3cdd-4e84-a554-094d9f957509",
+  "col-2025-07-26":"4a1e234f-4f94-46d4-8547-224f12745a34",
+  "dyn-2025-07-30":"ba641577-de9c-4170-ad3d-8f96c895a0ee",
+  "dyn-2025-08-06":"2c28310e-125c-4306-a057-9d1e2ee147fd",
+  "col-2025-08-09":"66b4cafd-2284-485d-a592-e6ce4c1ffcae",
+  "dyn-2025-08-13":"67b3071e-977d-4aec-ba26-702f7872d1fc",
+  "col-2025-08-16":"29adf6dc-9416-4236-a408-6bcd1c27a337",
+  "dyn-2025-08-20":"889cea83-0025-404a-ae43-4ab99ceb4c93",
+  "col-2025-08-23":"fe9326f0-fb36-4e67-aaf5-178efa30dba1",
+  "ppv-2025-08-24":"b5bd8b74-ae2b-49a7-adc0-84bed03bbba8",
+  "dyn-2025-08-27":"1fd39cf5-b706-45bc-b84f-d390254fe67e",
+  "col-2025-08-30":"bfad9db8-8bac-4f27-93ad-9df9825e07e6",
+  "dyn-2025-09-03":"aa5ba6ef-811a-46a6-a826-f49e9a019463",
+  "col-2025-09-06":"72ec1e4c-223c-41f8-a547-83a3d2bbd305",
+  "dyn-2025-09-10":"350315c1-8de1-4de1-85f2-404db25f5114",
+  "col-2025-09-13":"7891d411-900f-4f9c-b2c0-e4d023f89407",
+  "dyn-2025-09-17":"8f88cf7d-5867-4ff3-977b-602769886016",
+  "ppv-2025-09-20":"6120725d-af7a-4f2f-9fa7-3760a543f04a",
+  "dyn-2025-09-24":"6a0f6cf9-eb55-47e4-bb56-b62caaeb1c02",
+  "col-2025-09-27":"3e76a265-3d81-45d9-8803-38658a4ef432",
+  "dyn-2025-10-01":"900a1156-bb86-45ae-82ce-e3eab383207f",
+  "col-2025-10-04":"700e4a3b-d9bb-4fdd-81d5-d62c295cd65e",
+  "col-2025-10-11":"296ceea3-c132-4b1f-bbb8-d1deb9758966",
+  "dyn-2025-10-15":"b0712c8c-8b74-471a-9ce0-d656af355080",
+  "ppv-2025-10-18":"46834170-015e-4eb4-a20c-4d62c236ccd2",
+  "dyn-2025-10-22":"a7e6680e-27b8-401a-a8d9-0960d8517746",
+  "col-2025-10-25":"87bb0d29-c3d4-4e4f-8129-57479aee8bda",
+  "dyn-2025-10-29":"c889d52e-b250-4d3e-8794-39650ffae4ca",
+  "col-2025-11-01":"756e1456-ea8a-47a2-ae6d-01ae33668bab",
+  "dyn-2025-11-05":"aaf78c48-9c4e-493b-b0df-80a118e64615",
+  "col-2025-11-08":"ad0cf281-f132-4e13-bc91-1df76aceaf86",
+  "dyn-2025-11-12":"a82573bf-02b6-4e20-a769-f4289d72c853",
+  "col-2025-11-15":"bed52c62-1775-4a4f-9d52-47463b8a84ca",
+  "dyn-2025-11-19":"77027878-12cf-477e-a7b8-f81851579514",
+  "ppv-2025-11-22":"076924da-8c0f-4405-848e-e36fccbca483",
+  "dyn-2025-11-26":"a842962c-ce9c-46b8-974e-85ef30b3d4b5",
+  "dyn-2025-12-03":"cc215946-0930-48e2-8b78-4b97ad7510a8",
+  "col-2025-12-06":"4ed81477-bbfd-4d4a-a2dd-c7885b541ed3",
+  "dyn-2025-12-10":"73de3e70-67fc-401b-b1b6-4404b80fcf37",
+  "col-2025-12-13":"035fa341-e927-49ac-8e57-a2a698d43e61",
+  "dyn-2025-12-17":"d8a50278-54e0-43fa-97ce-d69ea366c176",
+  "col-2025-12-20":"9ddb93cd-097e-4dee-85c3-a2a3b57dca00",
+  "dyn-2025-12-24":"bb04c66d-8fdd-40f2-b3c0-5a5bcf33ec13",
+  "col-2025-12-25":"b9715fe0-0ce2-4872-80fc-b0e140eab23f",
+  "ppv-2025-12-27":"e7a498dc-fe75-41ba-a006-3e155451ca4e",
+  "dyn-2025-12-31":"7b08af05-bda8-4bcb-94e1-08c5acc3e3e3",
+  "col-2026-01-03":"06459992-c12b-4ad1-814f-4dee40585aa6",
+  "dyn-2026-01-07":"d551cdcb-516c-4964-bead-06bc5dc9a491",
+  "col-2026-01-10":"db4d068f-0240-4299-be8d-275b48bfb11c",
+  "dyn-2026-01-14":"62249fad-39be-44f3-aced-37bc5baaa3e5",
+  "col-2026-01-17":"55e382e2-1636-47d8-8508-a9a2ab7d585e",
+  "dyn-2026-01-21":"95add1a2-9be4-4f19-bfdf-69bb654811e3",
+  "col-2026-01-24":"1486ef17-20a8-4462-9aed-64a1f71a3e59",
+  "dyn-2026-01-28":"b327f984-b84f-4c60-92e2-6c73f124ab94",
+  "col-2026-01-31":"74ac141a-057f-4fef-aac2-cbc190302915",
+  "dyn-2026-02-04":"44e535bc-16d4-4260-8bea-7e4d52ab12b8",
+  "col-2026-02-07":"c0cf19b1-75dc-4d35-b29d-67ebf6fbcfb8",
+  "dyn-2026-02-11":"42cbc38f-65f5-495f-8168-4d9558e3aa81",
+  "esp-2026-02-14":"bf4a75b7-58a5-4dd8-9a4d-603f74b14a91",
+  "dyn-2026-02-18":"03bca536-e282-4749-bcaa-dbb6ffeecbb2",
+  "col-2026-02-21":"2bc5727a-65ed-4e45-9a38-e9b71709e3e5",
+  "dyn-2026-02-25":"3a01372e-70c2-4fc7-8c54-16deb89acc9a",
+  "col-2026-02-28":"9ebd81cb-f42e-48a2-b83b-0b4e7cd2317f",
+  "dyn-2026-03-04":"564ab466-0ceb-432a-a70f-b4a4ad492624",
+  "col-2026-03-07":"1c26f638-ff36-4023-a968-700d8840c99d",
+  "dyn-2026-03-11":"1d013d44-d8c6-4fc3-9e77-da166cd3fc36",
+  "col-2026-03-14":"84f43598-598e-4e45-aafb-508b32cc89bf",
+  "ppv-2026-03-15":"3b2ed8b6-74ff-486e-b783-d395fb4ae40c",
+  "dyn-2026-03-18":"9b74f17f-722a-43da-80b8-9a4330379f39",
+  "col-2026-03-21":"2f6667d7-9d27-4227-94a9-9a35ccfefbe4",
+  "dyn-2026-03-25":"635221ed-badd-4d78-8619-8e186a3edc31",
+  "col-2026-03-28":"6a856d96-ef57-4d50-b0ad-04f7af241f25",
+  "dyn-2026-04-01":"f33826c9-42f8-4add-b853-7ec740c7a400",
+  "col-2026-04-02":"ab53049b-d36a-435c-9123-4a9b612503dd",
+  "dyn-2026-04-08":"a11af9d7-69f0-47cf-9529-a62fe275f88b",
+  "col-2026-04-11":"1def379c-112b-4dac-a1c8-2bbcd86d5883",
+  "ppv-2026-04-12":"f0e25354-c2cc-44eb-8c0c-de2b5ba32b5f",
+  "dyn-2026-04-15":"2744a284-c844-4dd9-b523-aadc7bdfb255",
+  "dyn-2026-04-22":"67f91c6a-482f-4545-a2fb-e971aefb8c88",
+  "col-2026-04-25":"e36d2252-d16c-4124-8598-444a2d577210",
+  "dyn-2026-04-29":"6a6e84ac-66e8-4a8d-8715-7a8898bb7003",
+  "col-2026-05-02":"57427bb8-f1f9-49f6-a2f4-23f85cc6a696",
+  "dyn-2026-05-06":"a2b71fac-66cb-437e-b0fe-1abc27f6995b",
+  "col-2026-05-13":"505133a0-ecf1-4dc2-929d-ac1df0042f7c",
+  "dyn-2026-05-13":"906a0f74-976a-46ea-a1dc-d21e9c454744",
+  "dyn-2026-05-20":"ac1da56b-d92d-451a-a639-e3b54bd75dca",
+  "ppv-2026-05-24":"88ec5e47-bcb9-4898-8617-84e81419fbad",
+  "col-2026-05-27":"963e7577-f753-4432-9be4-3f846723b24c",
+  "dyn-2026-05-27":"3b437546-5a23-4898-a094-ee32ece6fd7e",
+  "dyn-2026-06-03":"476438c7-1417-4514-9608-2cc70472f7d4",
+  "col-2026-06-06":"e6ae692f-b196-4ac9-9bb9-d7161debb80c",
+  "dyn-2026-06-10":"563c4c59-ee1e-45e1-95b0-36e191cf5649",
+  "col-2026-06-13":"09ce3025-b068-4140-a65c-39079d166e1f",
+  "dyn-2026-06-17":"264bf885-bdfb-47c3-8d69-095b49ada85e",
+  "col-2026-06-20":"10de65e5-6ca7-45d0-9b40-51bf1a06c618",
+  "dyn-2026-06-24":"71614a42-f95e-4cf2-8a3c-ceaf0178619d",
+  "col-2026-06-27":"6b3883b3-8f3f-4a5b-8d84-fb06bd92c16c",
+  "ppv-2026-06-28":"148ecda0-8501-49f0-b33f-7ec2794b7ae4",
+  "dyn-2026-07-01":"c129f367-b0e4-4172-a99b-1950719f1f34",
+  "dyn-2026-07-08":"884dac29-5b45-4904-8d43-9556a7e1079f",
+  "col-2026-07-11":"aa2e02f7-442b-44d4-9e94-a40cef950535",
+  "dyn-2026-07-15":"ffadde23-fa4e-4453-a548-5939a9c5f140",
+  "col-2026-07-18":"df3d6b13-f739-48ae-915a-57c9221ad1ae",
+  "dyn-2026-07-22":"e7fefa5e-e96c-492d-be91-150d9057ee84",
+  "col-2026-07-25":"cc022361-0d3d-4abe-a109-a6c09d0633ae",
+  "dyn-2026-07-29":"1224f2d0-5b8b-44d7-b89e-582195282656",
+  "dyn-2026-08-05":"f18022d1-10bc-4769-b9f1-e5650a834242",
+  "col-2026-08-08":"61dde79e-c020-49ba-b2ae-b54692d57824",
+  "dyn-2026-08-12":"b51ce2db-9163-422d-8810-68b9de28b3b5",
+  "col-2026-08-15":"3b1cb777-5fb7-4e90-8b0b-1ff1b15093a4",
+  "dyn-2026-08-19":"34a9d09c-148b-4df6-8737-349ecd755872",
+  "col-2026-08-22":"c6544ad6-6714-4106-8152-0edea6e332a0",
+  "dyn-2026-08-26":"a0dc5c9d-867c-4003-8633-ce178036301c",
+  "col-2026-08-29":"45f584b5-b268-4e17-b4fc-0c9c016e08e7",
+  "ppv-2026-08-30":"5903f67d-a4e8-4e72-8ba7-b628548e19b4",
+  "dyn-2026-09-02":"0261ea4d-6636-4240-a9e9-05b1e0d486ae",
+  "col-2026-09-05":"8cd1fcc6-d207-4709-b734-97eacad52d7f",
+  "dyn-2026-09-09":"7e507726-5343-4cc4-b8da-557296bd3e11",
+  "col-2026-09-12":"5bf35681-89f3-4717-92be-3defdc4c4b17",
+  "dyn-2026-09-16":"43f73114-abbb-4211-945e-90a4d50c5820",
+  "col-2026-09-19":"8e456340-3be6-4df3-a0fd-dd6926c6a0ff",
+  "dyn-2026-09-23":"bb71bf1c-f687-4154-aad8-cd8cb8b417ec",
+  "dyn-2026-09-30":"93341214-dc73-4c13-9927-60950b0bc935",
+  "col-2026-10-03":"384fb62b-8a6b-4353-b859-13e76044e043",
+  "dyn-2026-10-07":"e4d3827c-083d-423a-b3c5-e26c58c3f568",
+  "col-2026-10-10":"082c7706-d6c3-49b0-b943-745858d18454",
+  "dyn-2026-10-14":"7736d6f3-6359-4fe8-a8dc-55e4d5abe966",
+  "ppv-2026-10-17":"62d87d90-0376-4413-9db2-1d9ba5d4109d",
+  "dyn-2026-10-21":"188b7bf6-54c0-441e-b856-f55cbed4578b",
+  "col-2026-10-24":"4cad1d9e-55b3-45cb-996f-db6083ec02ca",
+  "dyn-2026-10-28":"f827abf6-20b6-47a6-98f7-ee9c0842034f",
+  "col-2026-10-31":"d32f7de8-9478-4e51-a7c2-5876cd31c237",
+  "dyn-2026-11-04":"303af56c-45f0-4115-9f80-2c8e62aa19f9",
+  "col-2026-11-07":"69deef6c-7ba5-49c2-a3b0-319bbb4da69e",
+  "dyn-2026-11-11":"ef6a49d3-00da-4505-978d-67058ca70859",
+  "ppv-2026-11-14":"a1d1be6e-e48f-46c2-92fd-901cdba2ecaf",
+  "dyn-2026-11-18":"fd2c288d-1014-4f7e-a83c-6e72d93d24b8"
 };
 /* PPV que MyAEW vende aparte del plan base. */
-const MYAEW_PPV = new Set(["ppv-2019-05-25", "ppv-2019-08-31", "ppv-2019-11-09", "ppv-2020-02-29", "ppv-2020-05-23", "ppv-2020-09-05", "ppv-2020-11-07", "ppv-2021-05-30", "ppv-2021-09-05", "ppv-2021-11-13"]);
+const MYAEW_PPV = new Set(["ppv-2019-05-25", "ppv-2019-08-31", "ppv-2019-11-09", "ppv-2020-02-29", "ppv-2020-05-23", "ppv-2020-09-05", "ppv-2020-11-07", "ppv-2021-05-30", "ppv-2021-09-05", "ppv-2021-11-13", "ppv-2022-05-29", "ppv-2023-05-28", "ppv-2023-06-25", "ppv-2023-08-27", "ppv-2023-09-03", "ppv-2023-10-01", "ppv-2023-11-18", "ppv-2023-12-30", "ppv-2024-04-21", "ppv-2024-05-26", "ppv-2024-06-30", "ppv-2024-09-07", "ppv-2024-10-12", "ppv-2024-11-23", "ppv-2024-12-28", "ppv-2025-03-09", "ppv-2025-04-06", "ppv-2025-05-25", "ppv-2025-07-12", "ppv-2025-08-24", "ppv-2025-09-20", "ppv-2025-10-18", "ppv-2025-11-22", "ppv-2025-12-27", "ppv-2026-03-15", "ppv-2026-04-12", "ppv-2026-05-24", "ppv-2026-06-28", "ppv-2026-08-30", "ppv-2026-10-17", "ppv-2026-11-14"]);
 
 /* ================= DATES ================= */
 const pad = n => String(n).padStart(2,"0");
@@ -918,7 +1504,7 @@ const BASE_BY_ID = Object.fromEntries(BASE.map(e => [e.id, e]));
 /* ================= STATE ================= */
 const UI_KEY = "bitacora-aew:ui", REC_KEY = "bitacora-aew:recs";
 const state = {
-  year: NOW.getFullYear(), month: NOW.getMonth(), view: "cal",
+  year: NOW.getFullYear(), month: NOW.getMonth(), view: "foco",
   f: new Set(Object.keys(SHOWS)), pending: false,
   sel: null, newMode: false, confirm: null, confirmDel: null, opener: null
 };
@@ -926,7 +1512,7 @@ if (state.year > LAST_YEAR) state.year = LAST_YEAR;
 try {
   const u = JSON.parse(localStorage.getItem(UI_KEY) || "null");
   if (u) {
-    if (["cal","list","ppv"].includes(u.view)) state.view = u.view;
+    if (["foco","cal","list","ppv"].includes(u.view)) state.view = u.view;
     if (Array.isArray(u.f)) { const f = u.f.filter(k => SHOWS[k]); if (f.length) state.f = new Set(f); }
     state.pending = !!u.pending;
   }
@@ -1035,6 +1621,7 @@ const visible = e => state.f.has(e.show);
 
 function renderAll(){
   const list = effective();
+  document.body.dataset.view = state.view;
   renderTally(list); renderUpnext(list); renderMeters(list); renderRail(list); renderView(list);
 }
 
@@ -1260,10 +1847,34 @@ function renderPpv(list){
   }).join("");
 }
 
+let focoAt = null;
+function renderFoco(list){
+  const pool = list.filter(e => state.f.has(e.show) && e.date <= TODAY);
+  const next = pool.find(e => st(e) === "todo");
+  if (!next) return `<section class="foco"><div class="fdone"><b>Estás al día</b><span class="fsub">Ya marcaste todo lo emitido de los programas que sigues.</span></div></section>`;
+  const y = +next.date.slice(0,4);
+  const t = tally(list, e => state.f.has(e.show) && e.date.startsWith(y+"-"));
+  const after = pool.filter(e => e !== next && e.date >= next.date && st(e) === "todo").slice(0,3);
+  focoAt = next.date;
+  const ids = vodIds(next);
+  const watch = ids.map((id, i) => `<a class="btn" href="${vodUrl(id)}" target="_blank" rel="noopener" data-act="watch" data-id="${next.id}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver"}</a>`).join("");
+  const sub = [next.title ? SHOWS[next.show].name : "", fullDate(next.date)].filter(Boolean).join(" · ");
+  return `<section class="foco">
+    <p class="fk"><span>Era ${y}</span><span>${t.seen} de ${t.aired}</span></p>
+    <div class="fbar"><i style="width:${pct(t.seen, t.aired)}%"></i></div>
+    <div class="fcard s-${next.show}"><span class="fk">Siguiente</span>
+      <button type="button" class="fname" data-act="open" data-id="${next.id}">${esc(label(next))}</button>
+      <span class="fsub">${esc(sub)}</span>
+      ${MYAEW_PPV.has(next.id) ? `<span class="fsub">MyAEW vende este PPV aparte del plan base.</span>` : ""}
+      <div class="fbtns">${watch}<button type="button" class="btn ghost" data-act="fseen" data-id="${next.id}">✓ Visto</button></div></div>
+    ${after.length ? `<p class="fk">Después</p><ul class="rows">${after.map(rowHtml).join("")}</ul>` : ""}
+  </section>`;
+}
+
 function renderView(list){
   list = list || cache.list;
   const v = $("view");
-  v.innerHTML = state.view === "list" ? renderList(list) : state.view === "ppv" ? renderPpv(list) : renderCal(list);
+  v.innerHTML = state.view === "foco" ? renderFoco(list) : state.view === "list" ? renderList(list) : state.view === "ppv" ? renderPpv(list) : renderCal(list);
 }
 
 /* ================= SHEET ================= */
@@ -1304,8 +1915,10 @@ function refreshSheet(){
 function watchHtml(e){
   const ids = vodIds(e);
   if (!ids.length) return "";
-  const links = ids.map((id, i) => `<a class="btn" href="${vodUrl(id)}" target="_blank" rel="noopener" data-k="vod-${i}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver en MyAEW"}</a>`).join("");
-  return `<div class="grp watch"><div class="btns">${links}</div>${MYAEW_PPV.has(e.id) ? `<small>MyAEW vende este PPV aparte del plan base.</small>` : ""}</div>`;
+  const links = ids.map((id, i) => `<a class="btn" href="${vodUrl(id)}" target="_blank" rel="noopener" data-act="watch" data-id="${e.id}" data-k="vod-${i}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver en MyAEW"}</a>`).join("");
+  const seenBtn = st(e) === "seen" ? `<span class="done">✓ Visto</span>`
+    : `<button type="button" class="btn ghost" data-act="st" data-st="seen" data-k="vod-seen">✓ Marcar visto</button>`;
+  return `<div class="grp watch"><div class="btns">${links}${seenBtn}</div><small>Se abre la ficha del episodio en MyAEW: toca <b>Watch Now</b> para reproducir.</small>${MYAEW_PPV.has(e.id) ? `<small>MyAEW vende este PPV aparte del plan base.</small>` : ""}</div>`;
 }
 
 function renderSheet(){
@@ -1388,10 +2001,10 @@ function renderNewSheet(){
 
 /* ================= ACTIONS ================= */
 let undoFn = null, toastTimer = null;
-function toast(msg, undo){
+function toast(msg, undo, actLabel){
   const t = $("toast");
   undoFn = undo || null;
-  t.innerHTML = `<span>${esc(msg)}</span>${undo ? `<button type="button" data-act="undo">Deshacer</button>` : ""}`;
+  t.innerHTML = `<span>${esc(msg)}</span>${undo ? `<button type="button" data-act="undo">${esc(actLabel || "Deshacer")}</button>` : ""}`;
   t.hidden = false;
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => { t.hidden = true; undoFn = null; }, undo ? 7000 : 5000);
@@ -1433,13 +2046,15 @@ document.addEventListener("click", ev => {
   const act = t.dataset.act, id = t.dataset.id;
   switch (act){
     case "open": openSheet(id, t); break;
+    case "watch": try { sessionStorage.setItem(WATCH_KEY, JSON.stringify({id, at: Date.now()})); } catch (e) {} break;
     case "toggle": quickToggle(id); break;
+    case "fseen": { const e = cache.byId[id]; if (!e) break; const prev = setRec(id, {s:"seen"}); toast(`Visto: ${label(e)}`, () => { restoreRec(id, prev); renderAll(); }); break; }
     case "year": setYear(+t.dataset.y); break;
-    case "view": state.view = t.dataset.v; state.confirm = null; saveUI(); renderAll(); if (t.closest(".tabbar")){ const top = $("view").getBoundingClientRect().top; if (top < 0) scrollTo({top: scrollY + top - 64}); } break;
+    case "view": if (!sheet.hidden) closeSheet(); if (state.view === "foco" && focoAt && t.dataset.v !== "foco"){ state.year = +focoAt.slice(0,4); state.month = +focoAt.slice(5,7) - 1; } state.view = t.dataset.v; state.confirm = null; saveUI(); renderAll(); if (t.closest(".tabbar")){ const top = $("view").getBoundingClientRect().top; if (top < 0) scrollTo({top: scrollY + top - 64}); } break;
     case "chip": {
       const k = t.dataset.k;
       if (state.f.has(k)){ if (state.f.size > 1) state.f.delete(k); } else state.f.add(k);
-      saveUI(); renderAll(); break;
+      saveUI(); renderAll(); if (!sheet.hidden && sheet.querySelector(".mchips")) openMore(); break;
     }
     case "prev": stepMonth(-1); break;
     case "next": stepMonth(1); break;
@@ -1643,6 +2258,14 @@ function renderInstall(){
     <div><b>Instala Bitácora en tu iPhone</b><span>Toca ${SHARE_SVG} Compartir y luego «Agregar a pantalla de inicio».</span></div>
     <button type="button" class="iconbtn" data-act="hide-install" aria-label="Ocultar aviso">×</button></div>`;
 }
+function moreStats(){
+  const list = cache.list.filter(e => state.f.has(e.show));
+  const t = tally(list);
+  let hours = 0, ppv = 0, scores = [];
+  for (const e of list){ if (st(e) === "seen"){ hours += SHOWS[e.show].h; if (e.show === "ppv") ppv++; } const r = recs[e.id]; if (r && r.score) scores.push(r.score); }
+  const avg = scores.length ? (scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1) : "—";
+  return `<p class="secthead">Tu avance</p><dl class="mstats"><div><dt>Vistos</dt><dd>${fmtNum(t.seen)}<small style="font-size:13px">/${fmtNum(t.aired)}</small></dd></div><div><dt>Horas</dt><dd>${fmtNum(hours)}</dd></div><div><dt>Nota media</dt><dd>${avg}</dd></div></dl>`;
+}
 function openMore(opener){
   state.sel = null; state.newMode = true;
   state.opener = opener || document.activeElement;
@@ -1654,6 +2277,15 @@ function openMore(opener){
     <div class="sh-top"><span class="badge" style="--c:var(--ink)">Más</span>
       <button type="button" class="iconbtn" data-act="close" aria-label="Cerrar">×</button></div>
     <div class="sh-head"><h2 class="sh-title" id="shTitle">Bitácora AEW</h2></div>
+    ${moreStats()}
+    <p class="secthead">Programas que sigues</p>
+    <div class="mchips">${["dyn","col","ram","drk","elv","ppv","esp"].map(k => `<button type="button" class="chip s-${k}" data-act="chip" data-k="${k}" aria-pressed="${state.f.has(k)}">${SHOWS[k].name}</button>`).join("")}</div>
+    <p class="secthead">Otras vistas</p>
+    <ul class="ilist">
+      <li><button type="button" class="irow s-col" data-act="view" data-v="cal"><span class="ic">${IC.cal}</span><span class="tx">Calendario<small>Los shows mes por mes</small></span><i class="chev"></i></button></li>
+      <li><button type="button" class="irow s-ppv" data-act="view" data-v="ppv"><span class="ic">${IC.box}</span><span class="tx">Pay-per-views<small>Todos los PPV por año</small></span><i class="chev"></i></button></li>
+    </ul>
+    <p class="secthead">Herramientas</p>
     <ul class="ilist">
       <li><button type="button" class="irow s-dyn" data-act="add"><span class="ic">${IC.plus}</span><span class="tx">Agregar evento<small>Un show que no está en el calendario</small></span><i class="chev"></i></button></li>
       <li><button type="button" class="irow s-ppv" data-act="backup"><span class="ic">${IC.box}</span><span class="tx">Copia de seguridad<small>${n ? `${fmtNum(n)} ${n === 1 ? "registro guardado" : "registros guardados"}` : "Exporta o importa tu registro"}</small></span><i class="chev"></i></button></li>
@@ -1695,8 +2327,18 @@ sheet.addEventListener("touchend", () => {
 if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")){
   addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
 }
+const WATCH_KEY = "bitacora-aew:watching";
+function askWatched(){
+  let w = null;
+  try { w = JSON.parse(sessionStorage.getItem(WATCH_KEY) || "null"); sessionStorage.removeItem(WATCH_KEY); } catch (e) {}
+  if (!w || Date.now() - w.at < 60000) return;
+  const e = cache.byId[w.id] || BASE_BY_ID[w.id];
+  if (!e || st(e) === "seen") return;
+  toast(`¿Terminaste ${label(e)} · ${shortDate(e.date)}?`, () => { setRec(e.id, {s:"seen"}); renderAll(); refreshSheet(); toast("Marcado como visto"); }, "Marcar visto");
+}
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState !== "visible") return;
+  askWatched();
   const n = new Date();
   if (iso(n.getFullYear(), n.getMonth()+1, n.getDate()) !== TODAY) location.reload();
 });
