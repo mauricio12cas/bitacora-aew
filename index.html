@@ -949,7 +949,10 @@ function effective(){
 function st(e){ const r = recs[e.id]; if (r && r.s) return r.s; return e.date > TODAY ? "next" : "todo"; }
 const ST_LABEL = {seen:"Visto", todo:"Por ver", next:"Próximo", skip:"Lo salté", none:"No se emitió"};
 const vodIds = e => { const v = MYAEW[e.id]; return v ? (Array.isArray(v) ? v : [v]) : []; };
-const vodUrl = id => "https://myaew.com/event/" + id;
+const MYAEW_FREE = new Set(["dyn-2020-12-30"]);
+/* Directo al reproductor: myaew.com/video/<id>/<plan en base64>. Los PPV fuera del plan abren su ficha. */
+const vodUrl = (id, e) => MYAEW_PPV.has(e.id) ? "https://myaew.com/event/" + id
+  : "https://myaew.com/video/" + id + "/" + btoa(MYAEW_FREE.has(e.id) ? "AEW_FREE" : "AEW_BASEPKG");
 const label = e => e.title || (e.show === "ppv" || e.show === "esp" ? SHOWS[e.show].name : SHOWS[e.show].name);
 function tally(list, pred){
   let seen = 0, aired = 0;
@@ -1304,7 +1307,7 @@ function refreshSheet(){
 function watchHtml(e){
   const ids = vodIds(e);
   if (!ids.length) return "";
-  const links = ids.map((id, i) => `<a class="btn" href="${vodUrl(id)}" target="_blank" rel="noopener" data-k="vod-${i}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver en MyAEW"}</a>`).join("");
+  const links = ids.map((id, i) => `<a class="btn" href="${vodUrl(id, e)}" target="_blank" rel="noopener" data-k="vod-${i}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver en MyAEW"}</a>`).join("");
   return `<div class="grp watch"><div class="btns">${links}</div>${MYAEW_PPV.has(e.id) ? `<small>MyAEW vende este PPV aparte del plan base.</small>` : ""}</div>`;
 }
 
