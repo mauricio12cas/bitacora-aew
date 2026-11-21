@@ -1535,7 +1535,17 @@ function effective(){
 function st(e){ const r = recs[e.id]; if (r && r.s) return r.s; return e.date > TODAY ? "next" : "todo"; }
 const ST_LABEL = {seen:"Visto", todo:"Por ver", next:"Próximo", skip:"Lo salté", none:"No se emitió"};
 const vodIds = e => { const v = MYAEW[e.id]; return v ? (Array.isArray(v) ? v : [v]) : []; };
-const vodUrl = id => "https://myaew.com/event/" + id;
+/* Plan de MyAEW de cada video cuando no es el base (va en el link directo al reproductor). */
+const VOD_FREE = new Set(["062d03a0-c6e4-4825-b577-a710d6cdb266", "d821e89a-22b5-40a8-8993-c874fe96bf60", "9ebd81cb-f42e-48a2-b83b-0b4e7cd2317f"]);
+const VOD_DYNCOL = new Set(["303af56c-45f0-4115-9f80-2c8e62aa19f9", "188b7bf6-54c0-441e-b856-f55cbed4578b", "7736d6f3-6359-4fe8-a8dc-55e4d5abe966", "fd2c288d-1014-4f7e-a83c-6e72d93d24b8", "ef6a49d3-00da-4505-978d-67058ca70859", "0261ea4d-6636-4240-a9e9-05b1e0d486ae", "a0dc5c9d-867c-4003-8633-ce178036301c", "69deef6c-7ba5-49c2-a3b0-319bbb4da69e", "d32f7de8-9478-4e51-a7c2-5876cd31c237", "f827abf6-20b6-47a6-98f7-ee9c0842034f", "4cad1d9e-55b3-45cb-996f-db6083ec02ca", "8cd1fcc6-d207-4709-b734-97eacad52d7f", "45f584b5-b268-4e17-b4fc-0c9c016e08e7", "34a9d09c-148b-4df6-8737-349ecd755872", "082c7706-d6c3-49b0-b943-745858d18454", "e4d3827c-083d-423a-b3c5-e26c58c3f568", "bb71bf1c-f687-4154-aad8-cd8cb8b417ec", "93341214-dc73-4c13-9927-60950b0bc935", "384fb62b-8a6b-4353-b859-13e76044e043", "5bf35681-89f3-4717-92be-3defdc4c4b17", "7e507726-5343-4cc4-b8da-557296bd3e11", "3b1cb777-5fb7-4e90-8b0b-1ff1b15093a4", "c6544ad6-6714-4106-8152-0edea6e332a0", "8e456340-3be6-4df3-a0fd-dd6926c6a0ff"]);
+/* iPhone/iPad con la app instalada: abre en Safari, donde está tu sesión de MyAEW. */
+const IOS_APP = (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) && (navigator.standalone === true || matchMedia("(display-mode: standalone)").matches);
+/* Directo al reproductor: myaew.com/video/<id>/<plan en base64>. Los PPV fuera del plan abren su ficha. */
+function vodUrl(id, e){
+  const url = MYAEW_PPV.has(e.id) ? "https://myaew.com/event/" + id
+    : "https://myaew.com/video/" + id + "/" + btoa(VOD_FREE.has(id) ? "AEW_FREE" : VOD_DYNCOL.has(id) ? "AEW_DYNCOL" : "AEW_BASEPKG");
+  return IOS_APP ? "x-safari-" + url : url;
+}
 const label = e => e.title || (e.show === "ppv" || e.show === "esp" ? SHOWS[e.show].name : SHOWS[e.show].name);
 function tally(list, pred){
   let seen = 0, aired = 0;
@@ -1857,7 +1867,7 @@ function renderFoco(list){
   const after = pool.filter(e => e !== next && e.date >= next.date && st(e) === "todo").slice(0,3);
   focoAt = next.date;
   const ids = vodIds(next);
-  const watch = ids.map((id, i) => `<a class="btn" href="${vodUrl(id)}" target="_blank" rel="noopener" data-act="watch" data-id="${next.id}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver"}</a>`).join("");
+  const watch = ids.map((id, i) => `<a class="btn" href="${vodUrl(id, next)}" target="_blank" rel="noopener" data-act="watch" data-id="${next.id}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver"}</a>`).join("");
   const sub = [next.title ? SHOWS[next.show].name : "", fullDate(next.date)].filter(Boolean).join(" · ");
   return `<section class="foco">
     <p class="fk"><span>Era ${y}</span><span>${t.seen} de ${t.aired}</span></p>
@@ -1915,10 +1925,10 @@ function refreshSheet(){
 function watchHtml(e){
   const ids = vodIds(e);
   if (!ids.length) return "";
-  const links = ids.map((id, i) => `<a class="btn" href="${vodUrl(id)}" target="_blank" rel="noopener" data-act="watch" data-id="${e.id}" data-k="vod-${i}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver en MyAEW"}</a>`).join("");
+  const links = ids.map((id, i) => `<a class="btn" href="${vodUrl(id, e)}" target="_blank" rel="noopener" data-act="watch" data-id="${e.id}" data-k="vod-${i}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver en MyAEW"}</a>`).join("");
   const seenBtn = st(e) === "seen" ? `<span class="done">✓ Visto</span>`
     : `<button type="button" class="btn ghost" data-act="st" data-st="seen" data-k="vod-seen">✓ Marcar visto</button>`;
-  return `<div class="grp watch"><div class="btns">${links}${seenBtn}</div><small>Se abre la ficha del episodio en MyAEW: toca <b>Watch Now</b> para reproducir.</small>${MYAEW_PPV.has(e.id) ? `<small>MyAEW vende este PPV aparte del plan base.</small>` : ""}</div>`;
+  return `<div class="grp watch"><div class="btns">${links}${seenBtn}</div><small>Se abre el reproductor de MyAEW en Safari, con tu sesión.</small>${MYAEW_PPV.has(e.id) ? `<small>MyAEW vende este PPV aparte del plan base.</small>` : ""}</div>`;
 }
 
 function renderSheet(){
