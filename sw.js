@@ -1,5 +1,5 @@
 /* Bitácora AEW: works offline. Page = network first (so updates arrive), everything else = cache first. */
-const VERSION = "bitacora-aew-v2";
+const VERSION = "bitacora-aew-v3";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png",
   "./fonts/BigShouldersDisplay-700-latin-ext.woff2",
   "./fonts/BigShouldersDisplay-700-latin.woff2"];

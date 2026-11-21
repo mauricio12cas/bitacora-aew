@@ -333,6 +333,11 @@ button.card:hover{border-color:color-mix(in srgb,var(--ink) 35%,var(--line))}
 .sh-title{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:38px;line-height:.92;margin:0 0 6px;overflow-wrap:anywhere}
 .sh-when{font-weight:600;margin:0}
 .sh-sub{color:var(--muted);margin:0;font-size:14px}
+.watch{display:grid;gap:6px}
+.watch .btns{display:flex;flex-wrap:wrap;gap:8px}
+.watch a.btn{text-decoration:none;display:inline-flex;align-items:center;gap:6px;background:var(--tint);border-color:var(--tint);color:var(--bg)}
+.watch small{font-size:12.5px;color:var(--muted)}
+.rm .vod{color:var(--tint);font-size:12px;letter-spacing:.02em}
 .sh-note{font-size:13.5px;color:var(--muted);background:var(--panel);border-radius:8px;padding:9px 11px;margin:0}
 .grp{display:grid;gap:8px;border:0;margin:0;padding:0;min-width:0}
 .grp legend,.lbl{font-family:var(--f-label);font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-size:13px;color:var(--muted);padding:0;margin:0 0 8px}
@@ -601,6 +606,15 @@ const ESP = [
 
 /* Weekly episodes that moved to another day: "show:regular date" -> real date */
 const MOVES = {
+  "dyn:2020-08-19":"2020-08-22",
+  "dyn:2020-08-26":"2020-08-27",
+  "dyn:2021-05-26":"2021-05-28",
+  "dyn:2021-06-02":"2021-06-04",
+  "dyn:2021-06-09":"2021-06-11",
+  "dyn:2021-06-16":"2021-06-18",
+  "dyn:2021-06-23":"2021-06-26",
+  "dyn:2021-10-13":"2021-10-16",
+  "dyn:2021-10-20":"2021-10-23",
   "col:2025-12-27":"2025-12-25",
   "col:2026-04-04":"2026-04-02",
   "col:2026-05-09":"2026-05-06",
@@ -666,6 +680,162 @@ const TITLES = {
 const EXTRA = [
   ["drk","2025-12-16","Stocking Stuffer","","","Regreso especial de una noche de Dark."]
 ];
+
+/* MyAEW (myaew.com/event/<id>): enlaces de video por episodio. Un arreglo = varias partes. */
+const MYAEW = {
+  "ppv-2019-05-25":"7337ac73-c2da-4616-a4e9-cf9b3b7c8f08",
+  "esp-2019-06-29":"83a7687b-4c23-4941-8cf7-2348653d5c25",
+  "esp-2019-07-13":"17741cdc-40ea-4761-bb95-b8070c00d7d4",
+  "ppv-2019-08-31":"854a3bde-0667-4403-b23b-ea0d64fcfb2e",
+  "ppv-2019-11-09":"95b8ef9b-0ae9-465e-9fab-ff45f0230fc4",
+  "ppv-2020-02-29":"9904f66c-192c-4214-8429-641a66cbd1d9",
+  "ppv-2020-05-23":"86f63132-5a49-4d89-8907-c1246f905de7",
+  "ppv-2020-09-05":"af5734c6-6fca-43f0-b2db-22ca05c7e848",
+  "ppv-2020-11-07":"7f5f9357-a668-420c-bbf6-7cfcaf872187",
+  "ppv-2021-03-07":"2d776297-fbf2-4774-b9a1-7a3a74dcd336",
+  "ppv-2021-05-30":"92401a44-a533-4698-be6d-f4ce53773798",
+  "ppv-2021-09-05":"7f956d24-dab4-4961-909a-1dda90fb8302",
+  "ppv-2021-11-13":"59a219ff-0a4a-4f7d-8fb4-7b817739701d",
+  "dyn-2019-10-02":"1da2c4d7-f818-484e-9335-5f0fe42904b3",
+  "dyn-2019-10-09":"a872e5b2-18d5-488a-bb8b-f036f2481bcc",
+  "dyn-2019-10-16":"c71297b6-1317-4866-bc69-92beb072f732",
+  "dyn-2019-10-23":"1a4026c9-ee4d-4d07-a09f-d3b10d0ad723",
+  "dyn-2019-10-30":"4f734532-3a93-4429-8dc1-a340d389650f",
+  "dyn-2019-11-06":"c026e006-f163-46fc-b4af-bf4397432ce8",
+  "dyn-2019-11-13":"bea10b13-32d0-4b48-9f61-59e4f0e28603",
+  "dyn-2019-11-20":"c77a0ff3-dd85-483b-b2a0-2e68cfd861b3",
+  "dyn-2019-11-27":"e70d8c2a-a52d-48d9-8504-b32d46638952",
+  "dyn-2019-12-04":"880d3a1a-dded-4f1e-ab73-f9f82bead57e",
+  "dyn-2019-12-11":"375e5065-e582-4433-b699-bccb6c9492f2",
+  "dyn-2019-12-18":"70a16981-e713-4305-9b9c-c71547a34599",
+  "dyn-2020-01-01":"f7da3034-7dd8-4c59-b9f7-036184c0548a",
+  "dyn-2020-01-08":"f50b7b1e-78e5-4e7e-b868-c8d3eb667233",
+  "dyn-2020-01-15":"0f05d302-b4e5-4d2b-b352-f69fc422a2b1",
+  "dyn-2020-01-22":"4cc28535-41b9-497e-9ed0-998289bb367a",
+  "dyn-2020-01-29":"2633daf8-3edd-4202-8621-96313c56845c",
+  "dyn-2020-02-05":"303d71c7-627f-40af-9bc9-3b16a6664b62",
+  "dyn-2020-02-12":"880107b0-d842-4f7d-9153-20c865aad93c",
+  "dyn-2020-02-19":"bcbef949-31de-4705-a243-0964f456c0f2",
+  "dyn-2020-02-26":"67b1fa9f-69db-439b-9410-4287daae9643",
+  "dyn-2020-03-04":"51d93411-bdfa-4d36-8958-c129c73bb22f",
+  "dyn-2020-03-11":"1f4ea2a7-30d8-485e-8679-ed13c034d169",
+  "dyn-2020-03-18":"ced04e86-0309-4da9-b315-638322e32171",
+  "dyn-2020-03-25":"fbeeaa87-4812-4847-bcf6-02ed7e4d2a62",
+  "dyn-2020-04-01":"ff125a58-8301-4b83-a9d7-6c7d2c841167",
+  "dyn-2020-04-08":"d49cd269-29db-42d3-8eac-544e03786701",
+  "dyn-2020-04-15":"2166454a-8de2-4ed1-a2c6-f19e07bc0ec4",
+  "dyn-2020-04-22":"a154ffca-dedc-458c-884a-893aa8b2c97c",
+  "dyn-2020-04-29":"2fc7831a-6efb-497a-a902-3fdf7ccd6080",
+  "dyn-2020-05-06":"160030ee-1b8c-4a64-8d0a-61d3f5a1e774",
+  "dyn-2020-05-13":"bbaea25e-81ba-4203-a99f-e6cdfa684400",
+  "dyn-2020-05-20":"0e08a958-edef-4d90-bfd3-abf8c274971e",
+  "dyn-2020-05-27":"460640a4-997b-4c0c-bc33-fe19c7ba7c15",
+  "dyn-2020-06-03":"0207077c-a99b-4a33-9885-9f3c681df3dd",
+  "dyn-2020-06-10":"ee7b8405-bf9b-46d3-afdd-a0a7e1e587c2",
+  "dyn-2020-06-17":"b48ca902-682d-4d23-918c-89ba0f8290bd",
+  "dyn-2020-06-24":"402710d3-51fe-488f-9d3a-3dd97f79c028",
+  "dyn-2020-07-01":"b29c8878-5466-4503-b9bf-310e9f41b659",
+  "dyn-2020-07-08":"6886844e-1878-49cd-b3d2-eb29e49424e1",
+  "dyn-2020-07-15":"b345e090-1139-4098-bccd-f45421bc68b9",
+  "dyn-2020-07-22":"8add042e-17a5-4e94-9052-04a49df7f5ff",
+  "dyn-2020-07-29":"f1668e6a-c246-4d39-9161-1221df72cffe",
+  "dyn-2020-08-05":"14e90d7d-6d39-4e82-a961-14a9af4ae142",
+  "dyn-2020-08-12":"34fd1f17-03b6-4688-8cc0-9c6612a36c17",
+  "dyn-2020-08-22":"538b3d34-9a92-4aad-9f54-524879218aad",
+  "dyn-2020-08-27":"3367a562-8c87-435d-9413-5892b67e3a91",
+  "dyn-2020-09-02":"3d8c520a-8b44-4de2-bc7f-ba026d99da46",
+  "dyn-2020-09-09":"a060a2e1-3b17-4b43-ad7f-a6068534d8f5",
+  "dyn-2020-09-16":"84d16658-d17a-40f7-b407-dbafc8e0408e",
+  "dyn-2020-09-23":"4dcb4472-f637-4eae-ad46-318c345d0d3a",
+  "dyn-2020-09-30":"b06890f9-891c-485d-9d0a-b72352eb47b9",
+  "dyn-2020-10-07":"8b0df2a0-1bc9-4e47-a03e-41d820cdec86",
+  "dyn-2020-10-14":"c1f710f5-68c2-489c-83c2-4c29a7958251",
+  "dyn-2020-10-21":"b39123d8-9b4b-4447-8c9f-e532413dfd0a",
+  "dyn-2020-10-28":"61b1e6f8-bdc2-4b73-88ea-f293d5fb9ab0",
+  "dyn-2020-11-04":"ed60646c-a7a1-462e-818d-61b352e8b62e",
+  "dyn-2020-11-11":"d81d1efe-d9f7-4c65-87e9-620645a87e0a",
+  "dyn-2020-11-18":"64e99c94-5522-43ae-91da-3d5a74e22ff3",
+  "dyn-2020-11-25":"33f1a86a-3d54-4692-a84b-f01ad41fb516",
+  "dyn-2020-12-02":"bcbfe137-c46c-47a7-a9c1-299153bb2c98",
+  "dyn-2020-12-09":"70443f10-4ed4-4847-936f-8f123ca0dfe0",
+  "dyn-2020-12-16":"41e560b5-d7ec-4ca0-8ea0-3bd4cba8168a",
+  "dyn-2020-12-23":"ef5da74c-e877-4db0-9ac9-8c08ae98d625",
+  "dyn-2020-12-30":"062d03a0-c6e4-4825-b577-a710d6cdb266",
+  "dyn-2021-01-06":"1c1066f6-a485-4db5-887c-9bb71242be91",
+  "dyn-2021-01-13":"15dca397-b521-4a92-b7f9-a99caa74e0de",
+  "dyn-2021-01-20":"9c772695-c5c1-4b95-a041-2ccd0ddb199b",
+  "dyn-2021-01-27":"d2d77fd9-3c85-4cda-8a3f-e8364eb20f70",
+  "dyn-2021-02-03":"ba1c2bd2-2854-4bf0-8a18-320458aaff17",
+  "dyn-2021-02-10":"e7518157-dd67-4b01-855d-62ae2f3bff28",
+  "dyn-2021-02-17":"1a8cf168-07b0-4f58-bdff-6b3fc497b02e",
+  "dyn-2021-02-24":"7eebafc6-a621-4a03-8361-c018816a7a7c",
+  "dyn-2021-03-03":"a2b965d9-39e6-4306-8e87-a57379d733c7",
+  "dyn-2021-03-10":"f0591892-6ae6-4b16-9f86-09f3448749c6",
+  "dyn-2021-03-17":"cf9f95b5-ab75-4376-8e2b-8f5a3c7bc1f2",
+  "dyn-2021-03-24":"156ab1eb-8986-49d0-896f-5a4cb8dab378",
+  "dyn-2021-03-31":"f7d5b5b9-0efa-441d-be3a-99f091ff0870",
+  "dyn-2021-04-07":"a0132781-352c-4b1a-8c00-7bf95fc2999a",
+  "dyn-2021-04-14":"fd1575e3-7995-4bf7-8d8c-b04ef8f1c0df",
+  "dyn-2021-04-21":"ba15d119-dd52-4cc8-b06f-892a0a6f6ffd",
+  "dyn-2021-04-28":"d6519a70-cd07-4b6e-a641-83c13f173d00",
+  "dyn-2021-05-05":"a94d337f-9e82-4acd-b79f-d02816a909eb",
+  "dyn-2021-05-12":"ff283da3-9702-4b81-b74b-1255b091a28c",
+  "dyn-2021-05-19":"3c3fdd06-6fa2-4487-a233-6e8227b65d69",
+  "dyn-2021-05-28":"f953aad9-6388-426f-946e-b1a18dc42fa4",
+  "dyn-2021-06-04":"529be687-73ea-402a-a545-581eb9f6f734",
+  "dyn-2021-06-11":"9b19d360-514a-4438-8cf2-ee8aa8b02b2e",
+  "dyn-2021-06-18":"83827b09-42cf-4977-83a8-a0ffe8e880f6",
+  "dyn-2021-06-26":"1c675282-c4ec-4bc4-bc66-723241ef0af8",
+  "dyn-2021-06-30":"72cfc4f8-f77a-4a36-9e4b-4456e97a5975",
+  "dyn-2021-07-07":"d3081c21-0705-44f0-9926-fb83732b0dbb",
+  "dyn-2021-07-14":"5a999b2f-de35-450f-bcb8-a8f8fdfb7984",
+  "dyn-2021-07-21":"71af5b8a-ebb0-43c7-b4c5-682726136c53",
+  "dyn-2021-07-28":"187f0a3b-a2ca-49ad-a29d-d67f873f9dd0",
+  "dyn-2021-08-04":"9cbf87fa-2d38-48e5-88bb-92a229ac8c15",
+  "dyn-2021-08-11":"30035413-57f8-4c44-9704-e5fc779808c1",
+  "dyn-2021-08-18":"fc8893f8-482c-4fca-b075-4358b05ec486",
+  "dyn-2021-08-25":"012460ac-3e61-446f-a100-548d022f3302",
+  "dyn-2021-09-01":"6fdc6d64-519d-4e59-ac9b-bc18cddae00f",
+  "dyn-2021-09-08":"5ff2a643-c6f4-47e1-ba84-34ffbf7a51a2",
+  "dyn-2021-09-15":"15cfdc6d-ead7-4d21-b6f8-e47a84d7e27c",
+  "dyn-2021-09-22":"b04f46ba-5c23-4f53-99cd-f87b2e6ac29c",
+  "dyn-2021-09-29":"691c300b-a74d-4609-9c8c-16218ab40d4c",
+  "dyn-2021-10-06":"edb60635-0230-4f3a-91ea-8ddf1f77d602",
+  "dyn-2021-10-16":"cfa85256-de43-4dcd-bbb9-6dc535660925",
+  "dyn-2021-10-23":"46c9f1de-0660-4a05-9327-5ad2e2ac04ab",
+  "dyn-2021-10-27":"b98670e7-90ac-43fc-a17a-3b3d45a0796f",
+  "dyn-2021-11-03":"285d8d1f-693a-4bee-8754-f9bbfabad1d2",
+  "dyn-2021-11-10":"043ebca4-ef52-4856-9851-7d6960c7e774",
+  "dyn-2021-11-17":"564fc09f-c295-4c1d-bee4-37a542297da3",
+  "dyn-2021-11-24":"13517b19-4656-4256-916d-8905551bd627",
+  "dyn-2021-12-01":"8d5e11fe-105b-4faa-b14c-616b09295fac",
+  "dyn-2021-12-08":"9c1334c9-dd4b-462f-91a4-c01569abd280",
+  "dyn-2021-12-15":"34197a18-c8da-46c5-b67f-7473e246404c",
+  "dyn-2021-12-22":"b7d3205e-98af-4c16-8b12-6ca8b9e94022",
+  "dyn-2021-12-29":"2394ef4f-cb65-4d08-a405-7ee5d5cdb03b",
+  "ram-2021-08-13":"a4f245e7-117b-417a-92dd-686861a64b23",
+  "ram-2021-08-20":"4f447cd2-9942-43b4-8357-dd3ae9ceb299",
+  "ram-2021-08-27":"365c68a5-cac8-4bb3-8b22-504f5a71a9e1",
+  "ram-2021-09-03":"e7347514-9cec-4f0c-b22f-4cb3b0263788",
+  "ram-2021-09-10":"9500ea9f-ba28-4909-95c7-d6fe0e4d2bde",
+  "ram-2021-09-17":"eb0b3428-4fa9-4989-b400-a757be19dc50",
+  "ram-2021-09-24":["7615c97d-63e9-4f1e-b331-e36edce31d8a", "ad2c02e2-ccf3-4548-92d3-807597fd20c1"],
+  "ram-2021-10-08":"225bc84d-8403-4e3e-9630-162836809bf4",
+  "ram-2021-10-15":"9959addb-b3c6-43eb-85b6-f7ff006d1e63",
+  "ram-2021-10-22":"3c641d01-8306-42a1-8fd3-1f3f7fc6cdf1",
+  "ram-2021-10-29":"44f5c1bd-5185-44c3-9ab0-201e119db221",
+  "ram-2021-11-05":"09b27b6c-ec44-4250-a639-5c900d66acd8",
+  "ram-2021-11-12":"a2b20f85-0ab2-43c6-9f75-58222faa9316",
+  "ram-2021-11-19":"bc3ba4df-616d-42c9-a18f-291a07dafe2b",
+  "ram-2021-11-26":"ba9fe22b-eff1-4315-aa2b-078049b63e37",
+  "ram-2021-12-03":"146f3737-0557-4a49-8edb-c544c4127c3c",
+  "ram-2021-12-10":"cfa5ad28-873e-4f49-9fd9-fedd63b260f6",
+  "ram-2021-12-17":"185b97b0-3487-4ef5-941a-e1cb63790bc7",
+  "ram-2021-12-24":"ee28cc4e-9d3a-4746-a714-a0ba0c6b0dfb",
+  "ram-2021-12-31":"9ae1da76-a2c9-4095-a024-ae63d59a6626"
+};
+/* PPV que MyAEW vende aparte del plan base. */
+const MYAEW_PPV = new Set(["ppv-2019-05-25", "ppv-2019-08-31", "ppv-2019-11-09", "ppv-2020-02-29", "ppv-2020-05-23", "ppv-2020-09-05", "ppv-2020-11-07", "ppv-2021-05-30", "ppv-2021-09-05", "ppv-2021-11-13"]);
 
 /* ================= DATES ================= */
 const pad = n => String(n).padStart(2,"0");
@@ -778,6 +948,8 @@ function effective(){
 }
 function st(e){ const r = recs[e.id]; if (r && r.s) return r.s; return e.date > TODAY ? "next" : "todo"; }
 const ST_LABEL = {seen:"Visto", todo:"Por ver", next:"Próximo", skip:"Lo salté", none:"No se emitió"};
+const vodIds = e => { const v = MYAEW[e.id]; return v ? (Array.isArray(v) ? v : [v]) : []; };
+const vodUrl = id => "https://myaew.com/event/" + id;
 const label = e => e.title || (e.show === "ppv" || e.show === "esp" ? SHOWS[e.show].name : SHOWS[e.show].name);
 function tally(list, pred){
   let seen = 0, aired = 0;
@@ -1030,6 +1202,7 @@ function rowHtml(e){
   if (r.score) meta.push(`<span class="sc">${r.score}<small>/10</small></span>`);
   if (r.stars) meta.push(`<span>${fmtStars(r.stars)}</span>`);
   if (s === "skip" || s === "none" || s === "next") meta.push(`<span>${ST_LABEL[s]}</span>`);
+  if (MYAEW[e.id] && s !== "seen") meta.push(`<span class="vod" title="Disponible en MyAEW">▶ MyAEW</span>`);
   const can = s !== "none";
   return `<li class="row s-${e.show} st-${s}">
     <button type="button" class="check" data-act="toggle" data-id="${e.id}" aria-pressed="${s === "seen"}" aria-label="${s === "seen" ? "Quitar visto" : "Marcar como visto"}: ${esc(label(e))}, ${shortDate(e.date)}" ${can ? "" : "disabled"}>✓</button>
@@ -1128,6 +1301,13 @@ function refreshSheet(){
   renderSheet();
 }
 
+function watchHtml(e){
+  const ids = vodIds(e);
+  if (!ids.length) return "";
+  const links = ids.map((id, i) => `<a class="btn" href="${vodUrl(id)}" target="_blank" rel="noopener" data-k="vod-${i}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver en MyAEW"}</a>`).join("");
+  return `<div class="grp watch"><div class="btns">${links}</div>${MYAEW_PPV.has(e.id) ? `<small>MyAEW vende este PPV aparte del plan base.</small>` : ""}</div>`;
+}
+
 function renderSheet(){
   const keep = document.activeElement && sheet.contains(document.activeElement) ? document.activeElement.dataset.k : null;
   const e = cache.byId[state.sel] || BASE_BY_ID[state.sel];
@@ -1167,6 +1347,7 @@ function renderSheet(){
       ${place ? `<p class="sh-sub">${esc(place)}</p>` : ""}
       <p class="sh-sub">${esc(slotText(e.show, e.date))}</p>
     </div>
+    ${watchHtml(e)}
     ${notes.length ? `<p class="sh-note">${esc(notes.join(" "))}</p>` : ""}
     <fieldset class="grp"><legend>Estado</legend><div class="stseg">${stBtns}</div></fieldset>
     <fieldset class="grp"><legend>Tu nota del show</legend><div class="scores">${scoreBtns}</div></fieldset>
