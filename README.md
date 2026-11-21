@@ -12,7 +12,7 @@ Calendario y registro personal de todos los shows de AEW desde 2019: Dynamite, C
 
 ## Ver en MyAEW
 
-Los episodios de 2019 a 2021 (Dynamite, Rampage, PPV y especiales) tienen un botón **▶ Ver en MyAEW** en su ficha, y en la lista aparece la etiqueta **▶ MyAEW** en los que tienen video. Los enlaces viven en el bloque `MYAEW` de `index.html`, con el id del video en `myaew.com/event/<id>`. Los PPV marcados en `MYAEW_PPV` los vende MyAEW aparte del plan base.
+Los episodios de 2019 a 2026 que están en MyAEW (Dynamite, Collision, Rampage, PPV y especiales) tienen un botón **▶ Ver en MyAEW** en su ficha, y en la lista aparece la etiqueta **▶ MyAEW** en los que tienen video. Los enlaces viven en el bloque `MYAEW` de `index.html`, con el id del video en `myaew.com/event/<id>`. Los PPV marcados en `MYAEW_PPV` los vende MyAEW aparte del plan base.
 
 ## Datos
 
