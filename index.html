@@ -7,9 +7,9 @@
 <meta name="description" content="Calendario y registro personal de Dynamite, Collision, Rampage, Dark, Elevation, especiales y PPV de AEW desde 2019.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Bitácora">
-<meta name="theme-color" content="#10131A" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#F6F5F1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#07090D" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
@@ -86,13 +86,13 @@
 /* Layout: an ink "ring apron" band carrying the career tally, a rail of years / views / shows,
    then one working view (month calendar, year log, or the PPV ticket wall) with a side sheet per show. */
 :root{
-  --bg:#ECEEF3; --panel:#FFFFFF; --panel-2:#F4F5F8; --ink:#10131A; --muted:#596070; --line:#D5D9E1;
+  --bg:#F6F5F1; --panel:#FFFFFF; --panel-2:#EFEDE6; --ink:#0B0B0C; --muted:#6E6A62; --line:#DCD8CE;
   --on-c:#FFFFFF; --focus:#1F5FD1; --scrim:rgba(6,8,12,.45);
   --dyn:#C2185B; --col:#1F5FD1; --ram:#7A3ED0; --drk:#4A5466; --elv:#0A8577; --ppv:#A26E00; --esp:#C44E17;
   --seen:#157A43; --warn:#A35A00;
-  --tint:#8F5F00; --bar:rgba(247,248,250,.84); --hair:rgba(16,19,26,.18); --track:rgba(118,118,128,.14);
+  --tint:#8A6100; --gold:#D9A93A; --bar:rgba(246,245,241,.88); --hair:rgba(11,11,12,.16); --track:#DCD8CE;
   /* the band is ink in both themes, so its colors are fixed */
-  --band:#10131A; --band-ink:#F3F4F7; --band-muted:#A2A9B7; --band-line:rgba(255,255,255,.12);
+  --band:#F6F5F1; --band-ink:#0B0B0C; --band-muted:#6E6A62; --band-line:#DCD8CE;
   --dyn-b:#FF5D95; --col-b:#6E9EFF; --ram-b:#B08BFF; --drk-b:#97A2B6; --elv-b:#34C9B6; --ppv-b:#F2BC3F; --esp-b:#FF8F52;
   --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
   --f-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;
@@ -104,7 +104,7 @@
     --bg:#0C0F15; --panel:#151922; --panel-2:#1C212B; --ink:#E8EBF1; --muted:#98A1B0; --line:#282E3A;
     --on-c:#0C0F15; --focus:#6E9EFF; --scrim:rgba(0,0,0,.6);
     --dyn:#FF5D95; --col:#6E9EFF; --ram:#B08BFF; --drk:#97A2B6; --elv:#34C9B6; --ppv:#F2BC3F; --esp:#FF8F52;
-    --seen:#3DD28A; --warn:#F0A43A; --band:#07090D;
+    --seen:#3DD28A; --warn:#F0A43A; --band:#07090D; --band-ink:#F3F4F7; --band-muted:#A2A9B7; --band-line:rgba(255,255,255,.12); --gold:#D9A93A;
     --tint:#F2BC3F; --bar:rgba(21,25,34,.82); --hair:rgba(255,255,255,.14); --track:rgba(118,118,128,.3);
     color-scheme:dark;
   }
@@ -113,7 +113,7 @@
   --bg:#0C0F15; --panel:#151922; --panel-2:#1C212B; --ink:#E8EBF1; --muted:#98A1B0; --line:#282E3A;
   --on-c:#0C0F15; --focus:#6E9EFF; --scrim:rgba(0,0,0,.6);
   --dyn:#FF5D95; --col:#6E9EFF; --ram:#B08BFF; --drk:#97A2B6; --elv:#34C9B6; --ppv:#F2BC3F; --esp:#FF8F52;
-  --seen:#3DD28A; --warn:#F0A43A; --band:#07090D;
+  --seen:#3DD28A; --warn:#F0A43A; --band:#07090D; --band-ink:#F3F4F7; --band-muted:#A2A9B7; --band-line:rgba(255,255,255,.12); --gold:#D9A93A;
     --tint:#F2BC3F; --bar:rgba(21,25,34,.82); --hair:rgba(255,255,255,.14); --track:rgba(118,118,128,.3);
   color-scheme:dark;
 }
@@ -447,6 +447,31 @@ button{transition:opacity .15s}
   .tabbar svg{width:27px;height:27px}
   .tabbar button[aria-current="page"]{color:var(--tint)}
 }
+/* ---- Archivo ---- */
+.band{border-bottom:1px solid var(--band-line)}
+.wordmark{letter-spacing:.04em}
+.wordmark span{color:var(--gold)}
+.arc-next{display:grid;grid-template-columns:116px minmax(0,1fr);background:#0B0B0C;color:#F6F5F1;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.arc-ep{background:var(--gold);color:#0B0B0C;display:flex;flex-direction:column;justify-content:space-between;padding:12px}
+.arc-ep span{font-size:10px;font-weight:600;letter-spacing:.16em}
+.arc-ep b{font-family:var(--f-display);font-weight:800;font-size:60px;line-height:.8}
+.arc-body{padding:14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.arc-k{font-size:11px;font-weight:600;letter-spacing:.14em;color:#A8A49A;text-transform:uppercase}
+.arc-title{all:unset;cursor:pointer;font-family:var(--f-display);font-weight:800;font-size:30px;line-height:.95;text-transform:uppercase}
+.arc-sub{font-size:12.5px;color:#A8A49A}
+.arc-body .fbtns{margin-top:8px}
+.arc-body .fbtns a.btn{background:#F6F5F1;border-color:#F6F5F1;color:#0B0B0C}
+.arc-body .fbtns .btn.ghost{background:transparent;border:1px solid #3A3A3E;color:#F6F5F1}
+.arc-h{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--muted);margin:14px 0 0;text-transform:uppercase}
+.arc-tl{list-style:none;margin:0;padding:0}
+.arc-tl button{all:unset;cursor:pointer;box-sizing:border-box;width:100%;display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);min-height:56px}
+.arc-yr{font-family:var(--f-display);font-weight:800;font-size:44px;line-height:.9;color:var(--muted)}
+.arc-tl .cur .arc-yr,.arc-tl .done .arc-yr{color:var(--ink)}
+.arc-row{display:flex;justify-content:space-between;gap:8px}
+.arc-row b{font-size:15px;font-weight:600}
+.arc-row small{font-size:12px;color:var(--muted)}
+.arc-bar{height:3px;background:var(--track);margin-top:6px}
+.arc-bar i{display:block;height:100%;background:var(--gold)}
 /* ---- Foco: interfaz limpia ---- */
 .lede,.tally,.eyebrow,#upnext,#meters,.foot,.chips,.toggle,#save,#addBtn,#moreBtn,.rail-row .spacer{display:none!important}
 .band{padding-top:calc(env(safe-area-inset-top,0px) + 14px)}
@@ -481,7 +506,7 @@ body[data-view="foco"] .years{display:none}
   <div class="wrap band-in">
     <div>
       <p class="eyebrow">Registro personal · mayo 2019 → hoy</p>
-      <h1 class="wordmark">Bitácora <span>AEW</span></h1>
+      <h1 class="wordmark">Bitácora <span>·</span> Archivo</h1>
       <p class="lede">Cada Dynamite, Collision, Rampage, Dark, Elevation y pay-per-view desde Double or Nothing 2019. Marca lo que ya viste, ponle nota al show y apunta la mejor lucha de la noche.</p>
     </div>
     <div class="tally" aria-live="polite">
@@ -1858,27 +1883,37 @@ function renderPpv(list){
 }
 
 let focoAt = null;
+const ERA_NAMES = {2019:"El origen",2020:"Sin público",2021:"Llega Rampage",2022:"Forbidden Door",2023:"Llega Collision",2024:"Último año de Rampage",2025:"All In: Texas",2026:"En curso"};
 function renderFoco(list){
   const pool = list.filter(e => state.f.has(e.show) && e.date <= TODAY);
   const next = pool.find(e => st(e) === "todo");
-  if (!next) return `<section class="foco"><div class="fdone"><b>Estás al día</b><span class="fsub">Ya marcaste todo lo emitido de los programas que sigues.</span></div></section>`;
-  const y = +next.date.slice(0,4);
-  const t = tally(list, e => state.f.has(e.show) && e.date.startsWith(y+"-"));
-  const after = pool.filter(e => e !== next && e.date >= next.date && st(e) === "todo").slice(0,3);
-  focoAt = next.date;
-  const ids = vodIds(next);
-  const watch = ids.map((id, i) => `<a class="btn" href="${vodUrl(id, next)}" target="_blank" rel="noopener" data-act="watch" data-id="${next.id}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver"}</a>`).join("");
-  const sub = [next.title ? SHOWS[next.show].name : "", fullDate(next.date)].filter(Boolean).join(" · ");
-  return `<section class="foco">
-    <p class="fk"><span>Era ${y}</span><span>${t.seen} de ${t.aired}</span></p>
-    <div class="fbar"><i style="width:${pct(t.seen, t.aired)}%"></i></div>
-    <div class="fcard s-${next.show}"><span class="fk">Siguiente</span>
-      <button type="button" class="fname" data-act="open" data-id="${next.id}">${esc(label(next))}</button>
-      <span class="fsub">${esc(sub)}</span>
-      ${MYAEW_PPV.has(next.id) ? `<span class="fsub">MyAEW vende este PPV aparte del plan base.</span>` : ""}
-      <div class="fbtns">${watch}<button type="button" class="btn ghost" data-act="fseen" data-id="${next.id}">✓ Visto</button></div></div>
-    ${after.length ? `<p class="fk">Después</p><ul class="rows">${after.map(rowHtml).join("")}</ul>` : ""}
-  </section>`;
+  let card;
+  if (!next) card = `<div class="fdone"><b>Estás al día</b><span class="fsub">Ya marcaste todo lo emitido de los programas que sigues.</span></div>`;
+  else {
+    focoAt = next.date;
+    const n = list.filter(e => e.show === next.show && e.date <= next.date).length;
+    const ids = vodIds(next);
+    const watch = ids.map((id, i) => `<a class="btn" href="${vodUrl(id, next)}" target="_blank" rel="noopener" data-act="watch" data-id="${next.id}">▶ ${ids.length > 1 ? `Parte ${i+1}` : "Ver"}</a>`).join("");
+    const sub = [shortDate(next.date) + " " + next.date.slice(0,4), next.city || ""].filter(Boolean).join(" · ");
+    card = `<div class="arc-next">
+      <div class="arc-ep"><span>${next.show === "ppv" ? "PPV" : "EP."}</span><b>${String(n).padStart(3, "0")}</b></div>
+      <div class="arc-body"><span class="arc-k">Siguiente · ${esc(SHOWS[next.show].name)}</span>
+        <button type="button" class="arc-title" data-act="open" data-id="${next.id}">${esc(label(next))}</button>
+        <span class="arc-sub">${esc(sub)}</span>
+        ${MYAEW_PPV.has(next.id) ? `<span class="arc-sub">MyAEW vende este PPV aparte del plan base.</span>` : ""}
+        <div class="fbtns">${watch}<button type="button" class="btn ghost" data-act="fseen" data-id="${next.id}">Visto</button></div></div>
+    </div>`;
+  }
+  const curY = next ? +next.date.slice(0,4) : null;
+  let tl = "";
+  for (let y = FIRST_YEAR; y <= +TODAY.slice(0,4); y++){
+    const t = tally(list, e => state.f.has(e.show) && e.date.startsWith(y+"-"));
+    if (!t.aired) continue;
+    const cls = y === curY ? "cur" : t.seen >= t.aired ? "done" : "";
+    const count = t.seen >= t.aired ? "Completa" : t.seen ? `${t.seen} de ${t.aired}` : "Por empezar";
+    tl += `<li class="${cls}"><button type="button" data-act="era" data-y="${y}"><span class="arc-yr">${y}</span><span><span class="arc-row"><b>${ERA_NAMES[y] || "Era " + y}</b><small>${count}</small></span><span class="arc-bar" style="display:block"><i style="width:${pct(t.seen, t.aired)}%"></i></span></span></button></li>`;
+  }
+  return `<section class="foco">${card}<p class="arc-h">Línea del tiempo</p><ol class="arc-tl">${tl}</ol></section>`;
 }
 
 function renderView(list){
@@ -2058,6 +2093,7 @@ document.addEventListener("click", ev => {
     case "open": openSheet(id, t); break;
     case "watch": try { sessionStorage.setItem(WATCH_KEY, JSON.stringify({id, at: Date.now()})); } catch (e) {} break;
     case "toggle": quickToggle(id); break;
+    case "era": state.year = +t.dataset.y; state.month = 0; state.view = "list"; saveUI(); renderAll(); window.scrollTo(0, 0); break;
     case "fseen": { const e = cache.byId[id]; if (!e) break; const prev = setRec(id, {s:"seen"}); toast(`Visto: ${label(e)}`, () => { restoreRec(id, prev); renderAll(); }); break; }
     case "year": setYear(+t.dataset.y); break;
     case "view": if (!sheet.hidden) closeSheet(); if (state.view === "foco" && focoAt && t.dataset.v !== "foco"){ state.year = +focoAt.slice(0,4); state.month = +focoAt.slice(5,7) - 1; } state.view = t.dataset.v; state.confirm = null; saveUI(); renderAll(); if (t.closest(".tabbar")){ const top = $("view").getBoundingClientRect().top; if (top < 0) scrollTo({top: scrollY + top - 64}); } break;
