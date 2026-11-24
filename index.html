@@ -471,6 +471,12 @@ body[data-view="foco"] .years{display:none}
 .fbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .fbtns>*{flex:1 1 0;justify-content:center;text-align:center}
 .fbtns a.btn{text-decoration:none;display:inline-flex;align-items:center;gap:6px;background:var(--tint);border-color:var(--tint);color:var(--bg)}
+.fcards{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);display:grid;gap:4px}
+.fcards ol{list-style:none;margin:0;padding:0}
+.fcards li{display:grid;gap:1px;padding:8px 0;border-top:1px solid var(--line)}
+.fcards li:first-child{border-top:0}
+.fcards li small{font-size:12px;color:var(--tint);font-weight:600}
+.fcards li span{font-size:15px;line-height:1.35}
 .flink{all:unset;cursor:pointer;font-size:14px;font-weight:600;color:var(--tint);padding:6px 0;min-height:32px}
 .fdone{text-align:center;padding:28px 8px}
 .fdone b{display:block;font-family:var(--f-display);font-size:28px;text-transform:uppercase}
@@ -1882,9 +1888,8 @@ function renderFoco(list){
     <div class="fcard s-${next.show}"><span class="fk">Siguiente</span>
       <button type="button" class="fname" data-act="open" data-id="${next.id}">${esc(label(next))}</button>
       <span class="fsub">${esc(sub)}</span>
-      ${CARDS && CARDS[next.id] ? `<button type="button" class="flink" data-act="open" data-id="${next.id}">Ver cartelera · ${CARDS[next.id].length} luchas</button>` : ""}
       ${MYAEW_PPV.has(next.id) ? `<span class="fsub">MyAEW vende este PPV aparte del plan base.</span>` : ""}
-      <div class="fbtns">${watch}<button type="button" class="btn ghost" data-act="fseen" data-id="${next.id}">✓ Visto</button></div></div>
+      <div class="fbtns">${watch}<button type="button" class="btn ghost" data-act="fseen" data-id="${next.id}">✓ Visto</button></div>${cardList(next, "fcards")}</div>
     ${after.length ? `<p class="fk">Después</p><ul class="rows">${after.map(rowHtml).join("")}</ul>` : ""}
   </section>`;
 }
@@ -1933,6 +1938,19 @@ function refreshSheet(){
 /* Cartelera de luchas (Cagematch, sin resultados): se carga aparte, en cards.json. */
 let CARDS = null;
 fetch("./cards.json").then(r => r.ok ? r.json() : null).then(j => { if (j){ CARDS = j; refreshSheet(); if (state.view === "foco") renderView(); } }).catch(() => {});
+function cardList(e, cls){
+  const ms = CARDS && CARDS[e.id];
+  if (!ms || !ms.length) return "";
+  return `<div class="${cls}"><span class="fk">Cartelera · ${ms.length} ${ms.length === 1 ? "lucha" : "luchas"}</span><ol>${cardItems(ms)}</ol></div>`;
+}
+function cardItems(ms){
+  return ms.map(m => {
+    const i = m.indexOf(": ");
+    const type = i > 0 && / vs\. |, /.test(m.slice(i + 2)) ? m.slice(0, i) : "";
+    const body = type ? m.slice(i + 2) : m;
+    return `<li>${type ? `<small>${esc(type)}</small>` : ""}<span>${esc(body)}</span></li>`;
+  }).join("");
+}
 function cardHtml(e){
   const ms = CARDS && CARDS[e.id];
   if (!ms || !ms.length) return "";
