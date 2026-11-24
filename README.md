@@ -23,3 +23,7 @@ node tools/build-ics.mjs
 ```
 
 Es un proyecto de fan, sin relación oficial con All Elite Wrestling.
+
+## Carteleras
+
+Cada episodio de Dynamite, Rampage, Collision, PPV y especiales muestra en su ficha la cartelera de luchas, sin resultados: los participantes van en orden alfabético y se quitan ganadores, tiempos, cambios de título y marcadores. Los datos vienen de Cagematch y viven en `cards.json` (id del episodio → luchas).
