@@ -385,6 +385,16 @@ button{transition:opacity .15s}
 .installcard span{color:var(--muted);font-size:14px}
 .installcard svg{width:17px;height:17px;vertical-align:-3px;color:var(--col)}
 
+.syncbox{display:grid;gap:10px;margin-top:16px;padding:14px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line)}
+.syncbox p{margin:0}
+.syncbox .btns{display:flex;flex-wrap:wrap;gap:8px}
+.syncbox .btns>*{flex:1 1 auto}
+.sync-st{font-weight:600}
+.sync-lbl{font-size:13px;color:var(--muted)}
+.sync-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:19px;letter-spacing:.04em;user-select:all;-webkit-user-select:all}
+.sync-help{font-size:14px;color:var(--muted);line-height:1.4}
+.sync-in{flex:3 1 180px;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:0 12px;font:500 16px ui-monospace,SFMono-Regular,Menlo,monospace;text-transform:uppercase}
+.sync-off{justify-self:start;color:var(--muted)}
 .mcard ol{list-style:none;margin:16px 0 0;padding:0;border-radius:var(--r);background:var(--panel);border:1px solid var(--line)}
 .mcard li{display:grid;gap:2px;padding:11px 14px;border-top:1px solid var(--line)}
 .mcard li:first-child{border-top:0}
@@ -1606,7 +1616,64 @@ function useLocal(reason){
   renderAll(); refreshSheet();
 }
 
-function persist(id){ saveLocal(); }
+/* ---- Sincronización entre aparatos (Supabase, por código secreto) ---- */
+const SYNC_URL = "https://oyhmshjchatglxqltafp.supabase.co/rest/v1/rpc/bitacora_sync";
+const SYNC_KEY = "sb_publishable_0rH9g-wcrgGwHRPrsCQpCw_U9DacKYx";
+const SYNC_CODE_KEY = "bitacora-aew:sync-code", TOMB_KEY = "bitacora-aew:tombs", SYNC_AT_KEY = "bitacora-aew:sync-at";
+const SYNC_ABC = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+let tombs = (() => { try { return JSON.parse(localStorage.getItem(TOMB_KEY) || "{}") || {}; } catch (e) { return {}; } })();
+const sync = { timer: null, busy: false, again: false, err: false, at: (() => { try { return +localStorage.getItem(SYNC_AT_KEY) || 0; } catch (e) { return 0; } })() };
+function saveTombs(){ try { localStorage.setItem(TOMB_KEY, JSON.stringify(tombs)); } catch (e) {} }
+function syncCode(){ try { return localStorage.getItem(SYNC_CODE_KEY) || ""; } catch (e) { return ""; } }
+function setSyncCode(c){ try { if (c) localStorage.setItem(SYNC_CODE_KEY, c); else { localStorage.removeItem(SYNC_CODE_KEY); localStorage.removeItem(SYNC_AT_KEY); } } catch (e) {} sync.at = 0; sync.err = false; }
+function normCode(v){ return String(v || "").toUpperCase().replace(/[^A-Z2-9]/g, ""); }
+function fmtCode(c){ return c.replace(/(.{4})(?=.)/g, "$1-"); }
+function newCode(){ const a = new Uint8Array(20); crypto.getRandomValues(a); return [...a].map(x => SYNC_ABC[x % 32]).join(""); }
+function scheduleSync(ms){ if (!syncCode()) return; clearTimeout(sync.timer); sync.timer = setTimeout(syncNow, ms ?? 1200); }
+async function syncNow(){
+  const code = syncCode(); if (!code) return;
+  if (sync.busy){ sync.again = true; return; }
+  sync.busy = true;
+  try {
+    const res = await fetch(SYNC_URL, { method: "POST", headers: { "apikey": SYNC_KEY, "Content-Type": "application/json" }, body: JSON.stringify({ p_code: code, p_data: { ...tombs, ...recs } }) });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const merged = await res.json() || {};
+    const local = { ...tombs, ...recs }, out = { ...merged };
+    let localNewer = false;
+    for (const [id, v] of Object.entries(local)){ const m = merged[id]; if (!m || (v.t || 0) > (m.t || 0)){ out[id] = v; localNewer = true; } }
+    const nr = {}, nt = {};
+    for (const [id, v] of Object.entries(out)){ if (v && v.del) nt[id] = v; else if (v) nr[id] = v; }
+    const changed = JSON.stringify(nr) !== JSON.stringify(recs);
+    recs = nr; tombs = nt; saveLocal(); saveTombs();
+    sync.at = Date.now(); sync.err = false; try { localStorage.setItem(SYNC_AT_KEY, String(sync.at)); } catch (e) {}
+    if (changed){ renderAll(); refreshSheet(); }
+    if (localNewer) sync.again = true;
+  } catch (e) { sync.err = true; }
+  finally {
+    sync.busy = false;
+    if (!sheet.hidden && sheet.querySelector(".syncbox")) openMore();
+    if (sync.again){ sync.again = false; scheduleSync(800); }
+  }
+}
+function agoText(t){ if (!t) return "todavía no"; const m = Math.round((Date.now() - t) / 60000); return m < 1 ? "hace un momento" : m < 60 ? `hace ${m} min` : m < 1440 ? `hace ${Math.round(m/60)} h` : `hace ${Math.round(m/1440)} días`; }
+function syncBlock(){
+  const c = syncCode();
+  if (c) return `<div class="syncbox"><p class="sync-st">${sync.err ? "No se pudo sincronizar; lo intento de nuevo al volver a la app." : sync.busy ? "Sincronizando…" : `Sincronizado ${agoText(sync.at)}.`}</p>
+    <p class="sync-lbl">Código de este registro</p><p class="sync-code">${fmtCode(c)}</p>
+    <p class="sync-help">En tu otro aparato abre Más → Sincronizar aparatos y escribe este código.</p>
+    <div class="btns"><button type="button" class="btn" data-act="sync-now">Sincronizar ahora</button><button type="button" class="btn ghost" data-act="sync-copy">Copiar código</button></div>
+    <button type="button" class="btn ghost sync-off" data-act="sync-off">Desvincular este aparato</button></div>`;
+  return `<div class="syncbox"><p class="sync-help">Tu avance se guarda solo en este aparato. Crea un código y escríbelo en tu iPhone, iPad o Mac para que todos muestren lo mismo.</p>
+    <div class="btns"><button type="button" class="btn" data-act="sync-new">Crear código</button></div>
+    <label class="sync-lbl" for="syncIn">¿Ya tienes un código?</label>
+    <div class="btns"><input id="syncIn" class="sync-in" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX-XXXX"><button type="button" class="btn" data-act="sync-join">Usar</button></div></div>`;
+}
+
+function persist(id){
+  const r = recs[id];
+  if (r){ r.t = Date.now(); delete tombs[id]; } else tombs[id] = { del: 1, t: Date.now() };
+  saveLocal(); saveTombs(); scheduleSync();
+}
 function flushTimers(){ for (const id in timers){ clearTimeout(timers[id]); delete timers[id]; persist(id); } }
 document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flushTimers(); });
 
@@ -1633,6 +1700,10 @@ function restoreRec(id, prev){
 function init(){
   store.mode = "local";
   recs = loadLocal();
+  const hm = location.hash.match(/sync=([A-Za-z2-9-]{20,40})/);
+  if (hm){ const c = normCode(hm[1]); if (c.length === 20) setSyncCode(c); history.replaceState(null, "", location.pathname + location.search); }
+  scheduleSync(0);
+  window.addEventListener("online", () => scheduleSync(0));
   setSave(localOK ? "local" : "memory");
   renderAll();
   try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (e) {}
@@ -2136,6 +2207,15 @@ document.addEventListener("click", ev => {
     case "day": { state.selDay = t.dataset.d; renderView(); const b = $("view").querySelector(`[data-act="day"][data-d="${state.selDay}"]`); if (b) b.focus({preventScroll:true}); break; }
     case "backup": openBackup(t); break;
     case "export": exportBackup(); break;
+    case "sync-new": setSyncCode(newCode()); openMore(); syncNow(); break;
+    case "sync-join": {
+      const c = normCode(document.getElementById("syncIn")?.value);
+      if (c.length !== 20){ toast("El código tiene 20 letras y números. Revísalo."); break; }
+      setSyncCode(c); openMore(); syncNow(); toast("Aparato vinculado. Juntando tu avance…"); break;
+    }
+    case "sync-now": scheduleSync(0); break;
+    case "sync-copy": { const c = fmtCode(syncCode()); (navigator.clipboard ? navigator.clipboard.writeText(c) : Promise.reject()).then(() => toast("Código copiado."), () => toast(c)); break; }
+    case "sync-off": setSyncCode(""); openMore(); toast("Este aparato ya no se sincroniza. Tu avance aquí se conserva."); break;
     case "close": closeSheet(); break;
     case "st": {
       const k = t.dataset.st;
@@ -2279,7 +2359,7 @@ function importBackup(file){
       const cur = recs[id];
       if (!cur || r.t >= (cur.t || 0)){ recs[id] = r; n++; }
     }
-    saveLocal(); closeSheet(); renderAll();
+    saveLocal(); closeSheet(); renderAll(); scheduleSync(0);
     toast(n ? `Importados ${fmtNum(n)} registros.` : "La copia no tenía nada nuevo.");
   };
   reader.onerror = () => toast("No se pudo leer el archivo.");
@@ -2330,6 +2410,8 @@ function openMore(opener){
       <button type="button" class="iconbtn" data-act="close" aria-label="Cerrar">×</button></div>
     <div class="sh-head"><h2 class="sh-title" id="shTitle">Bitácora AEW</h2></div>
     ${moreStats()}
+    <p class="secthead">Sincronizar aparatos</p>
+    ${syncBlock()}
     <p class="secthead">Programas que sigues</p>
     <div class="mchips">${["dyn","col","ram","drk","elv","ppv","esp"].map(k => `<button type="button" class="chip s-${k}" data-act="chip" data-k="${k}" aria-pressed="${state.f.has(k)}">${SHOWS[k].name}</button>`).join("")}</div>
     <p class="secthead">Otras vistas</p>
@@ -2390,6 +2472,7 @@ function askWatched(){
 }
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState !== "visible") return;
+  scheduleSync(0);
   askWatched();
   const n = new Date();
   if (iso(n.getFullYear(), n.getMonth()+1, n.getDate()) !== TODAY) location.reload();

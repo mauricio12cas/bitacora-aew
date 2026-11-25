@@ -7,7 +7,7 @@ Calendario y registro personal de todos los shows de AEW desde 2019: Dynamite, C
 ## En el iPhone
 
 - **Instalar:** abre la página en Safari, toca **Compartir → Agregar a pantalla de inicio**. Se abre a pantalla completa, con barra de pestañas, y funciona sin conexión.
-- **Tus marcas** se guardan solo en el dispositivo. En **Más → Copia de seguridad** puedes exportarlas a Archivos o iCloud Drive e importarlas después.
+- **Tus marcas** se guardan en el dispositivo y, si creas un código en **Más → Sincronizar aparatos**, también en Supabase para verlas igual en iPhone, iPad y Mac. En **Más → Copia de seguridad** puedes exportarlas a Archivos o iCloud Drive e importarlas después.
 - **Calendario de iPhone:** en **Más → Suscribirse en Calendario** (o abre `webcal://mauricio12cas.github.io/bitacora-aew/aew.ics`) para ver Dynamite, Collision y los PPV en la app Calendario.
 
 ## Ver en MyAEW
